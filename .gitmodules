@@ -1,0 +1,3 @@
+[submodule "pyIfcExtract"]
+	path = pyIfcExtract
+	url = git@github.com:DURAARK/pyIfcExtract.git
