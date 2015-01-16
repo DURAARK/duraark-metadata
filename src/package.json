@@ -1,8 +1,8 @@
 {
-  "name": "src",
+  "name": "sipgenerator",
   "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
+  "version": "0.0.1",
+  "description": "Microservice-API for DURAARK's SIP generator",
   "keywords": [],
   "dependencies": {
     "sails": "~0.10.5",
@@ -25,13 +25,21 @@
   },
   "scripts": {
     "start": "node app.js",
-    "debug": "node debug app.js"
+    "debug": "node debug app.js",
+    "test": "grunt test"
   },
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/hecher/src.git"
+    "url": "git://github.com/hecher/microservice-sipgenerator.git"
   },
-  "author": "hecher",
-  "license": ""
+  "author": "Martin Hecher <martin.hecher@fraunhofer.at>",
+  "license": "",
+  "devDependencies": {
+    "nodemon": "^1.2.1",
+    "mocha": "^2.1.0",
+    "grunt-mocha-test": "^0.12.6",
+    "sinon": "^1.12.2",
+    "assert": "^1.3.0"
+  }
 }
