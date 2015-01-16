@@ -5,9 +5,7 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var IfcMetadata = require('../../bindings/pyIfcExtract/app'),
-    spawn = require('child_process').spawn,
-    path = require('path');
+var IfcMetadata = require('../../bindings/pyIfcExtract/app');
 
 module.exports = {
     new: function(req, res, next) {
