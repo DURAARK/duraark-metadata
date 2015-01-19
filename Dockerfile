@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM duraark/microservice-base
 
 RUN DEBIAN_FRONTEND=noninteractive
 
