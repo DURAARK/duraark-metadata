@@ -12,7 +12,8 @@ COPY ./src /microservice
 COPY ./pyIfcExtract /pyIfcExtract
 
 WORKDIR /microservice
-EXPOSE 1337
+
+EXPOSE 5002
 
 RUN npm install
 CMD ["sails", "lift"]
