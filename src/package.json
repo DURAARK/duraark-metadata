@@ -1,8 +1,8 @@
 {
-  "name": "sipgenerator",
-  "private": true,
-  "version": "0.0.1",
-  "description": "Microservice-API for DURAARK's SIP generator",
+  "name": "microservice-sipgenerator",
+  "private": false,
+  "version": "0.1.0",
+  "description": "Microservice-API for DURAARK's file functionality",
   "keywords": [],
   "dependencies": {
     "ejs": "~0.8.4",
@@ -31,12 +31,11 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/hecher/microservice-sipgenerator.git"
+    "url": "git://github.com/DURAARK/microservice-file.git"
   },
   "author": "Martin Hecher <martin.hecher@fraunhofer.at>",
-  "license": "",
+  "license": "MIT",
   "devDependencies": {
-    "nodemon": "^1.2.1",
     "mocha": "^2.1.0",
     "grunt-mocha-test": "^0.12.6",
     "sinon": "^1.12.2",
