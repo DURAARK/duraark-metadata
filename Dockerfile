@@ -12,8 +12,8 @@ COPY ./src /microservice
 COPY ./pyIfcExtract /pyIfcExtract
 
 WORKDIR /microservice
+RUN npm install
 
 EXPOSE 5002
 
-RUN npm install
-CMD ["sails", "lift"]
+ENTRYPOINT ["sails", "lift"]
