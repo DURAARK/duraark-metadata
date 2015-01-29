@@ -18,12 +18,11 @@ PyIfcExtract.prototype.extractFromFile = function(ifcmRecord) {
 
     ifcmRecord.save(function(err, record) {
 
-        // TODO: implement SIP Generation logic!
-        var metadata = {
-                creator: 'martin',
-                wgs84: [15, 35]
-            },
-            ifcmString = '';
+        //var metadata = {
+        //        creator: 'martin',
+        //        wgs84: [15, 35]
+        //    },
+        var ifcmString = '';
 
 
         var executable = spawn('python3.3', ['/pyIfcExtract/buildm_extractor.py', ifcmRecord.originatingFile]);
@@ -31,7 +30,6 @@ PyIfcExtract.prototype.extractFromFile = function(ifcmRecord) {
         executable.stdout.on('data', function(data) {
             console.log('stdout: ' + data);
             ifcmString += data;
-
         });
 
         executable.stderr.on('data', function(data) {

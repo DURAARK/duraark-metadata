@@ -8,7 +8,7 @@
 var IfcMetadata = require('../../bindings/pyIfcExtract/app');
 
 module.exports = {
-    new: function(req, res, next) {
+    extract: function(req, res, next) {
         var files = req.params.all().files,
             ifcms = [];
 
