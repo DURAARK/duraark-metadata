@@ -32,8 +32,6 @@ module.exports = {
 
                 ifcms.push(ifcm);
 
-                console.log(files.length);
-
                 if (idx === files.length - 1) {
                     res.send(201, {
                         ifcms: ifcms // Wrap into 'ifcms' key for Ember.js compatibility

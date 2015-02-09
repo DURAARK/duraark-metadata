@@ -1,0 +1,280 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'sails' ]
+2 info using npm@1.4.3
+3 info using node@v0.10.26
+4 verbose cache add [ 'sails', null ]
+5 verbose cache add name=undefined spec="sails" args=["sails",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'sails',
+6 verbose parsed url   path: 'sails',
+6 verbose parsed url   href: 'sails' }
+7 silly lockFile e20e6cdc-sails sails
+8 verbose lock sails /home/hecher/.npm/e20e6cdc-sails.lock
+9 silly lockFile e20e6cdc-sails sails
+10 silly lockFile e20e6cdc-sails sails
+11 verbose addNamed [ 'sails', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile 5291d548-sails sails@
+14 verbose lock sails@ /home/hecher/.npm/5291d548-sails.lock
+15 silly addNameRange { name: 'sails', range: '*', hasData: false }
+16 verbose url raw sails
+17 verbose url resolving [ 'https://registry.npmjs.org/', './sails' ]
+18 verbose url resolved https://registry.npmjs.org/sails
+19 info trying registry request attempt 1 at 11:29:41
+20 verbose etag "DY6LE8MKCCICO0WUU0AHZ34R7"
+21 http GET https://registry.npmjs.org/sails
+22 http 304 https://registry.npmjs.org/sails
+23 silly registry.get cb [ 304,
+23 silly registry.get   { date: 'Mon, 09 Feb 2015 10:29:35 GMT',
+23 silly registry.get     server: 'Apache',
+23 silly registry.get     via: '1.1 varnish',
+23 silly registry.get     'last-modified': 'Mon, 09 Feb 2015 10:29:35 GMT',
+23 silly registry.get     'cache-control': 'max-age=60',
+23 silly registry.get     etag: '"DY6LE8MKCCICO0WUU0AHZ34R7"',
+23 silly registry.get     age: '0',
+23 silly registry.get     'x-served-by': 'cache-fra1222-FRA',
+23 silly registry.get     'x-cache': 'HIT',
+23 silly registry.get     'x-cache-hits': '1',
+23 silly registry.get     'x-timer': 'S1423477775.111662,VS0,VE422',
+23 silly registry.get     vary: 'Accept',
+23 silly registry.get     'content-length': '0',
+23 silly registry.get     'keep-alive': 'timeout=10, max=50',
+23 silly registry.get     connection: 'Keep-Alive' } ]
+24 verbose etag sails from cache
+25 silly addNameRange number 2 { name: 'sails', range: '*', hasData: true }
+26 silly addNameRange versions [ 'sails',
+26 silly addNameRange   [ '0.0.0',
+26 silly addNameRange     '0.0.0-2',
+26 silly addNameRange     '0.7.0',
+26 silly addNameRange     '0.7.0-2',
+26 silly addNameRange     '0.7.0-3',
+26 silly addNameRange     '0.7.0-4',
+26 silly addNameRange     '0.7.0-5',
+26 silly addNameRange     '0.0.0-1',
+26 silly addNameRange     '0.7.0-6',
+26 silly addNameRange     '0.7.0-7',
+26 silly addNameRange     '0.7.0-8',
+26 silly addNameRange     '0.7.1',
+26 silly addNameRange     '0.7.2',
+26 silly addNameRange     '0.7.3',
+26 silly addNameRange     '0.7.4',
+26 silly addNameRange     '0.7.4-1',
+26 silly addNameRange     '0.7.5-0',
+26 silly addNameRange     '0.7.6-0',
+26 silly addNameRange     '0.7.7',
+26 silly addNameRange     '0.7.8',
+26 silly addNameRange     '0.7.9',
+26 silly addNameRange     '0.8.0',
+26 silly addNameRange     '0.8.1',
+26 silly addNameRange     '0.8.2',
+26 silly addNameRange     '0.8.3',
+26 silly addNameRange     '0.8.4',
+26 silly addNameRange     '0.8.5',
+26 silly addNameRange     '0.8.6',
+26 silly addNameRange     '0.8.7',
+26 silly addNameRange     '0.8.71',
+26 silly addNameRange     '0.8.72',
+26 silly addNameRange     '0.8.73',
+26 silly addNameRange     '0.8.74',
+26 silly addNameRange     '0.8.75',
+26 silly addNameRange     '0.8.76',
+26 silly addNameRange     '0.8.77',
+26 silly addNameRange     '0.8.78',
+26 silly addNameRange     '0.8.79',
+26 silly addNameRange     '0.8.80',
+26 silly addNameRange     '0.8.81',
+26 silly addNameRange     '0.8.82',
+26 silly addNameRange     '0.8.83',
+26 silly addNameRange     '0.8.84',
+26 silly addNameRange     '0.8.85',
+26 silly addNameRange     '0.8.86',
+26 silly addNameRange     '0.8.87',
+26 silly addNameRange     '0.8.88',
+26 silly addNameRange     '0.8.89',
+26 silly addNameRange     '0.8.89-1',
+26 silly addNameRange     '0.8.892',
+26 silly addNameRange     '0.8.894',
+26 silly addNameRange     '0.8.895',
+26 silly addNameRange     '0.8.9',
+26 silly addNameRange     '0.8.91',
+26 silly addNameRange     '0.8.92',
+26 silly addNameRange     '0.8.93',
+26 silly addNameRange     '0.8.94',
+26 silly addNameRange     '0.9.0',
+26 silly addNameRange     '0.9.1',
+26 silly addNameRange     '0.9.2',
+26 silly addNameRange     '0.9.3',
+26 silly addNameRange     '0.9.4',
+26 silly addNameRange     '0.9.5',
+26 silly addNameRange     '0.9.7',
+26 silly addNameRange     '0.9.8',
+26 silly addNameRange     '0.9.9',
+26 silly addNameRange     '0.10.0-rc1',
+26 silly addNameRange     '0.10.0-rc2',
+26 silly addNameRange     '0.10.0-rc3',
+26 silly addNameRange     '0.9.11',
+26 silly addNameRange     '0.10.0-rc4',
+26 silly addNameRange     '0.9.12',
+26 silly addNameRange     '0.9.13',
+26 silly addNameRange     '0.9.15',
+26 silly addNameRange     '0.9.16',
+26 silly addNameRange     '0.10.0-rc5',
+26 silly addNameRange     '0.10.0-rc6',
+26 silly addNameRange     '0.10.0-rc7',
+26 silly addNameRange     '0.10.0-rc8',
+26 silly addNameRange     '0.9.17',
+26 silly addNameRange     '0.10.0-rc9',
+26 silly addNameRange     '0.10.0-max',
+26 silly addNameRange     '0.10.0-rc10',
+26 silly addNameRange     '0.10.0-rc11',
+26 silly addNameRange     '0.10.1',
+26 silly addNameRange     '0.10.2',
+26 silly addNameRange     '0.10.3',
+26 silly addNameRange     '0.10.4',
+26 silly addNameRange     '0.10.5',
+26 silly addNameRange     '0.11.0-rc2',
+26 silly addNameRange     '0.11.0-rc3',
+26 silly addNameRange     '0.11.0-rc4',
+26 silly addNameRange     '0.11.0-rc5',
+26 silly addNameRange     '0.11.0-rc6',
+26 silly addNameRange     '0.11.0-rc7',
+26 silly addNameRange     '0.11.0-rc8',
+26 silly addNameRange     '0.11.0-rc9',
+26 silly addNameRange     '0.11.0-rc10' ] ]
+27 verbose addNamed [ 'sails', '0.10.5' ]
+28 verbose addNamed [ '0.10.5', '0.10.5' ]
+29 silly lockFile 41d5a3b3-sails-0-10-5 sails@0.10.5
+30 verbose lock sails@0.10.5 /home/hecher/.npm/41d5a3b3-sails-0-10-5.lock
+31 silly lockFile 41d5a3b3-sails-0-10-5 sails@0.10.5
+32 silly lockFile 41d5a3b3-sails-0-10-5 sails@0.10.5
+33 silly lockFile 5291d548-sails sails@
+34 silly lockFile 5291d548-sails sails@
+35 silly resolved [ { name: 'sails',
+35 silly resolved     author: { name: 'Mike McNeil', email: 'mike@balderdash.co' },
+35 silly resolved     version: '0.10.5',
+35 silly resolved     description: 'API-driven framework for building realtime apps, using MVC conventions (based on Express and Socket.io)',
+35 silly resolved     homepage: 'http://sailsjs.org',
+35 silly resolved     keywords:
+35 silly resolved      [ 'mvc',
+35 silly resolved        'web-framework',
+35 silly resolved        'express',
+35 silly resolved        'sails',
+35 silly resolved        'sailsjs',
+35 silly resolved        'sails.js',
+35 silly resolved        'REST',
+35 silly resolved        'API',
+35 silly resolved        'orm',
+35 silly resolved        'socket.io' ],
+35 silly resolved     main: './lib/index.js',
+35 silly resolved     bin: { sails: './bin/sails.js' },
+35 silly resolved     scripts: { test: 'mocha -b', prepublish: 'npm prune' },
+35 silly resolved     directories: { lib: 'lib' },
+35 silly resolved     dependencies:
+35 silly resolved      { express: '3.4.3',
+35 silly resolved        waterline: '~0.10.9',
+35 silly resolved        rc: '~0.5.0',
+35 silly resolved        'sails-stringfile': '~0.3.0',
+35 silly resolved        async: '~0.2.9',
+35 silly resolved        lodash: '~2.4.1',
+35 silly resolved        'captains-log': '~0.11.8',
+35 silly resolved        reportback: '~0.1.4',
+35 silly resolved        'sails-util': '~0.10.3',
+35 silly resolved        colors: '~0.6.2',
+35 silly resolved        'socket.io': '~0.9.14',
+35 silly resolved        'connect-flash': '~0.1.1',
+35 silly resolved        pluralize: '~0.0.5',
+35 silly resolved        'node-uuid': '~1.4.0',
+35 silly resolved        'ejs-locals': '~1.0.2',
+35 silly resolved        glob: '~3.2.9',
+35 silly resolved        i18n: '~0.5.0',
+35 silly resolved        'sails-generate': '~0.11.2',
+35 silly resolved        'sails-build-dictionary': '~0.10.1',
+35 silly resolved        'grunt-cli': '~0.1.11',
+35 silly resolved        ejs: '~0.8.4',
+35 silly resolved        'fs-extra': '~0.8.1',
+35 silly resolved        'sails-disk': '~0.10.0',
+35 silly resolved        commander: '~2.1.0',
+35 silly resolved        grunt: '0.4.2',
+35 silly resolved        'grunt-contrib-copy': '~0.5.0',
+35 silly resolved        'grunt-contrib-clean': '~0.5.0',
+35 silly resolved        'grunt-contrib-concat': '~0.3.0',
+35 silly resolved        'grunt-sails-linker': '~0.9.5',
+35 silly resolved        'grunt-contrib-jst': '~0.6.0',
+35 silly resolved        'grunt-contrib-watch': '~0.5.3',
+35 silly resolved        'grunt-contrib-uglify': '~0.4.0',
+35 silly resolved        'grunt-contrib-cssmin': '~0.9.0',
+35 silly resolved        'grunt-contrib-less': '0.11.1',
+35 silly resolved        'grunt-contrib-coffee': '~0.10.1',
+35 silly resolved        'grunt-sync': '~0.0.4',
+35 silly resolved        'express-handlebars': '~1.0.1',
+35 silly resolved        'include-all': '~0.1.3',
+35 silly resolved        skipper: '~0.5.3',
+35 silly resolved        'merge-defaults': '~0.1.0',
+35 silly resolved        anchor: '~0.10.0',
+35 silly resolved        'mock-req': '0.1.0',
+35 silly resolved        'mock-res': '0.1.0',
+35 silly resolved        semver: '~2.2.1',
+35 silly resolved        prompt: '~0.2.13' },
+35 silly resolved     devDependencies:
+35 silly resolved      { 'root-require': '~0.2.0',
+35 silly resolved        checksum: '~0.1.1',
+35 silly resolved        request: '*',
+35 silly resolved        istanbul: '*',
+35 silly resolved        wrench: '~1.5.1',
+35 silly resolved        benchmark: '~1.0.0',
+35 silly resolved        microtime: '~0.6.0',
+35 silly resolved        colors: '~0.6.2',
+35 silly resolved        'expect.js': '~0.2.0',
+35 silly resolved        should: '~2.1.1',
+35 silly resolved        supertest: '~0.8.2',
+35 silly resolved        'socket.io-client': '~0.9.16',
+35 silly resolved        mocha: '~1.17.1',
+35 silly resolved        portfinder: '~0.2.1',
+35 silly resolved        'coffee-script': '~1.7.1' },
+35 silly resolved     repository: { type: 'git', url: 'git://github.com/balderdashy/sails.git' },
+35 silly resolved     licenses: [ [Object] ],
+35 silly resolved     bugs: { url: 'http://github.com/balderdashy/sails/issues' },
+35 silly resolved     engines: { node: '>= 0.10.0' },
+35 silly resolved     readme: '<h1>\n<a href="http://sailsjs.org"><img alt="Sails.js logo" src="http://balderdashy.github.io/sails/images/logo.png" title="Sails.js"/></a>\n</h1>\n\n### [Website](http://sailsjs.org/)  &nbsp; [Getting Started](http://sailsjs.org/#!getStarted) &nbsp;  [Docs](http://sailsjs.org/#!documentation)  &nbsp; [Submit Issue](https://github.com/balderdashy/sails/blob/master/README.md#issue-submission)\n\n\nSails.js is a web framework that makes it easy to build custom, enterprise-grade Node.js apps. It is designed to resemble the MVC architecture from frameworks like Ruby on Rails, but with support for the more modern, data-oriented style of web app development. It\'s especially good for building realtime features like chat.\n\n\n## Installation &nbsp;  [![NPM version](https://badge.fury.io/js/sails.svg)](http://badge.fury.io/js/sails)\n\n**With [node](http://nodejs.org) [installed](http://sailsjs.org/#!documentation/new-to-nodejs):**\n```sh\n# Get the latest stable release of Sails\n$ sudo npm install sails -g\n```\n\n> ######Upgrading from v0.9?\n> Be sure and check out the [v0.10 upgrading guide](http://sailsjs.org/#/documentation/concepts/Upgrading).\n\n\n## Your First Sails Project\n\n**Create a new app:**\n```sh\n# Create the app\n$ sails new testProject\n```\n\n**Lift sails:**\n```sh\n# cd into the new folder\n$ cd testProject\n\n# fire up the server\n$ sails lift\n```\n\n**Generate a REST API:**\n\n[![ScreenShot](http://i.imgur.com/Ii88jlhl.png)](https://www.youtube.com/watch?v=GK-tFvpIR7c)\n\n\n## Compatibility\n\nSails is built on [Node.js](http://nodejs.org/), [Connect](http://www.senchalabs.org/connect/), [Express](http://expressjs.com/), and [Socket.io](http://socket.io/).\n\nSails [controllers](http://sailsjs.org/#!documentation/controllers) are compatible with Connect middleware, so in most cases, you can paste code into Sails from an existing Express project and everything will work-- plus you\'ll be able to use WebSockets to talk to your API, and vice versa.\n\n\nThe ORM, [Waterline](https://github.com/balderdashy/waterline), has a well-defined adapter system for supporting all kinds of datastores.  Officially supported databases include [MySQL](https://github.com/balderdashy/sails-mysql), [PostgreSQL](https://github.com/balderdashy/sails-postgresql), [MongoDB](https://github.com/balderdashy/sails-mongo), [Redis](https://github.com/balderdashy/sails-redis), local [disk](https://github.com/balderdashy/sails-disk), and local [memory](https://github.com/balderdashy/sails-memory).  [Community adapters](https://github.com/balderdashy/sails-docs/blob/master/intro-to-custom-adapters.md#notable-community-adapters) exist for [CouchDB](https://github.com/search?q=sails+couch&nwo=codeswarm%2Fsails-couchdb-orm&search_target=global&ref=cmdform), [neDB](https://github.com/adityamukho/sails-nedb), [SQLite](https://github.com/AndrewJo/sails-sqlite3/tree/0.10), [Oracle](https://github.com/search?q=sails+oracle&type=Repositories&ref=searchresults), [MSSQL](https://github.com/search?q=sails+mssql&type=Repositories&ref=searchresults), [DB2](https://github.com/search?q=sails+db2&type=Repositories&ref=searchresults), [ElasticSearch](https://github.com/search?q=%28elasticsearch+AND+sails%29+OR+%28elasticsearch+AND+waterline%29+&type=Repositories&ref=searchresults), [Riak](https://github.com/search?q=sails+riak&type=Repositories&ref=searchresults),\n[neo4j](https://www.npmjs.org/package/sails-neo4j),\n[Amazon RDS](https://github.com/TakenPilot/sails-rds), [DynamoDB](https://github.com/TakenPilot/sails-dynamodb), [Azure Tables](https://github.com/azuqua/sails-azuretables), and [RethinkDB](https://github.com/search?q=%28%28sails+rethinkdb+in%3Aname%29+OR+%28waterline+rethinkdb+in%3Aname%29%29&type=Repositories&ref=searchresults); for various 3rd-party REST APIs like Quickbooks, Yelp, and Twitter, including a configurable generic [REST API adapter](https://github.com/zohararad/sails-rest); plus some [eclectic projects](https://www.youtube.com/watch?v=OmcQZD_LIAE).\n\n<!-- Core adapter logos -->\n<a target="_blank" href="http://www.mysql.com">\n  <img width="75" src="http://www.mysql.com/common/logos/powered-by-mysql-125x64.png" alt="Powered by MySQL" title="sails-mysql: MySQL adapter for Sails"/>\n</a>&nbsp; &nbsp; &nbsp; &nbsp;\n<a target="_blank" href="http://www.postgresql.org/"><img width="50" title="PostgreSQL" src="http://i.imgur.com/OSlDDKv.png"/></a>&nbsp; &nbsp; &nbsp; &nbsp;\n<a target="_blank" href="http://www.mongodb.org/"><img width="100" title="MongoDB" src="http://i.imgur.com/bC2j13z.png"/></a>&nbsp; &nbsp; &nbsp; &nbsp;\n<a target="_blank" href="http://redis.io/"><img width="75" title="Redis" src="http://i.imgur.com/dozv0ub.jpg"/></a>&nbsp; &nbsp; &nbsp; &nbsp;\n<!-- /core adapter logos -->\n\n\n## Issue Submission\nMake sure you\'ve read the [issue submission guidelines](https://github.com/balderdashy/sails/blob/master/CONTRIBUTING.md#opening-issues) before opening a new issue.\n\nSails is composed of a [number of different sub-projects](https://github.com/balderdashy/sails/blob/master/MODULES.md), many of which have [their own dedicated repository](https://github.com/search?q=sails+user%3Amikermcneil+user%3Abalderdashy+user%3Aparticlebanana&type=Repositories&ref=advsearch&l=). If you suspect an issue in one of Sails sub-modules, you\'ll usually find its repo on the [organization](https://github.com/balderdashy) page.  Click [here](https://github.com/balderdashy/sails/search?q=&type=Issues) to search/post issues in this repository.\n\n## Feature Requests\nSee the [Trello board](https://trello.com/b/cGzNVE0b/sails-js-feature-requests) to view/discuss our roadmap and [request features](https://github.com/balderdashy/sails/blob/master/CONTRIBUTING.md#requesting-features).\n\n## Contribute\nSee the [contribution guide](https://github.com/balderdashy/sails/blob/master/CONTRIBUTING.md).\n\n\n## Support\nNeed help or have a question?\n\n- [Tutorials](https://github.com/balderdashy/sails-docs/blob/master/FAQ.md#where-do-i-get-help)\n- [Stackoverflow](http://stackoverflow.com/questions/tagged/sails.js)\n- [#sailsjs on Freenode](http://webchat.freenode.net/) (IRC channel)\n- [Professional/Enterprise Options](https://github.com/balderdashy/sails-docs/blob/master/FAQ.md#are-there-professional-support-options)\n\n_Please don\'t use the issue tracker for support/questions._\n\n## Links\n- [Website](http://sailsjs.org/)\n- [Official Documentation](http://sailsjs.org/#!documentation)\n- [Changelog](https://github.com/balderdashy/sails-docs/blob/0.9/changelog.md)\n- [Roadmap](https://github.com/balderdashy/sails-wiki/blob/0.9/roadmap.md)\n- [Google Group](https://groups.google.com/forum/?fromgroups#!forum/sailsjs)\n- [Twitter](https://twitter.com/sailsjs)\n- [SailsCasts](http://irlnathan.github.io/sailscasts/)\n\n\n\n## Team\nSails is actively built and maintained by [Balderdash](http://balderdash.co) ([@balderdashy](http://twitter.com/balderdashy)), a realtime web & mobile studio, with the help of these [contributors](https://github.com/balderdashy/sails/graphs/contributors):\n\n[![Mike McNeil](http://gravatar.com/avatar/199046437b76e6ca73e00b4cc182a1c5?s=144)](http://michaelmcneil.com) | [![Cody Stoltman](https://1.gravatar.com/avatar/368567acca0c5dfb9a4ff512c5c0c3fa?s=144)](http://particlebanana.com) |  [![Scott Gress](https://0.gravatar.com/avatar/b74e07aa543552709bf546ca279c9c67?s=144)](http://www.pigandcow.com/) | [![Greg Thornton](https://2.gravatar.com/avatar/b7c50edb558d5289331440f45ff600b0?s=144)](http://xdissent.com) | [![Zoli Kahan](http://gravatar.com/avatar/55dbeca986f875e1d1cb4d51e2fc42e4?s=144)](http://www.zolmeister.com/)\n:---:|:---:|:---:|:---:|:---:\n[Mike McNeil](http://michaelmcneil.com) | [Cody Stoltman](https://github.com/particlebanana) | [Scott Gress](https://github.com/sgress454) | [Greg Thornton](https://github.com/xdissent) | [Zoli Kahan](https://github.com/Zolmeister)\n\n[Balderdash](http://balderdash.co) designs/builds scalable Node.js apps for startups and enterprise customers.  After building a few apps and taking them into production, we realized that the Node.js development landscape was very much still the Wild West.  Over time, after trying lots of different methodologies, we decided to crystallize all of our best practices into this framework.  [I](http://twitter.com/mikermcneil) hope it saves you some time :)\n\n\n## License\n\n[MIT License](http://sails.mit-license.org/)  Copyright © 2012-2014 Mike McNeil\n\n> Sails is built around so many great open-source technologies that it would never have crossed our minds to keep it proprietary.  We owe huge gratitude and props to TJ Holowaychuk ([@visionmedia](https://github.com/visionmedia)) and Guillermo Rauch ([@guille](https://github.com/guille)) for the work they did, as well as the stewards of all the other open-source modules we use.  Sails could never have been developed without your tremendous contributions to the node community.\n\n\n\n![image_squidhome@2x.png](http://sailsjs.org/images/bkgd_squid@2x.png)\n\n[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/8acf2fc2ca0aca8a3018e355ad776ed7 "githalytics.com")](http://githalytics.com/balderdashy/sails)\n',
+35 silly resolved     readmeFilename: 'README.md',
+35 silly resolved     _id: 'sails@0.10.5',
+35 silly resolved     _from: 'sails@' } ]
+36 info install sails@0.10.5 into /usr/local/lib
+37 info installOne sails@0.10.5
+38 info /usr/local/lib/node_modules/sails unbuild
+39 info preuninstall sails@0.10.5
+40 info uninstall sails@0.10.5
+41 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild sails@0.10.5
+42 verbose /usr/local/bin,[object Object] binRoot
+43 info /usr/local/lib/node_modules/sails unbuild
+44 info preuninstall sails@0.10.5
+45 info uninstall sails@0.10.5
+46 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild sails@0.10.5
+47 verbose /usr/local/bin,[object Object] binRoot
+48 error error rolling back Error: EACCES, unlink '/usr/local/bin/sails'
+48 error error rolling back  sails@0.10.5 { [Error: EACCES, unlink '/usr/local/bin/sails'] errno: 3, code: 'EACCES', path: '/usr/local/bin/sails' }
+49 error Error: EACCES, unlink '/usr/local/bin/sails'
+49 error  { [Error: EACCES, unlink '/usr/local/bin/sails'] errno: 3, code: 'EACCES', path: '/usr/local/bin/sails' }
+50 error Please try running this command again as root/Administrator.
+51 error System Linux 3.2.0-4-amd64
+52 error command "/usr/local/bin/node" "/usr/local/bin/npm" "install" "-g" "sails"
+53 error cwd /data/Projekte/duraark/microservice-e57metadata/_devops
+54 error node -v v0.10.26
+55 error npm -v 1.4.3
+56 error path /usr/local/bin/sails
+57 error code EACCES
+58 error errno 3
+59 error stack Error: EACCES, unlink '/usr/local/bin/sails'
+60 verbose exit [ 3, true ]
