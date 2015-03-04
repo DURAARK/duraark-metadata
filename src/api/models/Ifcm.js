@@ -20,6 +20,11 @@ module.exports = {
 
         metadata: {
             required: false
+        },
+
+        schema: {
+            type: 'string',
+            required: false
         }
     }
 };

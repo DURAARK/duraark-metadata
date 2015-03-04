@@ -17,7 +17,7 @@ module.exports = {
         for (var idx = 0; idx < files.length; idx++) {
             var file = files[idx],
                 ifcmInfo = {
-                    originatingFile: file,
+                    originatingFile: file.path,
                     status: 'pending',
                     metadata: {}
                 };
@@ -27,15 +27,24 @@ module.exports = {
             Ifcm.create(ifcmInfo, function(idx, err, ifcm) {
                 if (err) return next(err);
 
-                var ifcMetadata = new IfcMetadata();
-                ifcMetadata.extractFromFile(ifcm);
+                // var ifcMetadata = new IfcMetadata();
+                // ifcMetadata.extractFromFile(ifcm);
 
                 ifcms.push(ifcm);
 
                 if (idx === files.length - 1) {
-                    res.send(201, {
-                        ifcms: ifcms // Wrap into 'ifcms' key for Ember.js compatibility
-                    });
+                    res.send([{
+                        physicalAsset: {
+                            longitude: 25,
+                            latitude: 11
+                        },
+                        digitalObject: {
+                            creator: 'Martin Hecher',
+                            streetAdress: 'Inffeldgasse 16c'
+                        },
+                        status: 'finished',
+                        schema: 'ifcm'
+                    }]);
                 }
             }.bind(this, idx));
         };
