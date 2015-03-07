@@ -33,8 +33,32 @@ module.exports = {
                     schema: 'buildm',
                     file: file.path,
                     instance: {
-                        longitude: 25,
-                        latitude: 11
+                        Identifier: '1234-2345-3456-4567',
+                        latitude: 13,
+                        longitude: 44,
+                        owner: 'TU Graz',
+                        buildingArea: 4932,
+                        floorCount: 3,
+                        numberOfRooms: 145,
+                        'function': 'Educational building',
+                        architecturalStyle: 'reduced',
+                        description: 'Campus building',
+                        location: 'At the campus',
+                        streetAddress: 'Inffeldgasse 16c, III',
+                        postalCodeStart: '16',
+                        postalCodeEnd: '16',
+                        postOfficeBoxNumber: '',
+                        addressRegion: 'Graz',
+                        postalLocality: 'Graz',
+                        architect: 'Martina Musterfrau',
+                        contributor: 'Max Mustermann',
+                        startDate: 2001,
+                        completionDate: 2004,
+                        constructionTime: 1024,
+                        rebuildingDate: 0,
+                        modificationDetails: 'none',
+                        cost: 1,
+                        rightsDetails: 'unknown'
                     }
                 };
 
@@ -42,8 +66,20 @@ module.exports = {
                     schema: 'buildm',
                     file: file.path,
                     instance: {
+                        Identifier: '2345-3456-4567-5678',
                         creator: 'Martin Hecher',
-                        streetAdress: 'Inffeldgasse 16c'
+                        name: '3DSDI.ifc',
+                        dateCreated: new Date(),
+                        isPartOf: '1234-2345-3456-4567',
+                        hasPart: '',
+                        format: 'IFC-SPF',
+                        hasType: 'plan',
+                        hasFormatDetails: 'SPF',
+                        description: 'no description given',
+                        provenance: 'none',
+                        license: 'unknown',
+                        unitCode: 'sii',
+                        levelOfDetail: 'none'
                     }
                 };
 
@@ -51,7 +87,42 @@ module.exports = {
                     schema: 'ifcm',
                     file: file.path,
                     instance: {
-                        filesize: 138234
+                        header: {
+                            creationDate: new Date(),
+                            author: 'Martin Hecher',
+                            organization: 'TU Graz',
+                            preprocessor: 'none',
+                            originatingSystem: 'none',
+                            authorization: 'none',
+                            fileSchema: 'IFC-SPF',
+                            viewDefinition: 'none',
+                            exportOptions: 'none'
+                        },
+                        ifcparameters: {
+                            ifcApplication: 'Blender',
+                            IfcGeometricRepresentationContext: 'none',
+                            ifcSiUnit: 'none'
+                        },
+                        countObjects: {
+                            floorCount: 3,
+                            roomCount: 3,
+                            wallCount: 3,
+                            windowsCount: 3,
+                            doorCount: 3,
+                            pipeCount: 3,
+                            columnCount: 3,
+                            numberOfComponents: 3,
+                            numberOfRelations: 3,
+                            numberOfActors: 3
+                        },
+                        informationMetric: {
+                            numberOfEntityTypesUsed: 3,
+                            numberOfTotalEntitiesUsed: 3,
+                            optionalAttributes: 0
+                        },
+                        dependencies: {
+                            webResourceLink: 'none'
+                        }
                     }
                 };
 
