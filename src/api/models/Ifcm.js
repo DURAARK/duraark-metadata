@@ -8,7 +8,7 @@
 module.exports = {
 
     attributes: {
-        originatingFile: {
+        type: {
             type: 'string',
             required: true
         },
@@ -18,12 +18,15 @@ module.exports = {
             required: false
         },
 
-        metadata: {
+        physicalAsset: {
             required: false
         },
 
-        schema: {
-            type: 'string',
+        digitalObject: {
+            required: false
+        },
+
+        ifcm: {
             required: false
         }
     }
