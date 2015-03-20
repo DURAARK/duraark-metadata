@@ -69,7 +69,7 @@ module.exports = {
             ifcms = [],
             schemaFile = '/pyIfcExtract/buildm_v3.0.rdf';
 
-        // console.log('files: ' + JSON.stringify(files, null, 4));
+        console.log('files: ' + JSON.stringify(files, null, 4));
 
         for (var idx = 0; idx < files.length; idx++) {
             var file = files[idx],

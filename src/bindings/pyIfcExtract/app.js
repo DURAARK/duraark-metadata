@@ -16,7 +16,7 @@ function _enrichTemplateInstance(template, subject) {
         console.log('key: ' + key + ' | value: ' + JSON.stringify(value, null, 4));
 
         var property = key.split('/').pop();
-debugger;
+        debugger;
         if (template.hasOwnProperty(property)) {
             if (value[0]['@value']) {
                 // If there are multiple entries in the array, add the values as array 
@@ -52,11 +52,7 @@ PyIfcExtract.prototype.extractFromFile = function(ifcmRecord, schemaPath) {
 
         executable.stdout.on('data', function(data) {
             // console.log('stdout: ' + data);
-            if (data !== '') {
-                ifcmString += data;
-            } else {
-                console.log('skipped emtpy line');
-            }
+            ifcmString += data;
         });
 
         executable.stderr.on('data', function(data) {
@@ -90,7 +86,7 @@ PyIfcExtract.prototype.extractFromFile = function(ifcmRecord, schemaPath) {
                         }
 
                         writer.end(function(error, result) {
-                            var ifcmRdf = null,
+                            var digitalObjectRdf = null,
                                 physicalAssetRdf = null;
 
                             jsonld.fromRDF(result, {
@@ -103,26 +99,33 @@ PyIfcExtract.prototype.extractFromFile = function(ifcmRecord, schemaPath) {
                                     var type = subject['@type'][0].split('/').pop();
 
                                     if (type === 'IFCSPFFile') {
-                                        ifcmRdf = subject;
+                                        digitalObjectRdf = subject;
                                     } else if (type === 'PhysicalAsset') {
                                         physicalAssetRdf = subject;
                                     }
                                 });
 
-                                var ifcmInstanceTemplate = {
+                                var digitalObjectInstanceTemplate = {
                                     identifier: '',
                                     creator: [],
-                                    filename: '',
+                                    name: [],
+                                    dateCreated: [],
+                                    isPartOf: [],
+                                    hasPart: [],
+                                    format: [],
+                                    hasType: [],
                                     hasFormatDetails: [],
-                                    dateCreated: -1,
-                                    hasType: '',
-                                    documents: []
+                                    description: [],
+                                    provenance: [],
+                                    license: [],
+                                    unitCode: [],
+                                    levelOfDetail: []
                                 };
 
-                                var ifcmInstance = {
-                                    schema: 'ifcm',
+                                var digitalObjectInstance = {
+                                    schema: 'buildm',
                                     file: ifcmRecord.originatingFile,
-                                    instance: _enrichTemplateInstance(ifcmInstanceTemplate, ifcmRdf)
+                                    instance: _enrichTemplateInstance(digitalObjectInstanceTemplate, physicalAssetRdf)
                                 };
 
                                 var physicalAssetInstanceTemplate = {
@@ -160,7 +163,25 @@ PyIfcExtract.prototype.extractFromFile = function(ifcmRecord, schemaPath) {
                                     instance: _enrichTemplateInstance(physicalAssetInstanceTemplate, physicalAssetRdf)
                                 };
 
-                                ifcmRecord.ifcm = ifcmInstance;
+                                // var ifcmInstanceTemplate = {
+                                //     identifier: '',
+                                //     creator: [],
+                                //     filename: '',
+                                //     hasFormatDetails: [],
+                                //     dateCreated: -1,
+                                //     hasType: '',
+                                //     documents: []
+                                // };
+
+                                // var ifcmInstance = {
+                                //     schema: 'ifcm',
+                                //     file: ifcmRecord.originatingFile,
+                                //     instance: _enrichTemplateInstance(ifcmInstanceTemplate, ifcmRdf)
+                                // };
+
+                                // ifcmRecord.ifcm = ifcmInstance;
+
+                                ifcmRecord.digitalObject = digitalObjectInstance;
                                 ifcmRecord.physicalAsset = physicalAssetInstance;
 
                                 ifcmRecord.status = 'finished';
