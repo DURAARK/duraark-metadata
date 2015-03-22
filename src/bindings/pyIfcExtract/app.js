@@ -155,7 +155,7 @@ PyIfcExtract.prototype.extractFromFile = function(ifcmRecord, schemaPath) {
                                     modificationDetails: '',
                                     cost: -1,
                                     rightsDetails: ''
-                                }
+                                };
 
                                 var physicalAssetInstance = {
                                     schema: 'buildm',
