@@ -47,7 +47,8 @@ PyIfcExtract.prototype.extractFromFile = function(ifcmRecord, schemaPath) {
 
     ifcmRecord.save(function(err, record) {
 
-        var executable = spawn('python2.7', ['/pyIfcExtract/buildm_extractor.py', ifcmRecord.originatingFile, schemaPath]),
+        var executable = spawn('python3.3', ['/pyIfcExtract/buildm_extractor.py', ifcmRecord.originatingFile, schemaPath]),
+        // var executable = spawn('python3.3', ['/home/martin/Coding/Projekte/duraark/duraark-platform-api/microservice-ifcmetadata/pyIfcExtract/buildm_extractor.py', ifcmRecord.originatingFile, schemaPath]),
             ifcmString = '';
 
         executable.stdout.on('data', function(data) {
