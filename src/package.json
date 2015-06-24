@@ -3,7 +3,13 @@
   "private": false,
   "version": "0.5.0",
   "description": "Microservice providing a metadata extraction API for IFC files.",
-  "keywords": ["duraark", "api", "microservice", "long-time-preservation", "sailsjs"],
+  "keywords": [
+    "duraark",
+    "api",
+    "microservice",
+    "long-time-preservation",
+    "sailsjs"
+  ],
   "dependencies": {
     "ejs": "~0.8.4",
     "grunt": "^0.4.2",
@@ -22,6 +28,7 @@
     "jsonld": "^0.3.19",
     "n3": "^0.4.1",
     "rc": "~0.5.0",
+    "rdf-ext": "^0.2.4",
     "sails": "~0.10.5",
     "sails-disk": "~0.10.0",
     "underscore": "^1.8.2"
