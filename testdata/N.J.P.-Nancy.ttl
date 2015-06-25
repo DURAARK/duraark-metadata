@@ -1,0 +1,54 @@
+@prefix duraark: <http://data.duraark.eu/vocab/> .
+@prefix xsd112: <http://www.w3.org/TR/xmlschema11-2/#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <http://schema.org/> .
+@prefix unit: <http://qudt.org/vocab/unit#> .
+
+<http://data.duraark.eu/resource/ifcspffile_d86c761c42e440659a8a5b945f695b76> a duraark:IFCSPFFile ;
+     duraark:actorCount "0"^^xsd:nonNegativeInteger ;
+     duraark:authoringTool "20140606_1530(x64) - Exporter 15.2.0.0 - Alternate UI 15.2.0.0"^^xsd:string ;
+     duraark:authoringTool "Autodesk Revit 2015 (ENU)"^^xsd:string ;
+     duraark:authoringTool "The EXPRESS Data Manager Version 5.02.0100.07 : 28 Aug 2013"^^xsd:string ;
+     duraark:creator ""^^xsd:string ;
+     duraark:creator ""^^xsd:string ;
+     duraark:creator "Nancy "^^xsd:string ;
+     duraark:dateCreated "2015-01-12T12:04:17"^^xsd:string ;
+     duraark:dimensionCount "3"^^xsd:integer ;
+     duraark:entityCount "86"^^xsd:nonNegativeInteger ;
+     duraark:fileSchema "IFC2X3"^^xsd:string ;
+     duraark:geometricPrecision "0.01"^^xsd:decimal ;
+     duraark:hasType "Model"^^xsd:string ;
+     duraark:instanceCount "5311"^^xsd:nonNegativeInteger ;
+     duraark:name "001"^^xsd:string ;
+     duraark:optionalAttributesSet "0.5201281794512317"^^xsd:double ;
+     duraark:relationshipCount "362"^^xsd:nonNegativeInteger ;
+     duraark:unit "KILONEWTON"^^xsd:string ;
+     duraark:unit unit:Ampere ;
+     duraark:unit unit:Candela ;
+     duraark:unit unit:CubicMeter ;
+     duraark:unit unit:DegreeCelsius ;
+     duraark:unit unit:Hertz ;
+     duraark:unit unit:Kilogram ;
+     duraark:unit unit:Lumen ;
+     duraark:unit unit:Lux ;
+     duraark:unit unit:Millimeter ;
+     duraark:unit unit:Pascal ;
+     duraark:unit unit:SecondTime ;
+     duraark:unit unit:SquareMeter ;
+     duraark:unit unit:Volt ;
+     duraark:unit unit:Watt .
+
+<http://data.duraark.eu/resource/physicalasset_d86c761c42e440659a8a5b945f695b76> a duraark:PhysicalAsset ;
+     duraark:buildingCount "1"^^xsd:nonNegativeInteger ;
+     duraark:columnCount "0"^^xsd:nonNegativeInteger ;
+     duraark:componentCount "129"^^xsd:nonNegativeInteger ;
+     duraark:doorCount "17"^^xsd:nonNegativeInteger ;
+     duraark:floorCount "2"^^xsd:nonNegativeInteger ;
+     duraark:identifier "3OR7OSGkH0PPgAMvHVQLjs"^^xsd:string ;
+     duraark:latitude "42.35829999972223"^^xsd112:double ;
+     duraark:longitude "-71.06029999972222"^^xsd112:double ;
+     duraark:name "001"^^schema:Text ;
+     duraark:spaceCount "0"^^xsd:nonNegativeInteger ;
+     duraark:streetAddress "Enter address here"^^xsd:string ;
+     duraark:wallCount "46"^^xsd:nonNegativeInteger ;
+     duraark:windowCount "14"^^xsd:nonNegativeInteger .

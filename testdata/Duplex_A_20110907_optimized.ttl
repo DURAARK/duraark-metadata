@@ -1,0 +1,44 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix duraark: <http://data.duraark.eu/vocab/> .
+@prefix unit: <http://qudt.org/vocab/unit#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd112: <http://www.w3.org/TR/xmlschema11-2/#> .
+
+<http://data.duraark.eu/resource/ifcspffile_7b7032ccb822417b9aea642906a29bd5> a duraark:IFCSPFFile ;
+     duraark:actorCount "0"^^xsd:nonNegativeInteger ;
+     duraark:authoringTool "20100326_1700 (Solibri IFC Optimizer)"^^xsd:string ;
+     duraark:authoringTool "Autodesk Revit Architecture 2011 - 1.0"^^xsd:string ;
+     duraark:authoringTool "Autodesk Revit Architecture 2011"^^xsd:string ;
+     duraark:creator ""^^xsd:string ;
+     duraark:creator ""^^xsd:string ;
+     duraark:creator "cskender "^^xsd:string ;
+     duraark:dateCreated "2011-09-07T12:28:29"^^xsd:string ;
+     duraark:dimensionCount "3"^^xsd:integer ;
+     duraark:entityCount "103"^^xsd:nonNegativeInteger ;
+     duraark:fileSchema "IFC2X3"^^xsd:string ;
+     duraark:geometricPrecision "1e-09"^^xsd:decimal ;
+     duraark:hasType "Model"^^xsd:string ;
+     duraark:hasType "Plan"^^xsd:string ;
+     duraark:instanceCount "27529"^^xsd:nonNegativeInteger ;
+     duraark:name "0001"^^xsd:string ;
+     duraark:optionalAttributesSet "0.4326365327788114"^^xsd:double ;
+     duraark:relationshipCount "2068"^^xsd:nonNegativeInteger ;
+     duraark:unit unit:CubicMeter ;
+     duraark:unit unit:Meter ;
+     duraark:unit unit:SecondTime ;
+     duraark:unit unit:SquareMeter .
+
+<http://data.duraark.eu/resource/physicalasset_7b7032ccb822417b9aea642906a29bd5> a duraark:PhysicalAsset ;
+     duraark:buildingCount "1"^^xsd:nonNegativeInteger ;
+     duraark:columnCount "0"^^xsd:nonNegativeInteger ;
+     duraark:componentCount "295"^^xsd:nonNegativeInteger ;
+     duraark:doorCount "14"^^xsd:nonNegativeInteger ;
+     duraark:floorCount "4"^^xsd:nonNegativeInteger ;
+     duraark:identifier "1xS3BCk291UvhgP2a6eflL"^^xsd:string ;
+     duraark:latitude "41.8744"^^xsd112:double ;
+     duraark:longitude "-87.63939999972223"^^xsd112:double ;
+     duraark:name "Duplex Apartment"^^schema:Text ;
+     duraark:spaceCount "21"^^xsd:nonNegativeInteger ;
+     duraark:streetAddress "Enter address here"^^xsd:string ;
+     duraark:wallCount "57"^^xsd:nonNegativeInteger ;
+     duraark:windowCount "24"^^xsd:nonNegativeInteger .
