@@ -9,9 +9,9 @@ var IfcMetadata = require('../../bindings/pyIfcExtract/app'),
     fs = require('fs'),
     path = require('path'),
     cwd = process.cwd();
-    // digitalObjectRdf = fs.readFileSync(path.join(cwd, './fixtures/digitalObject-example.rdf')),
-    // physicalAssetRdf = fs.readFileSync(path.join(cwd, './fixtures/physicalAsset-example.rdf')),
-    // ifcmRdf = fs.readFileSync(path.join(cwd, './fixtures/ifcm-example.rdf'));
+// digitalObjectRdf = fs.readFileSync(path.join(cwd, './fixtures/digitalObject-example.rdf')),
+// physicalAssetRdf = fs.readFileSync(path.join(cwd, './fixtures/physicalAsset-example.rdf')),
+// ifcmRdf = fs.readFileSync(path.join(cwd, './fixtures/ifcm-example.rdf'));
 
 var ifcmSchemaTemplate = {
     identifier: '',
@@ -24,14 +24,15 @@ var ifcmSchemaTemplate = {
 };
 
 module.exports = {
-    extract: function(req, res, next) {
-        var files = req.params.all().files,
+    create: function(req, res, next) {
+        var files = req.params.all().files, // FIXXME: remove after testing!
             ifcms = [],
             schemaFile = '/pyIfcExtract/buildm_v3.0.rdf';
 
         console.log('files: ' + JSON.stringify(files, null, 4));
 
         for (var idx = 0; idx < files.length; idx++) {
+            console.log(JSON.stringify(files, null, 4));
             var file = files[idx],
                 ifcmInfo = {
                     type: 'ifc',
@@ -45,14 +46,14 @@ module.exports = {
                 if (err) return next(err);
 
                 var ifcMetadata = new IfcMetadata();
-                ifcMetadata.extractFromFile(ifcm, schemaFile);
+                ifcMetadata.extractFromFile(ifcm, schemaFile, res);
 
-                ifcms.push(ifcm);
+                // ifcms.push(ifcm);
 
-                if (idx === files.length - 1) {
-                    console.log('returning ifc metadata...');
-                    res.send(ifcms);
-                }
+                // if (idx === files.length - 1) {
+                //     console.log('returning ifc metadata...');
+                //     res.send(ifcms);
+                // }
             }.bind(this, idx));
         };
     }
