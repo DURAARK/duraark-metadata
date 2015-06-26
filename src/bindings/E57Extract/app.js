@@ -15,7 +15,7 @@ var _failsave = true;
 
 var E57Extract = module.exports = function() {}
 
-E57Extract.prototype.asJSON = function(e57) {
+E57Extract.prototype.asJSONLD = function(e57) {
   var extractor = this;
 
   return new Promise(function(resolve, reject) {

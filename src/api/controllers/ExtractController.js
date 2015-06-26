@@ -6,127 +6,147 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var MetadataExtractorIfcSpf = require('../../bindings/pyIfcExtract/app');
-var MetadataExtractorE57 = require('../../bindings/E57Extract/app');
+var MetadataExtractorIfcSpf = require('../../bindings/pyIfcExtract/app'),
+  MetadataExtractorE57 = require('../../bindings/E57Extract/app');
 
 module.exports = {
   create: function(req, res, next) {
     var file = req.params.all().file;
 
-    console.log('\n\n[DURAARK::MetadataExtraction] incoming request');
+    console.log('\n[DURAARK::MetadataExtraction] incoming request');
     console.log('[DURAARK::MetadataExtraction]');
 
-    if (!file) {
-      console.log('[DURAARK::MetadataExtraction] no "file" in payload, aborting');
-      res.send(500, 'Error: Please provide a "file" property in the payload!')
-    }
-
-    var path = file.path;
-    if (!path) {
-      console.log('[DURAARK::MetadataExtraction] no "file.path" in payload, aborting');
-      res.send(500, 'Error: Please provide a "file.path" property in the payload!')
-    }
-    console.log('[DURAARK::MetadataExtraction]   * file: ' + file.path);
-
-    var type = file.type;
-    if (!type) {
-      console.log('[DURAARK::MetadataExtraction] no "file.type" in payload, aborting');
-      res.send(500, 'Error: Please provide a "file.type" property in the payload!')
-    }
-    console.log('[DURAARK::MetadataExtraction]   * type: ' + type);
-    console.log('[DURAARK::MetadataExtraction]')
-
-    switch (type.toLowerCase()) {
-      case 'ifc-spf':
-        handleIfcSpf(file, res);
-        break;
-      case 'e57':
-        handleE57(file, res);
-        break;
-      default:
-        console.log('[DURAARK::MetadataExtraction] error: file type "' + type + '" not supported. Aborting...');
-        res.send(500, 'Error: file type "' + type + '" not supported. Feel free to provide a plugin ;-)')
+    if (validateInput(req, res)) {
+      handleExtraction(file, res);
     }
   }
 }
 
-function handleIfcSpf(file, res) {
-  Ifc.create(file, function(err, ifc) {
-    if (err) {
-      console.log('[DURAARK::MetadataExtraction] ERROR creating record:\n\n' + err + '\n');
-      res.send('[DURAARK::MetadataExtraction] ERROR creating record:\n\n' + err);
+function handleExtraction(file, res) {
+  console.log('[DURAARK::MetadataExtraction] searching in cache ...');
+
+  askCache(file).then(function(cachedRecord) {
+    if (cachedRecord) {
+      console.log('[DURAARK::MetadataExtraction] request completed!\n\n');
+      return res.send(cachedRecord);
     }
 
-    var schema = '/duraark-storage/schemas/rdf/buildm_v3.0.rdf'; // TODO: refactor into config object!
-    var extractor = new MetadataExtractorIfcSpf(schema);
-
-    ifc.save(function(err, ifc) {
-      if (err) {
-        console.log('[DURAARK::MetadataExtraction] ERROR saving record 1:\n\n' + err + '\n');
-        return res.send(500, '[DURAARK::MetadataExtraction] ERROR saving record 1:\n\n' + err);
-      }
-
-      extractor.asJSONLD(ifc).then(function(metadata) {
-          console.log('[DURAARK::MetadataExtraction] successfully extracted metadata as JSON-LD');
-
-          ifc.ifcm = metadata;
-
-          ifc.save(function(err, ifc) {
-            if (err) {
-              console.log('[DURAARK::MetadataExtraction] ERROR saving record 2:\n\n' + err + '\n');
-              return res.send(500, '[DURAARK::MetadataExtraction] ERROR saving record 2:\n\n' + err);
-            }
-
-            // TODO: create correct URL!
-            console.log('[DURAARK::MetadataExtraction] cached data at: http://localhost:5002/ifc/' + ifc.id);
-            console.log('[DURAARK::MetadataExtraction] request completed!\n\n');
-            res.send(metadata);
-          });
-        })
-        .catch(function(err) {
-          console.log('[DURAARK::MetadataExtraction] ERROR: ' + err);
-          res.send(500, err);
-        });
-    });
+    return extractFromFile(file)
+      .then(function(file) {
+        return res.send(file);
+      })
+      .catch(function(err) {
+          console.log('[DURAARK::MetadataExtraction] ERROR extracting from file:\n\n' + err + '\n');
+          return res.send(500, '[DURAARK::MetadataExtraction] ERROR extracting from file:\n\n' + err);
+      });
   });
 }
 
-function handleE57(file, res) {
-  E57.create(file, function(err, e57) {
-    if (err) {
-      console.log('[DURAARK::MetadataExtraction] ERROR creating record:\n\n' + err + '\n');
-      return res.send(500, '[DURAARK::MetadataExtraction] ERROR creating record:\n\n' + err);
-    }
+function validateInput(req, res) {
+  var file = req.params.all().file;
 
-    var extractor = new MetadataExtractorE57();
+  if (!file) {
+    console.log('[DURAARK::MetadataExtraction] no "file" in payload, aborting');
+    res.send(500, 'Error: Please provide a "file" property in the payload!')
+    return false;
+  }
 
-    e57.save(function(err, e57) {
+  var path = file.path;
+  if (!path) {
+    console.log('[DURAARK::MetadataExtraction] no "file.path" in payload, aborting');
+    res.send(500, 'Error: Please provide a "file.path" property in the payload!')
+    return false;
+  }
+  console.log('[DURAARK::MetadataExtraction]   * file: ' + file.path);
+
+  var type = file.type;
+  if (!type) {
+    console.log('[DURAARK::MetadataExtraction] no "file.type" in payload, aborting');
+    res.send(500, 'Error: Please provide a "file.type" property in the payload!')
+    return false;
+  }
+  console.log('[DURAARK::MetadataExtraction]   * type: ' + type);
+  console.log('[DURAARK::MetadataExtraction]')
+
+  return true;
+}
+
+function askCache(file) {
+  return File.find()
+    .where({
+      path: {
+        'like': file.path
+      },
+      type: {
+        'like': file.type
+      }
+    })
+    .then(function(files) {
+      return new Promise(function(resolve, reject) {
+        if (files.length) {
+          var file = files[0];
+          console.log('[DURAARK::MetadataExtraction] found entry: http://localhost/file/' + file.id);
+          return resolve(file);
+        } else {
+          console.log('[DURAARK::MetadataExtraction] no entry found');
+          return resolve(null);
+        }
+      });
+    });
+}
+
+function extractFromFile(file) {
+  return new Promise(function(resolve, reject) {
+    return File.create(file, function(err, file) {
       if (err) {
-        console.log('[DURAARK::MetadataExtraction] ERROR saving record 1:\n\n' + err + '\n');
-        return res.send(500, '[DURAARK::MetadataExtraction] ERROR saving record 1:\n\n' + err);
+        console.log('[DURAARK::MetadataExtraction] ERROR creating record:\n\n' + err + '\n');
+        return reject('[DURAARK::MetadataExtraction] ERROR creating record:\n\n' + err);
       }
 
-      extractor.asJSON(e57).then(function(metadata) {
-          console.log('[DURAARK::MetadataExtraction] successfully extracted metadata as JSON');
+      var extractor = null,
+        type = file.type.toLowerCase();
 
-          e57.e57m = metadata;
+      if (type === 'ifc-spf') {
+        var schema = '/duraark-storage/schemas/rdf/buildm_v3.0.rdf'; // TODO: refactor into config object!
+        extractor = new MetadataExtractorIfcSpf(schema);
+      } else if (type === 'e57') {
+        extractor = new MetadataExtractorE57();
+      } else if (type === 'hdf5') {
+        console.log('[DURAARK::MetadataExtraction] HDF5 plugin not yet implemented. "ifc-spf" and "e57" are supported. Aborting ...');
+        return reject('[DURAARK::MetadataExtraction] HDF5 plugin not yet implemented. "ifc-spf" and "e57" are supported. Aborting ...');
+      } else {
+        console.log('[DURAARK::MetadataExtraction] Metadata extraction for filetype is not supported: ' + type + '.');
+        return reject('[DURAARK::MetadataExtraction] Metadata extraction for filetype is not supported: ' + type + '.');
+      }
 
-          e57.save(function(err, e57) {
-            if (err) {
-              console.log('[DURAARK::MetadataExtraction] ERROR saving record 2:\n\n' + err + '\n');
-              return res.send(500, '[DURAARK::MetadataExtraction] ERROR saving record 2:\n\n' + err);
-            }
+      file.save(function(err, file) {
+        if (err) {
+          console.log('[DURAARK::MetadataExtraction] ERROR saving record 1:\n\n' + err + '\n');
+          return reject('[DURAARK::MetadataExtraction] ERROR saving record 1:\n\n' + err);
+        }
 
-            // TODO: create correct URL!
-            console.log('[DURAARK::MetadataExtraction] cached data at: http://localhost:5002/e57/' + e57.id);
-            console.log('[DURAARK::MetadataExtraction] completed extraction request');
-            res.send(metadata);
+        extractor.asJSONLD(file).then(function(metadata) {
+            console.log('[DURAARK::MetadataExtraction] successfully extracted metadata as JSON-LD');
+
+            file.metadata = metadata;
+
+            file.save(function(err, file) {
+              if (err) {
+                console.log('[DURAARK::MetadataExtraction] ERROR saving record 2:\n\n' + err + '\n');
+                return reject('[DURAARK::MetadataExtraction] ERROR saving record 2:\n\n' + err);
+              }
+
+              // TODO: create correct URL!
+              console.log('[DURAARK::MetadataExtraction] cached data at: http://localhost:5002/file/' + file.id);
+              console.log('[DURAARK::MetadataExtraction] request completed!\n\n');
+              return resolve(file);
+            });
+          })
+          .catch(function(err) {
+            console.log('[DURAARK::MetadataExtraction] ERROR: ' + err);
+            return reject(err);
           });
-        })
-        .catch(function(err) {
-          console.log('[DURAARK::MetadataExtraction] ERROR: ' + err);
-          res.send(500, err);
-        });
+      });
     });
   });
 }

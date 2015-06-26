@@ -1,7 +1,7 @@
 /**
- * Ifc.js
+ * E57.js
  *
- * @description :: Model representing an IFC file
+ * @description :: Model representing an E57 point cloud file
  * @docs        :: http://sailsjs.org/#!documentation/models
  */
 
@@ -18,8 +18,8 @@ module.exports = {
       required: true
     },
 
-    ifcm: {
-      type: 'array',
+    metadata: {
+      type: 'object',
       required: false
     }
 
