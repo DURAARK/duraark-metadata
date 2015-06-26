@@ -13,6 +13,9 @@ module.exports = {
   create: function(req, res, next) {
     var file = req.params.all().file;
 
+    console.log('\n\n[DURAARK::MetadataExtraction] incoming request');
+    console.log('[DURAARK::MetadataExtraction]');
+
     if (!file) {
       console.log('[DURAARK::MetadataExtraction] no "file" in payload, aborting');
       res.send(500, 'Error: Please provide a "file" property in the payload!')
@@ -23,14 +26,15 @@ module.exports = {
       console.log('[DURAARK::MetadataExtraction] no "file.path" in payload, aborting');
       res.send(500, 'Error: Please provide a "file.path" property in the payload!')
     }
-    console.log('[DURAARK::MetadataExtraction] processing file: ' + file.path);
+    console.log('[DURAARK::MetadataExtraction]   * file: ' + file.path);
 
     var type = file.type;
     if (!type) {
       console.log('[DURAARK::MetadataExtraction] no "file.type" in payload, aborting');
       res.send(500, 'Error: Please provide a "file.type" property in the payload!')
     }
-    console.log('[DURAARK::MetadataExtraction] type: ' + type);
+    console.log('[DURAARK::MetadataExtraction]   * type: ' + type);
+    console.log('[DURAARK::MetadataExtraction]')
 
     switch (type.toLowerCase()) {
       case 'ifc-spf':
@@ -49,23 +53,33 @@ module.exports = {
 function handleIfcSpf(file, res) {
   Ifc.create(file, function(err, ifc) {
     if (err) {
-      console.log('[DURAARK::MetadataExtraction] error creating database entry: ' + JSON.stringify(err, null, 4));
-      return res.send(500, err);
+      console.log('[DURAARK::MetadataExtraction] ERROR creating record:\n\n' + err + '\n');
+      res.send('[DURAARK::MetadataExtraction] ERROR creating record:\n\n' + err);
     }
 
     var schema = '/duraark-storage/schemas/rdf/buildm_v3.0.rdf'; // TODO: refactor into config object!
     var extractor = new MetadataExtractorIfcSpf(schema);
 
     ifc.save(function(err, ifc) {
+      if (err) {
+        console.log('[DURAARK::MetadataExtraction] ERROR saving record 1:\n\n' + err + '\n');
+        return res.send(500, '[DURAARK::MetadataExtraction] ERROR saving record 1:\n\n' + err);
+      }
+
       extractor.asJSONLD(ifc).then(function(metadata) {
           console.log('[DURAARK::MetadataExtraction] successfully extracted metadata as JSON-LD');
 
           ifc.ifcm = metadata;
 
           ifc.save(function(err, ifc) {
-            if (err) return reject(err);
-            console.log('[DURAARK::MetadataExtraction] stored metadata instance for ' + ifc.path);
-            console.log('[DURAARK::MetadataExtraction] completed extraction request');
+            if (err) {
+              console.log('[DURAARK::MetadataExtraction] ERROR saving record 2:\n\n' + err + '\n');
+              return res.send(500, '[DURAARK::MetadataExtraction] ERROR saving record 2:\n\n' + err);
+            }
+
+            // TODO: create correct URL!
+            console.log('[DURAARK::MetadataExtraction] cached data at: http://localhost:5002/ifc/' + ifc.id);
+            console.log('[DURAARK::MetadataExtraction] request completed!\n\n');
             res.send(metadata);
           });
         })
@@ -80,21 +94,31 @@ function handleIfcSpf(file, res) {
 function handleE57(file, res) {
   E57.create(file, function(err, e57) {
     if (err) {
-      console.log('[DURAARK::MetadataExtraction] error creating database entry: ' + JSON.stringify(err, null, 4));
-      return res.send(500, err);
+      console.log('[DURAARK::MetadataExtraction] ERROR creating record:\n\n' + err + '\n');
+      return res.send(500, '[DURAARK::MetadataExtraction] ERROR creating record:\n\n' + err);
     }
 
     var extractor = new MetadataExtractorE57();
 
     e57.save(function(err, e57) {
+      if (err) {
+        console.log('[DURAARK::MetadataExtraction] ERROR saving record 1:\n\n' + err + '\n');
+        return res.send(500, '[DURAARK::MetadataExtraction] ERROR saving record 1:\n\n' + err);
+      }
+
       extractor.asJSON(e57).then(function(metadata) {
           console.log('[DURAARK::MetadataExtraction] successfully extracted metadata as JSON');
 
           e57.e57m = metadata;
 
           e57.save(function(err, e57) {
-            if (err) return reject(err);
-            console.log('[DURAARK::MetadataExtraction] stored metadata instance for ' + e57.path);
+            if (err) {
+              console.log('[DURAARK::MetadataExtraction] ERROR saving record 2:\n\n' + err + '\n');
+              return res.send(500, '[DURAARK::MetadataExtraction] ERROR saving record 2:\n\n' + err);
+            }
+
+            // TODO: create correct URL!
+            console.log('[DURAARK::MetadataExtraction] cached data at: http://localhost:5002/e57/' + e57.id);
             console.log('[DURAARK::MetadataExtraction] completed extraction request');
             res.send(metadata);
           });

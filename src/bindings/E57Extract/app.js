@@ -24,10 +24,12 @@ E57Extract.prototype.asJSON = function(e57) {
     try {
       stats = fs.lstatSync(e57.path);
       if (!stats.isFile()) {
+        console.log('[E57Extract::asJSONLD] ERROR: file "' + e57.path + '" does not exist');
         return reject('[E57Extract::asJSONLD] ERROR: file "' + e57.path + '" does not exist');
       }
     } catch (err) {
-      return reject('[E57Extract::asJSONLD] FILE EXCEPTION: ' + err);
+      console.log('[E57Extract::asJSONLD] ERROR checking file: "' + e57.path + '" does not exist');
+      return reject('[E57Extract::asJSONLD] ERROR checking file: "' + e57.path + '" does not exist');
     }
 
     var outputFile = path.join('/tmp', uuid.v4() + '.json');
@@ -40,38 +42,46 @@ E57Extract.prototype.asJSON = function(e57) {
       try {
         var metadata = JSON.parse(fs.readFileSync(fixtureData));
       } catch (err) {
-        console.log('[E57Extract::asJSONLD] Error during file loading: ' + err);
+        console.log('[E57Extract::asJSONLD] ERROR during file loading: ' + err);
         return reject('[E57Extract::asJSONLD] FILE EXCEPTION: ' + err);
       }
 
       return resolve(metadata);
     } else {
-      // FIXXME: error handling if executable is not available!
-      var executable = spawn('e57metadata', [e57.file, outputFile]);
+      try {
+        var executable = spawn('e57metadata', [e57.file, outputFile]);
 
-      executable.stdout.on('data', function(data) {
-        console.log('stdout: ' + data);
-      });
+        executable.stdout.on('data', function(data) {
+          console.log('stdout: ' + data);
+        });
 
-      executable.stderr.on('data', function(err) {
-        console.log('[E57Extract::asJSONLD] Error during program execution: ' + err);
-        reject('[E57Extract::asJSONLD] Error during program execution: ' + err);
-      });
+        executable.stderr.on('data', function(err) {
+          console.log('[E57Extract::asJSONLD] ERROR during program execution:\n\n' + err + '\n');
+          return reject('[E57Extract::asJSONLD] ERROR during program execution:\n\n' + err);
+        });
 
-      executable.on('close', function(code) {
-        // console.log('child process exited with code ' + code);
-        console.log('[PyIfcExtract::asJSONLD] RDF extraction finished, converting to JSON-LD ...');
+        executable.on('close', function(code) {
+          if (code !== 0) {
+            console.log('[E57Extract::asJSONLD] ERROR: exited with code:' + code);
+            return reject('[E57Extract::asJSONLD] ERROR: exited with code: \n\n' + code + '\n');
+          }
 
-        var jsonld = JSON.parse(fs.readFileSync(outputFile, 'utf8'));
+          console.log('[E57Extract::asJSONLD] RDF extraction finished, converting to JSON-LD ...');
 
-        if (!jsonld) {
-          console.log('[E57Extract::asJSONLD] Cannot read metadata output file: ' + outputFile);
-          reject('[E57Extract::asJSONLD] Cannot read metadata output file: ' + outputFile);
-        }
+          var jsonld = JSON.parse(fs.readFileSync(outputFile, 'utf8'));
 
-        console.log('[PyIfcExtract::asJSONLD]     ... finished');
-        resolve(jsonld);
-      });
+          if (!jsonld) {
+            console.log('[E57Extract::asJSONLD] Cannot read metadata output file: ' + outputFile);
+            reject('[E57Extract::asJSONLD] Cannot read metadata output file: ' + outputFile);
+          }
+
+          console.log('[E57Extract::asJSONLD]     ... finished');
+          resolve(jsonld);
+        });
+      } catch (err) {
+        console.log('[E57Extract::asJSONLD] ERROR on program start:\n\n' + err + '\n');
+        return reject('[E57Extract::asJSONLD] ERROR on program start:\n\n' + err);
+      }
     }
   });
 };
