@@ -18,22 +18,24 @@ function handleIfcSpf(file, res) {
     var schema = '/duraark-storage/schemas/rdf/buildm_v3.0.rdf'; // TODO: refactor into config object!
     var extractor = new MetadataExtractorIfcSpf(schema);
 
-    extractor.asJSONLD(ifc).then(function(metadata) {
-        console.log('[DURAARK::MetadataExtraction] successfully extracted metadata as JSON-LD');
+    ifc.save(function(err, ifc) {
+      extractor.asJSONLD(ifc).then(function(metadata) {
+          console.log('[DURAARK::MetadataExtraction] successfully extracted metadata as JSON-LD');
 
-        ifc.ifcm = metadata;
+          ifc.ifcm = metadata;
 
-        ifc.save(function(err, ifc) {
-          if (err) return reject(err);
-          console.log('[DURAARK::MetadataExtraction] stored metadata instance for ' + ifc.path);
-          console.log('[DURAARK::MetadataExtraction] completed extraction request');
-          res.send(metadata);
+          ifc.save(function(err, ifc) {
+            if (err) return reject(err);
+            console.log('[DURAARK::MetadataExtraction] stored metadata instance for ' + ifc.path);
+            console.log('[DURAARK::MetadataExtraction] completed extraction request');
+            res.send(metadata);
+          });
+        })
+        .catch(function(err) {
+          console.log('[DURAARK::MetadataExtraction] ERROR: ' + err);
+          res.send(500, err);
         });
-      })
-      .catch(function(err) {
-        console.log('[DURAARK::MetadataExtraction] ERROR: ' + err);
-        res.send(500, err);
-      });
+    });
   });
 }
 

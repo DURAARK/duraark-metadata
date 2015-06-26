@@ -21,8 +21,6 @@ PyIfcExtract.prototype.asJSONLD = function(ifc, res) {
     console.log('[PyIfcExtract::asJSONLD] file: ' + ifc.path);
     console.log('                         schema: ' + extractor.schema);
 
-    ifc.status = 'pending';
-
     try {
       stats = fs.lstatSync(ifc.path);
       if (!stats.isFile()) {
@@ -32,38 +30,36 @@ PyIfcExtract.prototype.asJSONLD = function(ifc, res) {
       return reject('[PyIfcExtract::asJSONLD] FILE EXCEPTION: ' + err);
     }
 
-    ifc.save(function(err, ifc) {
-      // FIXXME: error handling if python version is not available!
-      var executable = spawn('python3.4', ['/duraark-storage/tools/pyIfcExtract/buildm_extractor.py', ifc.path, extractor.schema]),
-        rdfString = '';
+    // FIXXME: error handling if python version is not available!
+    var executable = spawn('python3.4', ['/duraark-storage/tools/pyIfcExtract/buildm_extractor.py', ifc.path, extractor.schema]),
+      rdfString = '';
 
-      executable.stdout.on('data', function(data) {
-        // console.log('stdout: ' + data);
-        rdfString += data;
-      });
+    executable.stdout.on('data', function(data) {
+      // console.log('stdout: ' + data);
+      rdfString += data;
+    });
 
-      executable.stderr.on('data', function(data) {
-        console.log('\nstderr:\n' + data);
-        reject();
-      });
+    executable.stderr.on('data', function(data) {
+      console.log('\nstderr:\n' + data);
+      reject();
+    });
 
-      executable.on('close', function(code) {
-        // console.log('child process exited with code ' + code);
-        console.log('[PyIfcExtract::asJSONLD] RDF extraction finished, converting to JSON-LD ...');
+    executable.on('close', function(code) {
+      // console.log('child process exited with code ' + code);
+      console.log('[PyIfcExtract::asJSONLD] RDF extraction finished, converting to JSON-LD ...');
 
-        rdf.parseTurtle(rdfString, function(graph, err) {
-          if (err) return console.log(err);
+      rdf.parseTurtle(rdfString, function(graph, err) {
+        if (err) return console.log(err);
 
-          var graph_n3 = graph.toString();
+        var graph_n3 = graph.toString();
 
-          jsonld.fromRDF(graph_n3, {
-            format: 'application/nquads'
-          }, function(err, jsonld) {
-            if (err) return res.send(err);
-            // console.log('[PyIfcExtract::asJSONLD]     ... finished:\n\n' + JSON.stringify(jsonld, null, 4));
-            console.log('[PyIfcExtract::asJSONLD]     ... finished');
-            resolve(jsonld);
-          });
+        jsonld.fromRDF(graph_n3, {
+          format: 'application/nquads'
+        }, function(err, jsonld) {
+          if (err) return res.send(err);
+          // console.log('[PyIfcExtract::asJSONLD]     ... finished:\n\n' + JSON.stringify(jsonld, null, 4));
+          console.log('[PyIfcExtract::asJSONLD]     ... finished');
+          resolve(jsonld);
         });
       });
     });
