@@ -4,10 +4,11 @@
  * @description :: Javascript-binding for the 'pyIfcExtract@TUE' python tool
  */
 
-var rdf = require('rdf-ext')(),
-  jsonld = require('jsonld'),
-  Promise = require("bluebird"),
+
+var Promise = require('bluebird'),
   spawn = require('child_process').spawn,
+  rdf = require('rdf-ext')(),
+  jsonld = require('jsonld'),
   fs = require('fs');
 
 var PyIfcExtract = module.exports = function(schema) {
@@ -30,7 +31,7 @@ PyIfcExtract.prototype.asJSONLD = function(ifc, res) {
       return reject('[PyIfcExtract::asJSONLD] FILE EXCEPTION: ' + err);
     }
 
-    // FIXXME: error handling if python version is not available!
+    // FIXXME: error handling if executable is not available!
     var executable = spawn('python3.4', ['/duraark-storage/tools/pyIfcExtract/buildm_extractor.py', ifc.path, extractor.schema]),
       rdfString = '';
 
@@ -39,9 +40,9 @@ PyIfcExtract.prototype.asJSONLD = function(ifc, res) {
       rdfString += data;
     });
 
-    executable.stderr.on('data', function(data) {
-      console.log('\nstderr:\n' + data);
-      reject();
+    executable.stderr.on('data', function(err) {
+      console.log('[PyIfcExtract::asJSONLD] Error during program execution: ' + err);
+      reject('[PyIfcExtract::asJSONLD] Error during program execution: ' + err);
     });
 
     executable.on('close', function(code) {
@@ -49,7 +50,10 @@ PyIfcExtract.prototype.asJSONLD = function(ifc, res) {
       console.log('[PyIfcExtract::asJSONLD] RDF extraction finished, converting to JSON-LD ...');
 
       rdf.parseTurtle(rdfString, function(graph, err) {
-        if (err) return console.log(err);
+        if (err) {
+          console.log('[PyIfcExtract::asJSONLD] PARSE ERROR: ' + err);
+          return reject('[PyIfcExtract::asJSONLD] PARSE ERROR: ' + err);
+        }
 
         var graph_n3 = graph.toString();
 

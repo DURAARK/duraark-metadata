@@ -7,6 +7,44 @@
  */
 
 var MetadataExtractorIfcSpf = require('../../bindings/pyIfcExtract/app');
+var MetadataExtractorE57 = require('../../bindings/E57Extract/app');
+
+module.exports = {
+  create: function(req, res, next) {
+    var file = req.params.all().file;
+
+    if (!file) {
+      console.log('[DURAARK::MetadataExtraction] no "file" in payload, aborting');
+      res.send(500, 'Error: Please provide a "file" property in the payload!')
+    }
+
+    var path = file.path;
+    if (!path) {
+      console.log('[DURAARK::MetadataExtraction] no "file.path" in payload, aborting');
+      res.send(500, 'Error: Please provide a "file.path" property in the payload!')
+    }
+    console.log('[DURAARK::MetadataExtraction] processing file: ' + file.path);
+
+    var type = file.type;
+    if (!type) {
+      console.log('[DURAARK::MetadataExtraction] no "file.type" in payload, aborting');
+      res.send(500, 'Error: Please provide a "file.type" property in the payload!')
+    }
+    console.log('[DURAARK::MetadataExtraction] type: ' + type);
+
+    switch (type.toLowerCase()) {
+      case 'ifc-spf':
+        handleIfcSpf(file, res);
+        break;
+      case 'e57':
+        handleE57(file, res);
+        break;
+      default:
+        console.log('[DURAARK::MetadataExtraction] error: file type "' + type + '" not supported. Aborting...');
+        res.send(500, 'Error: file type "' + type + '" not supported. Feel free to provide a plugin ;-)')
+    }
+  }
+}
 
 function handleIfcSpf(file, res) {
   Ifc.create(file, function(err, ifc) {
@@ -39,39 +77,32 @@ function handleIfcSpf(file, res) {
   });
 }
 
-module.exports = {
-  create: function(req, res, next) {
-    var file = req.params.all().file;
-
-    if (!file) {
-      console.log('[DURAARK::MetadataExtraction] no "file" in payload, aborting');
-      res.send(500, 'Error: Please provide a "file" property in the payload!')
+function handleE57(file, res) {
+  E57.create(file, function(err, e57) {
+    if (err) {
+      console.log('[DURAARK::MetadataExtraction] error creating database entry: ' + JSON.stringify(err, null, 4));
+      return res.send(500, err);
     }
 
-    var path = file.path;
-    if (!path) {
-      console.log('[DURAARK::MetadataExtraction] no "file.path" in payload, aborting');
-      res.send(500, 'Error: Please provide a "file.path" property in the payload!')
-    }
-    console.log('[DURAARK::MetadataExtraction] processing file: ' + file.path);
+    var extractor = new MetadataExtractorE57();
 
-    var type = file.type;
-    if (!type) {
-      console.log('[DURAARK::MetadataExtraction] no "file.type" in payload, aborting');
-      res.send(500, 'Error: Please provide a "file.type" property in the payload!')
-    }
-    console.log('[DURAARK::MetadataExtraction] type: ' + type);
+    e57.save(function(err, e57) {
+      extractor.asJSON(e57).then(function(metadata) {
+          console.log('[DURAARK::MetadataExtraction] successfully extracted metadata as JSON');
 
-    switch (type.toLowerCase()) {
-      case 'ifc-spf':
-        handleIfcSpf(file, res);
-        break;
-      case 'e57':
-        //Statements executed the result of expression matches value2
-        break;
-      default:
-        console.log('[DURAARK::MetadataExtraction] error: file type "' + type + '" not supported. Aborting...');
-        res.send(500, 'Error: file type "' + type + '" not supported. Feel free to provide a plugin ;-)')
-    }
-  }
+          e57.e57m = metadata;
+
+          e57.save(function(err, e57) {
+            if (err) return reject(err);
+            console.log('[DURAARK::MetadataExtraction] stored metadata instance for ' + e57.path);
+            console.log('[DURAARK::MetadataExtraction] completed extraction request');
+            res.send(metadata);
+          });
+        })
+        .catch(function(err) {
+          console.log('[DURAARK::MetadataExtraction] ERROR: ' + err);
+          res.send(500, err);
+        });
+    });
+  });
 }
