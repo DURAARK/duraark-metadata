@@ -25,19 +25,20 @@ module.exports = {
 function handleExtraction(file, res) {
   console.log('[DURAARK::MetadataExtraction] searching in cache ...');
 
-  askCache(file).then(function(cachedRecord) {
-    if (cachedRecord) {
+  askCache(file).then(function(cachedFile) {
+    if (cachedFile) {
       console.log('[DURAARK::MetadataExtraction] request completed!\n\n');
-      return res.send(cachedRecord);
+      return res.send(200, cachedFile);
     }
 
     return extractFromFile(file)
       .then(function(file) {
-        return res.send(file);
+        console.log('[DURAARK::MetadataExtraction] request completed!\n\n');
+        return res.send(201, file);
       })
       .catch(function(err) {
-          console.log('[DURAARK::MetadataExtraction] ERROR extracting from file:\n\n' + err + '\n');
-          return res.send(500, '[DURAARK::MetadataExtraction] ERROR extracting from file:\n\n' + err);
+        console.log('[DURAARK::MetadataExtraction] ERROR extracting from file:\n\n' + err + '\n');
+        return res.send(500, '[DURAARK::MetadataExtraction] ERROR extracting from file:\n\n' + err);
       });
   });
 }
@@ -128,7 +129,11 @@ function extractFromFile(file) {
         extractor.asJSONLD(file).then(function(metadata) {
             console.log('[DURAARK::MetadataExtraction] successfully extracted metadata as JSON-LD');
 
-            file.metadata = metadata;
+            file.metadata = [];
+
+            _.each(metadata, function(element) {
+              file.metadata.push(element);
+            });
 
             file.save(function(err, file) {
               if (err) {
@@ -138,12 +143,11 @@ function extractFromFile(file) {
 
               // TODO: create correct URL!
               console.log('[DURAARK::MetadataExtraction] cached data at: http://localhost:5002/file/' + file.id);
-              console.log('[DURAARK::MetadataExtraction] request completed!\n\n');
               return resolve(file);
             });
           })
           .catch(function(err) {
-            console.log('[DURAARK::MetadataExtraction] ERROR: ' + err);
+            console.log('[DURAARK::MetadataExtraction] ERROR extraction: ' + err);
             return reject(err);
           });
       });

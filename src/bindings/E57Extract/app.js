@@ -1,5 +1,5 @@
 /**
- * #57Extract/app.js
+ * E57Extract/app.js
  *
  * @description :: Javascript-binding for the 'E57Extract@UBO' python tool
  */
@@ -76,7 +76,7 @@ E57Extract.prototype.asJSONLD = function(e57) {
           }
 
           console.log('[E57Extract::asJSONLD]     ... finished');
-          resolve(jsonld);
+          resolve([jsonld]);
         });
       } catch (err) {
         console.log('[E57Extract::asJSONLD] ERROR on program start:\n\n' + err + '\n');
