@@ -37,13 +37,13 @@ E57Extract.prototype.asJSONLD = function(e57) {
 
     if (_failsave) {
       var metadata = [],
-        fixtureData = path.join(process.cwd(), 'fixtures', 'nygade-e57-metadata.json');
+        fixtureData = path.join(process.cwd(), '..', 'testdata', 'nygade-e57-metadata.json');
 
       // console.log('fixtureData: ' + fixtureData);
 
       try {
         var md = JSON.parse(fs.readFileSync(fixtureData));
-        metadata.push(md);
+        metadata.push(md.e57_metadata);
       } catch (err) {
         console.log('[E57Extract::asJSONLD] ERROR during file loading: ' + err);
         return reject('[E57Extract::asJSONLD] FILE EXCEPTION: ' + err);

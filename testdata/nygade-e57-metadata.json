@@ -1,0 +1,251 @@
+{
+    "e57_metadata": {
+        "guid": "{9CAD8612-B6CF-4111-AE71-C90E21F2E22D}",
+        "version_major": 1,
+        "version_minor": 0,
+        "creation_datetime": {
+            "year": 2015,
+            "month": 1,
+            "day": 19,
+            "hour": 8,
+            "minute": 54,
+            "seconds": 56.896995544433594
+        },
+        "coordinate_metadata": "Not in use.",
+        "scan_count": 2,
+        "image_count": 0,
+        "scan_size": 2,
+        "image_size": 0,
+        "scans": [
+            {
+                "name": "Nygade1005",
+                "guid": "be0f3e95-c2a3-4c4a-815b-c214893c5301",
+                "original_guids": [],
+                "description": "<AttrContainer>\n<Attr type=\"String\">\n<Name value=\"'Name'\" />\n<Value value=\"'E57ExportScanInfos'\" />\n</Attr>\n<Attr type=\"SVec2i\">\n<Name value=\"'OverlapHalf1'\" />\n<Value value=\"14 2551 \" />\n</Attr>\n<Attr type=\"SVec2i\">\n<Name value=\"'OverlapHalf2'\" />\n<Value value=\"1 5129 \" />\n</Attr>\n</AttrContainer>\n",
+                "sensor_vendor": "FARO Scanner Production GmbH",
+                "sensor_model": "FARO Focus 3D S 120",
+                "sensor_serial_number": "LLS061203105",
+                "sensor_hardware_version": "",
+                "sensor_software_version": "5.3.0.37858",
+                "sensor_firmware_version": "\"iQLib\" 5.0.6.30068",
+                "temperature": 3.4028234663852886e+38,
+                "relative_humidity": 3.4028234663852886e+38,
+                "atmospheric_pressure": 3.4028234663852886e+38,
+                "acquisition_start": {
+                    "year": 1980,
+                    "month": 1,
+                    "day": 6,
+                    "hour": 0,
+                    "minute": 0,
+                    "seconds": 0
+                },
+                "acquisition_end": {
+                    "year": 1980,
+                    "month": 1,
+                    "day": 6,
+                    "hour": 0,
+                    "minute": 0,
+                    "seconds": 0
+                },
+                "pose": {
+                    "rotation": {
+                        "w": 0.35786571807044137,
+                        "x": -0.0055577056971046349,
+                        "y": 0.0016985300220166769,
+                        "z": -0.93375497574742605
+                    },
+                    "translation": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 136.76625579899999
+                    }
+                },
+                "index_bounds": {
+                    "row_minimum": 0,
+                    "row_maximum": 2133,
+                    "col_minimum": 0,
+                    "col_maximum": 5129,
+                    "return_minimum": 0,
+                    "return_maximum": 0
+                },
+                "cartesian_bounds": {
+                    "x_minimum": -65.035842895507812,
+                    "x_maximum": 49.138946533203125,
+                    "y_minimum": -149.56904602050781,
+                    "y_maximum": 144.06840515136719,
+                    "z_minimum": -11.132668495178223,
+                    "z_maximum": 34.360431671142578
+                },
+                "spherical_bounds": {
+                    "range_minimum": 1.1610199213027954,
+                    "range_maximum": 150.24993896484375,
+                    "elevation_minimum": -1.0462665011240198,
+                    "elevation_maximum": 1.5700227915171316,
+                    "azimuth_minimum": 6.2648366303752088,
+                    "azimuth_maximum": -0.0033452498847543967
+                },
+                "intensity_limits": {
+                    "intensity_minimum": 0,
+                    "intensity_maximum": 1
+                },
+                "color_limits": {
+                    "color_red_minimum": 0,
+                    "color_red_maximum": 255,
+                    "color_green_minimum": 0,
+                    "color_green_maximum": 255,
+                    "color_blue_minimum": 0,
+                    "color_blue_maximum": 255
+                },
+                "point_fields": {
+                    "cartesian_x_field": true,
+                    "cartesian_y_field": true,
+                    "cartesian_z_field": true,
+                    "cartesian_invalid_state_field": true,
+                    "spherical_range_field": false,
+                    "spherical_azimuth_field": false,
+                    "spherical_elevation_field": false,
+                    "spherical_invalid_state_field": false,
+                    "point_range_minimum": -3.4028234663852886e+38,
+                    "point_range_maximum": 3.4028234663852886e+38,
+                    "point_range_scaled_integer": 0,
+                    "angle_minimum": 0,
+                    "angle_maximum": 0,
+                    "angle_scaled_integer": 0,
+                    "row_index_field": true,
+                    "row_index_maximum": 4294967295,
+                    "column_index_field": true,
+                    "column_index_maximum": 4294967295,
+                    "return_index_field": false,
+                    "return_count_field": false,
+                    "return_maximum": 0,
+                    "time_stamp_field": false,
+                    "is_Time_Stamp_Invalid_field": false,
+                    "time_Maximum": 0,
+                    "intensity_field": true,
+                    "is_intensity_invalid_field": false,
+                    "intensity_scaled_integer": 0.00048851978505129456,
+                    "color_red_field": true,
+                    "color_green_field": true,
+                    "color_blue_field": true,
+                    "is_color_invalid_field": false
+                },
+                "points_size": 10887415
+            },
+            {
+                "name": "Nygade1006",
+                "guid": "8e823fff-3367-487e-a646-2d3e61eec50f",
+                "original_guids": [],
+                "description": "<AttrContainer>\n<Attr type=\"String\">\n<Name value=\"'Name'\" />\n<Value value=\"'E57ExportScanInfos'\" />\n</Attr>\n<Attr type=\"SVec2i\">\n<Name value=\"'OverlapHalf1'\" />\n<Value value=\"15 2551 \" />\n</Attr>\n<Attr type=\"SVec2i\">\n<Name value=\"'OverlapHalf2'\" />\n<Value value=\"1 5131 \" />\n</Attr>\n</AttrContainer>\n",
+                "sensor_vendor": "FARO Scanner Production GmbH",
+                "sensor_model": "FARO Focus 3D S 120",
+                "sensor_serial_number": "LLS061203105",
+                "sensor_hardware_version": "",
+                "sensor_software_version": "5.3.0.37858",
+                "sensor_firmware_version": "\"iQLib\" 5.0.6.30068",
+                "temperature": 3.4028234663852886e+38,
+                "relative_humidity": 3.4028234663852886e+38,
+                "atmospheric_pressure": 3.4028234663852886e+38,
+                "acquisition_start": {
+                    "year": 1980,
+                    "month": 1,
+                    "day": 6,
+                    "hour": 0,
+                    "minute": 0,
+                    "seconds": 0
+                },
+                "acquisition_end": {
+                    "year": 1980,
+                    "month": 1,
+                    "day": 6,
+                    "hour": 0,
+                    "minute": 0,
+                    "seconds": 0
+                },
+                "pose": {
+                    "rotation": {
+                        "w": 0.21550253133271829,
+                        "x": -0.0069849928162943982,
+                        "y": -0.0031283649310417131,
+                        "z": -0.97647328801017652
+                    },
+                    "translation": {
+                        "x": 4.1043753438084121,
+                        "y": -7.3179313861409874,
+                        "z": 136.77736476206837
+                    }
+                },
+                "index_bounds": {
+                    "row_minimum": 0,
+                    "row_maximum": 2133,
+                    "col_minimum": 0,
+                    "col_maximum": 5131,
+                    "return_minimum": 0,
+                    "return_maximum": 0
+                },
+                "cartesian_bounds": {
+                    "x_minimum": -50.422641754150391,
+                    "x_maximum": 15.175704002380371,
+                    "y_minimum": -15.97352409362793,
+                    "y_maximum": 144.18856811523438,
+                    "z_minimum": -11.544004440307617,
+                    "z_maximum": 32.526714324951172
+                },
+                "spherical_bounds": {
+                    "range_minimum": 1.2088100910186768,
+                    "range_maximum": 146.61593627929688,
+                    "elevation_minimum": -1.0462665011240198,
+                    "elevation_maximum": 1.5700227915171316,
+                    "azimuth_minimum": 6.264251065229784,
+                    "azimuth_maximum": -0.0027825198839368389
+                },
+                "intensity_limits": {
+                    "intensity_minimum": 0,
+                    "intensity_maximum": 1
+                },
+                "color_limits": {
+                    "color_red_minimum": 0,
+                    "color_red_maximum": 255,
+                    "color_green_minimum": 0,
+                    "color_green_maximum": 255,
+                    "color_blue_minimum": 0,
+                    "color_blue_maximum": 255
+                },
+                "point_fields": {
+                    "cartesian_x_field": true,
+                    "cartesian_y_field": true,
+                    "cartesian_z_field": true,
+                    "cartesian_invalid_state_field": true,
+                    "spherical_range_field": false,
+                    "spherical_azimuth_field": false,
+                    "spherical_elevation_field": false,
+                    "spherical_invalid_state_field": false,
+                    "point_range_minimum": -3.4028234663852886e+38,
+                    "point_range_maximum": 3.4028234663852886e+38,
+                    "point_range_scaled_integer": 0,
+                    "angle_minimum": 0,
+                    "angle_maximum": 0,
+                    "angle_scaled_integer": 0,
+                    "row_index_field": true,
+                    "row_index_maximum": 4294967295,
+                    "column_index_field": true,
+                    "column_index_maximum": 4294967295,
+                    "return_index_field": false,
+                    "return_count_field": false,
+                    "return_maximum": 0,
+                    "time_stamp_field": false,
+                    "is_Time_Stamp_Invalid_field": false,
+                    "time_Maximum": 0,
+                    "intensity_field": true,
+                    "is_intensity_invalid_field": false,
+                    "intensity_scaled_integer": 0.00048851978505129456,
+                    "color_red_field": true,
+                    "color_green_field": true,
+                    "color_blue_field": true,
+                    "is_color_invalid_field": false
+                },
+                "points_size": 10876255
+            }
+        ],
+        "images": []
+    }
+}
