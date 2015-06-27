@@ -10,19 +10,20 @@ var duraark = require('../../lib/duraark');
 
 module.exports = {
   create: function(req, res, next) {
-    var file = req.params.all().file,
-      metadataExtraction = new duraark.MetadataExtraction();
+    var metadataExtraction = new duraark.MetadataExtraction();
 
     console.log('\n[DURAARK::MetadataExtraction] incoming request');
     console.log('[DURAARK::MetadataExtraction]');
 
     if (metadataExtraction.validateInput(req, res)) {
-      handleExtraction(metadataExtraction, file, res);
+      handleExtraction(metadataExtraction, req, res);
     }
   }
 }
 
-function handleExtraction(extractor, file, res) {
+function handleExtraction(extractor, req, res) {
+  var file = req.params.all().file;
+
   console.log('[DURAARK::MetadataExtraction] searching in cache ...');
 
   extractor.askCache(file).then(function(cachedFile) {
