@@ -19,7 +19,7 @@ E57Extract.prototype.asJSONLD = function(e57) {
   var extractor = this;
 
   return new Promise(function(resolve, reject) {
-    console.log('[E57Extract::asJSONLD] file: ' + e57.path);
+    // console.log('[E57Extract::asJSONLD] file: ' + e57.path); // TODO: use buyan's debug level!
 
     try {
       stats = fs.lstatSync(e57.path);
@@ -36,11 +36,14 @@ E57Extract.prototype.asJSONLD = function(e57) {
     // console.log('outputFile: ' + outputFile);
 
     if (_failsave) {
-      var fixtureData = path.join(process.cwd(), 'fixtures', 'nygade-e57-metadata.json');
-      console.log('fixtureData: ' + fixtureData);
+      var metadata = [],
+        fixtureData = path.join(process.cwd(), 'fixtures', 'nygade-e57-metadata.json');
+
+      // console.log('fixtureData: ' + fixtureData);
 
       try {
-        var metadata = JSON.parse(fs.readFileSync(fixtureData));
+        var md = JSON.parse(fs.readFileSync(fixtureData));
+        metadata.push(md);
       } catch (err) {
         console.log('[E57Extract::asJSONLD] ERROR during file loading: ' + err);
         return reject('[E57Extract::asJSONLD] FILE EXCEPTION: ' + err);
