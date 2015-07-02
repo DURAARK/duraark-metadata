@@ -1,19 +1,6 @@
 # microservice-metadata-extraction
 
-[![Circle CI](https://circleci.com/gh/DURAARK/microservice-ifcmetadata.svg?style=svg)](https://circleci.com/gh/DURAARK/microservice-ifcmetadata)
-
-The 'ifcmetadata' microservice provides functionality to extract metadata information out of IFC files. The output targets the 'buildm' and 'ifcm' metadata schema developed in the [DURAARK project](http://duraark.eu), which are provided as RDF schemas.
-
-## Demo-Server
-
-A showcasing demo incorporating the service is running on our [development system](http://juliet.cgv.tugraz.at). It is a development system, not a production one. You will always have the newest version running there, but it is also possible to experience bugs. A production demo will be available soon at http://workbench.duraark.eu. Currently we have the first prototype version running there.
-
-## Setup & Installation
-
-The deployment setup is based on the repository [microservice-base](https://github.com/DURAARK/microservice-base). It provides development scripts and docker deployment. Have a look at the link to get more detailed information.
-
-Enjoy!
-
+[![Circle CI](https://circleci.com/gh/DURAARK/microservice-metadata-extraction.svg?style=svg)](https://circleci.com/gh/DURAARK/microservice-ifcmetadata)
 
 This library is part of the [DURAARK](http://github.com/duraark/duraark-system) system and contains the extraction functionality required in DURAARK to retrieve metadata on files in the system. The following file types are supported for extraction of data:
 
@@ -48,52 +35,10 @@ This library is intended to be used inside **NodeJS**.
 
 TODO
 
-## Building The Code
+## Demo-Server
 
-To build the code, follow these steps.
+A showcasing demo incorporating the service is running on our [development system](http://juliet.cgv.tugraz.at). It is a development system, not a production one. You will always have the newest version running there, but it is also possible to experience bugs. A production demo will be available soon at http://workbench.duraark.eu. Currently we have the first prototype version running there.
 
-1. Ensure that [NodeJS](http://nodejs.org/) is installed. This provides the platform on which the build tooling runs.
-2. From the project folder, execute the following command:
+## Deploying the code
 
-  ```shell
-  npm install
-  ```
-3. Ensure that [Gulp](http://gulpjs.com/) is installed. If you need to install it, use the following command:
-
-  ```shell
-  npm install -g gulp
-  ```
-4. To build the code, you can now run:
-
-  ```shell
-  gulp build
-  ```
-5. You will find the compiled code in the `dist` folder, available in three module formats: AMD, CommonJS and ES6.
-
-6. See `gulpfile.js` for other tasks related to generating the docs and linting.
-
-## Running The Tests
-
-To run the unit tests, first ensure that you have followed the steps above in order to install all dependencies and successfully build the library. Once you have done that, proceed with these additional steps:
-
-1. Ensure that the [Karma](http://karma-runner.github.io/) CLI is installed. If you need to install it, use the following command:
-
-  ```shell
-  npm install -g karma-cli
-  ```
-2. Ensure that [jspm](http://jspm.io/) is installed. If you need to install it, use the following command:
-
-  ```shell
-  npm install -g jspm
-  ```
-3. Install the client-side dependencies with jspm:
-
-  ```shell
-  jspm install
-  ```
-
-4. You can now run the tests with this command:
-
-  ```shell
-  karma start
-  ```
+The deployment setup is based on the repository [microservice-base](https://github.com/DURAARK/microservice-base). It provides development scripts and docker deployment. Have a look at the link to get more detailed information.
