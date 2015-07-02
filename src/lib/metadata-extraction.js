@@ -11,11 +11,11 @@ var MetadataExtractorIfcSpf = require('./tools/pyIfcExtract/app'),
 var MetadataExtraction = module.exports = function() {}
 
 MetadataExtraction.prototype.validateInput = function(req, res) {
-  var file = req.params.all().file;
+  var file = req.params.all();
 
   if (!file) {
-    console.log('[DURAARK::MetadataExtraction] no "file" in payload, aborting');
-    res.send(500, 'Error: Please provide a "file" property in the payload!')
+    console.log('[DURAARK::MetadataExtraction] no data in payload, aborting');
+    res.send(500, 'Error: Please provide an "file" object in the payload!')
     return false;
   }
 

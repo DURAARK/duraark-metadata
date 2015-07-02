@@ -22,7 +22,7 @@ module.exports = {
 }
 
 function handleExtraction(extractor, req, res) {
-  var file = req.params.all().file;
+  var file = req.params.all();
 
   console.log('[DURAARK::MetadataExtraction] searching in cache ...');
 

@@ -49,6 +49,8 @@ E57Extract.prototype.asJSONLD = function(e57) {
         return reject('[E57Extract::asJSONLD] FILE EXCEPTION: ' + err);
       }
 
+      var xml = extractor.json2xml(jsonld);
+      
       return resolve(metadata);
     } else {
       try {
@@ -87,4 +89,8 @@ E57Extract.prototype.asJSONLD = function(e57) {
       }
     }
   });
+};
+
+E57Extract.prototype.json2xml = function(json) {
+  return json;
 };
