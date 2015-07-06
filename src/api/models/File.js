@@ -19,7 +19,7 @@ module.exports = {
     },
 
     metadata: {
-      type: 'array',
+      type: 'object',
       required: false
     }
 

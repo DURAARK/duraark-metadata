@@ -95,10 +95,22 @@ MetadataExtraction.prototype.extractFromFile = function(file) {
         extractor.asJSONLD(file).then(function(metadata) {
             console.log('[DURAARK::MetadataExtraction] successfully extracted metadata as JSON-LD');
 
-            file.metadata = [];
+            file.metadata = {
+              physicalAsset: {},
+              digitalObject: {}
+            };
 
             _.each(metadata, function(element) {
-              file.metadata.push(element);
+              console.log('element: ' + JSON.stringify(element, null, 4));
+
+              var type = element['@type'][0];
+              if (type === 'http://data.duraark.eu/vocab/PhysicalAsset') {
+                file.metadata.physicalAsset = element;
+              } else if (type === 'http://data.duraark.eu/vocab/IFCSPFFile') {
+                file.metadata.digitalObject = element;
+              } else {
+                throw new Error('[DURAARK::MetadataExtraction] element type "' + type + '" not supported. Aborting...');
+              }
             });
 
             file.save(function(err, file) {
