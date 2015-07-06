@@ -73,7 +73,8 @@ MetadataExtraction.prototype.extractFromFile = function(file) {
         type = file.type.toLowerCase();
 
       if (type === 'ifc-spf') {
-        var schema = '/duraark-storage/schemas/rdf/buildm_v3.0.rdf'; // TODO: refactor into config object!
+        var schema = '/duraark-storage/tools/pyIfcExtract/buildm_v3.0.rdf'; // TODO: refactor into config object!
+        // var schema = '/duraark-storage/schemas/rdf/buildm+v3.1.rdf'; // TODO: refactor into config object!
         extractor = new MetadataExtractorIfcSpf(schema);
       } else if (type === 'e57') {
         extractor = new MetadataExtractorE57();

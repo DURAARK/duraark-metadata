@@ -13,7 +13,7 @@ RUN mkdir -p /duraark/microservices && mkdir /duraark/tools
 
 COPY ./src /duraark/microservices/metadata-extraction
 COPY ./pyIfcExtract /duraark/tools/pyIfcExtract
-COPY ./tools/pyIfcExtract/buildm_v3.0.rdf /duraark/microservices/schemas
+COPY ./tools/pyIfcExtract/buildm_v3.0.rdf /duraark/microservices/schemas/
 
 WORKDIR /duraark/microservices/metadata-extraction
 

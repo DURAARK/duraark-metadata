@@ -32,7 +32,7 @@ PyIfcExtract.prototype.asJSONLD = function(ifc, res) {
     }
 
     try {
-      var executable = spawn('python3.4', ['/duraark-storage/tools/pyIfcExtract/buildm_extractor.py', ifc.path, extractor.schema]),
+      var executable = spawn('python3.3', ['/duraark-storage/tools/pyIfcExtract/buildm_extractor.py', ifc.path, extractor.schema]),
         rdfString = '';
 
       executable.stdout.on('data', function(data) {
