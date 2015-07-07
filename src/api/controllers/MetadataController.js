@@ -39,7 +39,12 @@ function handleExtraction(extractor, req, res) {
       })
       .catch(function(err) {
         console.log('[DURAARK::MetadataExtraction] ERROR extracting from file:\n\n' + err + '\n');
-        return res.send(500, '[DURAARK::MetadataExtraction] ERROR extracting from file:\n\n' + err);
+        file.extractionErrors = [{
+          type: 'extraction',
+          msg: err
+        }];
+
+        return res.send(201, file); // FIXXME: find out how to make ember handle a '500' status code!!
       });
   });
 }

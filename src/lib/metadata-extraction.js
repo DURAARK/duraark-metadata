@@ -126,6 +126,8 @@ MetadataExtraction.prototype.extractFromFile = function(file) {
           })
           .catch(function(err) {
             console.log('[DURAARK::MetadataExtraction] ERROR extraction: ' + err);
+            file.destroy();
+            console.log('[DURAARK::MetadataExtraction] removed dangling cache entry');
             return reject(err);
           });
       });
