@@ -9,7 +9,7 @@ RUN add-apt-repository ppa:fkrull/deadsnakes -y
 RUN apt-get update -y
 RUN apt-get install python3.3 -y
 
-RUN mkdir -p /duraark-storage && mkdir /duraark-storage/tools
+RUN mkdir -p /duraark-storage/tools /duraark-storage/microservices /duraark-storage/schemas
 
 COPY ./src /duraark-storage/microservices/metadata-extraction
 COPY ./pyIfcExtract /duraark-storages/tools/pyIfcExtract
