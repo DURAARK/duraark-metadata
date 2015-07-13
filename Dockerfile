@@ -7,7 +7,7 @@ RUN apt-get update
 RUN apt-get install build-essential python software-properties-common -y
 RUN add-apt-repository ppa:fkrull/deadsnakes -y
 RUN apt-get update -y
-RUN apt-get install python3.3-y
+RUN apt-get install python3.3 -y
 
 RUN mkdir -p /duraark/microservices && mkdir /duraark/tools
 
@@ -19,6 +19,6 @@ WORKDIR /duraark/microservices/metadata-extraction
 
 RUN npm install
 
-EXPOSE 5002
+EXPOSE 5012
 
 ENTRYPOINT ["sails", "lift"]
