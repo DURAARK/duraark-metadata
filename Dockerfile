@@ -7,8 +7,7 @@ RUN apt-get update
 RUN apt-get install build-essential python software-properties-common -y
 RUN add-apt-repository ppa:fkrull/deadsnakes -y
 RUN apt-get update -y
-RUN apt-get install python3.3 python3-pip -y
-RUN pip install httplib2
+RUN apt-get install python3.3 python3-httplib2 -y
 
 RUN mkdir -p /duraark/microservice /duraark/tools /duraark/schemas
 
