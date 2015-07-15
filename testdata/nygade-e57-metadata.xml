@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<e57m>
+	<E57root>
+		<guid>{9CAD8612-B6CF-4111-AE71-C90E21F2E22D}</guid>
+		<version>1.0</version>
+		<creation_datetime>2015-02-19T07:54:56.896Z</creation_datetime>
+		<coordinate_metadata>Not in use.</coordinate_metadata>
+		<scan_count>2</scan_count>
+		<image_count>0</image_count>
+		<scan_size>2</scan_size>
+		<image_size>0</image_size>
+	</E57root>
+	<e57scan>
+		<guid>be0f3e95-c2a3-4c4a-815b-c214893c5301</guid>
+		<name>Nygade1005</name>
+		<description>&lt;AttrContainer&gt;
+&lt;Attr type=&quot;String&quot;&gt;
+&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;
+&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;
+&lt;/Attr&gt;
+&lt;Attr type=&quot;SVec2i&quot;&gt;
+&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;
+&lt;Value value=&quot;14 2551 &quot; /&gt;
+&lt;/Attr&gt;
+&lt;Attr type=&quot;SVec2i&quot;&gt;
+&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;
+&lt;Value value=&quot;1 5129 &quot; /&gt;
+&lt;/Attr&gt;
+&lt;/AttrContainer&gt;
+</description>
+		<sensor_vendor>FARO Scanner Production GmbH</sensor_vendor>
+		<sensor_model>FARO Focus 3D S 120</sensor_model>
+		<sensor_serial_number>LLS061203105</sensor_serial_number>
+		<sensor_hardware_version></sensor_hardware_version>
+		<sensor_software_version>5.3.0.37858</sensor_software_version>
+		<sensor_firmware_version>&quot;iQLib&quot; 5.0.6.30068</sensor_firmware_version>
+		<temperature>3.4028234663852886e+38</temperature>
+		<relative_humidity>3.4028234663852886e+38</relative_humidity>
+		<atmospheric_pressure>3.4028234663852886e+38</atmospheric_pressure>
+		<acquisition_start>1980-02-05T23:00:00.000Z</acquisition_start>
+		<acquisition_end>1980-02-05T23:00:00.000Z</acquisition_end>
+		<pose>
+			<rotation>
+				<w>0.3578657180704414</w>
+				<x>-0.005557705697104635</x>
+				<y>0.0016985300220166769</y>
+				<z>-0.933754975747426</z>
+			</rotation>
+			<translation>
+				<x>0</x>
+				<y>0</y>
+				<z>136.766255799</z>
+			</translation>
+		</pose>
+		<index_bounds>
+			<row_minimum>0</row_minimum>
+			<row_maximum>2133</row_maximum>
+			<col_minimum>0</col_minimum>
+			<col_maximum>5129</col_maximum>
+			<return_minimum>0</return_minimum>
+			<return_maximum>0</return_maximum>
+		</index_bounds>
+		<cartesian_bounds>
+			<x_minimum>-65.03584289550781</x_minimum>
+			<x_maximum>49.138946533203125</x_maximum>
+			<y_minimum>-149.5690460205078</y_minimum>
+			<y_maximum>144.0684051513672</y_maximum>
+			<z_minimum>-11.132668495178223</z_minimum>
+			<z_maximum>34.36043167114258</z_maximum>
+		</cartesian_bounds>
+		<sphericalbounds>
+			<range_minimum>1.1610199213027954</range_minimum>
+			<range_maximum>150.24993896484375</range_maximum>
+			<elevation_minimum>-1.0462665011240198</elevation_minimum>
+			<elevation_maximum>1.5700227915171316</elevation_maximum>
+			<azimuth_minimum>6.264836630375209</azimuth_minimum>
+			<azimuth_maximum>-0.0033452498847543967</azimuth_maximum>
+		</sphericalbounds>
+		<intensity_limits>
+			<intensity_minimum>0</intensity_minimum>
+			<intensity_maximum>1</intensity_maximum>
+		</intensity_limits>
+		<color_limits>
+			<color_red_minimum>0</color_red_minimum>
+			<color_red_maximum>255</color_red_maximum>
+			<color_green_minimum>0</color_green_minimum>
+			<color_green_maximum>255</color_green_maximum>
+			<color_blue_minimum>0</color_blue_minimum>
+			<color_blue_maximum>255</color_blue_maximum>
+		</color_limits>
+		<pointSize>10887415</pointSize>
+		<point_fields>
+			<cartesian_fields>
+				<cartesian_x_field>true</cartesian_x_field>
+				<cartesian_y_field>true</cartesian_y_field>
+				<cartesian_z_field>true</cartesian_z_field>
+				<cartesian_invalid_state_field>true</cartesian_invalid_state_field>
+			</cartesian_fields>
+			<spherical_fields>
+				<spherical_range_field>false</spherical_range_field>
+				<spherical_elevation_field>false</spherical_elevation_field>
+				<spherical_azimuth_field>false</spherical_azimuth_field>
+				<spherical_invalid_state_field>false</spherical_invalid_state_field>
+			</spherical_fields>
+			<point_range>
+				<point_range_minimum>-3.4028234663852886e+38</point_range_minimum>
+				<point_range_maximum>3.4028234663852886e+38</point_range_maximum>
+				<point_range_scaled_integer>0</point_range_scaled_integer>
+			</point_range>
+			<angles>
+				<angle_minimum>0</angle_minimum>
+				<angle_maximum>0</angle_maximum>
+				<angle_scaled_integer>0</angle_scaled_integer>
+			</angles>
+			<index_fields>
+				<row_index_field>true</row_index_field>
+				<row_index_maximum>4294967295</row_index_maximum>
+				<column_index_field>true</column_index_field>
+				<column_index_maximum>4294967295</column_index_maximum>
+				<return_index_field>false</return_index_field>
+				<return_count_field>false</return_count_field>
+				<return_maximum>0</return_maximum>
+			</index_fields>
+			<time_fields>
+				<time_stamp_field>false</time_stamp_field>
+				<is_Time_Stamp_invalid>false</is_Time_Stamp_invalid>
+				<time_Maximum>0</time_Maximum>
+			</time_fields>
+			<intensity_color_fields>
+				<intensity_field>true</intensity_field>
+				<is_intensity_invalid_field>false</is_intensity_invalid_field>
+				<intensity_scaled_integer>0.0004885197850512946</intensity_scaled_integer>
+				<color_red_field>true</color_red_field>
+				<color_green_field>true</color_green_field>
+				<color_blue_field>true</color_blue_field>
+				<is_color_invalid_field>false</is_color_invalid_field>
+			</intensity_color_fields>
+		</point_fields>
+	</e57scan>
+	<e57scan>
+		<guid>8e823fff-3367-487e-a646-2d3e61eec50f</guid>
+		<name>Nygade1006</name>
+		<description>&lt;AttrContainer&gt;
+&lt;Attr type=&quot;String&quot;&gt;
+&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;
+&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;
+&lt;/Attr&gt;
+&lt;Attr type=&quot;SVec2i&quot;&gt;
+&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;
+&lt;Value value=&quot;15 2551 &quot; /&gt;
+&lt;/Attr&gt;
+&lt;Attr type=&quot;SVec2i&quot;&gt;
+&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;
+&lt;Value value=&quot;1 5131 &quot; /&gt;
+&lt;/Attr&gt;
+&lt;/AttrContainer&gt;
+</description>
+		<sensor_vendor>FARO Scanner Production GmbH</sensor_vendor>
+		<sensor_model>FARO Focus 3D S 120</sensor_model>
+		<sensor_serial_number>LLS061203105</sensor_serial_number>
+		<sensor_hardware_version></sensor_hardware_version>
+		<sensor_software_version>5.3.0.37858</sensor_software_version>
+		<sensor_firmware_version>&quot;iQLib&quot; 5.0.6.30068</sensor_firmware_version>
+		<temperature>3.4028234663852886e+38</temperature>
+		<relative_humidity>3.4028234663852886e+38</relative_humidity>
+		<atmospheric_pressure>3.4028234663852886e+38</atmospheric_pressure>
+		<acquisition_start>1980-02-05T23:00:00.000Z</acquisition_start>
+		<acquisition_end>1980-02-05T23:00:00.000Z</acquisition_end>
+		<pose>
+			<rotation>
+				<w>0.2155025313327183</w>
+				<x>-0.006984992816294398</x>
+				<y>-0.003128364931041713</y>
+				<z>-0.9764732880101765</z>
+			</rotation>
+			<translation>
+				<x>4.104375343808412</x>
+				<y>-7.317931386140987</y>
+				<z>136.77736476206837</z>
+			</translation>
+		</pose>
+		<index_bounds>
+			<row_minimum>0</row_minimum>
+			<row_maximum>2133</row_maximum>
+			<col_minimum>0</col_minimum>
+			<col_maximum>5131</col_maximum>
+			<return_minimum>0</return_minimum>
+			<return_maximum>0</return_maximum>
+		</index_bounds>
+		<cartesian_bounds>
+			<x_minimum>-50.42264175415039</x_minimum>
+			<x_maximum>15.175704002380371</x_maximum>
+			<y_minimum>-15.97352409362793</y_minimum>
+			<y_maximum>144.18856811523438</y_maximum>
+			<z_minimum>-11.544004440307617</z_minimum>
+			<z_maximum>32.52671432495117</z_maximum>
+		</cartesian_bounds>
+		<sphericalbounds>
+			<range_minimum>1.2088100910186768</range_minimum>
+			<range_maximum>146.61593627929688</range_maximum>
+			<elevation_minimum>-1.0462665011240198</elevation_minimum>
+			<elevation_maximum>1.5700227915171316</elevation_maximum>
+			<azimuth_minimum>6.264251065229784</azimuth_minimum>
+			<azimuth_maximum>-0.002782519883936839</azimuth_maximum>
+		</sphericalbounds>
+		<intensity_limits>
+			<intensity_minimum>0</intensity_minimum>
+			<intensity_maximum>1</intensity_maximum>
+		</intensity_limits>
+		<color_limits>
+			<color_red_minimum>0</color_red_minimum>
+			<color_red_maximum>255</color_red_maximum>
+			<color_green_minimum>0</color_green_minimum>
+			<color_green_maximum>255</color_green_maximum>
+			<color_blue_minimum>0</color_blue_minimum>
+			<color_blue_maximum>255</color_blue_maximum>
+		</color_limits>
+		<pointSize>10876255</pointSize>
+		<point_fields>
+			<cartesian_fields>
+				<cartesian_x_field>true</cartesian_x_field>
+				<cartesian_y_field>true</cartesian_y_field>
+				<cartesian_z_field>true</cartesian_z_field>
+				<cartesian_invalid_state_field>true</cartesian_invalid_state_field>
+			</cartesian_fields>
+			<spherical_fields>
+				<spherical_range_field>false</spherical_range_field>
+				<spherical_elevation_field>false</spherical_elevation_field>
+				<spherical_azimuth_field>false</spherical_azimuth_field>
+				<spherical_invalid_state_field>false</spherical_invalid_state_field>
+			</spherical_fields>
+			<point_range>
+				<point_range_minimum>-3.4028234663852886e+38</point_range_minimum>
+				<point_range_maximum>3.4028234663852886e+38</point_range_maximum>
+				<point_range_scaled_integer>0</point_range_scaled_integer>
+			</point_range>
+			<angles>
+				<angle_minimum>0</angle_minimum>
+				<angle_maximum>0</angle_maximum>
+				<angle_scaled_integer>0</angle_scaled_integer>
+			</angles>
+			<index_fields>
+				<row_index_field>true</row_index_field>
+				<row_index_maximum>4294967295</row_index_maximum>
+				<column_index_field>true</column_index_field>
+				<column_index_maximum>4294967295</column_index_maximum>
+				<return_index_field>false</return_index_field>
+				<return_count_field>false</return_count_field>
+				<return_maximum>0</return_maximum>
+			</index_fields>
+			<time_fields>
+				<time_stamp_field>false</time_stamp_field>
+				<is_Time_Stamp_invalid>false</is_Time_Stamp_invalid>
+				<time_Maximum>0</time_Maximum>
+			</time_fields>
+			<intensity_color_fields>
+				<intensity_field>true</intensity_field>
+				<is_intensity_invalid_field>false</is_intensity_invalid_field>
+				<intensity_scaled_integer>0.0004885197850512946</intensity_scaled_integer>
+				<color_red_field>true</color_red_field>
+				<color_green_field>true</color_green_field>
+				<color_blue_field>true</color_blue_field>
+				<is_color_invalid_field>false</is_color_invalid_field>
+			</intensity_color_fields>
+		</point_fields>
+	</e57scan>
+</e57m>
