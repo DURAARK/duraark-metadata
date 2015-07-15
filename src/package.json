@@ -33,7 +33,8 @@
     "rdf-ext": "^0.2.4",
     "sails": "~0.10.5",
     "sails-disk": "~0.10.0",
-    "underscore": "^1.8.2"
+    "underscore": "^1.8.2",
+    "js2xmlparser": "^0.1.9"
   },
   "scripts": {
     "start": "node app.js",

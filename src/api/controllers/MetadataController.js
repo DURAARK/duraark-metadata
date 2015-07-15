@@ -18,6 +18,18 @@ module.exports = {
     if (metadataExtraction.validateInput(req, res)) {
       handleExtraction(metadataExtraction, req, res);
     }
+  },
+  justTest: function (req, res, next) {
+
+    var json = req.body;
+    //console.log(JSON.stringify(json,null,4));
+
+    var MetadataExtractorE57 = require('../../lib/tools/E57Extract/app');
+    var myTest = new MetadataExtractorE57();
+    var output = myTest.json2xml(req.body);
+
+
+    res.send(output);
   }
 }
 
