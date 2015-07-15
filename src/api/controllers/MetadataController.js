@@ -19,7 +19,7 @@ module.exports = {
       handleExtraction(metadataExtraction, req, res);
     }
   },
-  justTest: function (req, res, next) {
+  testJS2XML: function (req, res, next) {
 
     var json = req.body;
     //console.log(JSON.stringify(json,null,4));
