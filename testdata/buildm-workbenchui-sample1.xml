@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildm>
+<physicalAsset>
+	<buildingCount>1</buildingCount>
+	<columnCount>0</columnCount>
+	<componentCount>194</componentCount>
+	<doorCount>0</doorCount>
+	<floorCount>3</floorCount>
+	<identifier>3QWRRBumf4tQUMJzy0uGGC</identifier>
+	<latitude>42.358428955</latitude>
+	<longitude>-71.0597763061111</longitude>
+	<name>Haus</name>
+	<name>Haus3</name>
+	<spaceCount>0</spaceCount>
+	<streetAddress>address</streetAddress>
+	<wallCount>14</wallCount>
+	<windowCount>0</windowCount>
+	<owner>owner1</owner>
+	<owner>owner2</owner>
+	<buildingArea>9898</buildingArea>
+	<numberOfRooms>8787</numberOfRooms>
+	<function>function1</function>
+	<function>function2</function>
+	<architecturalStyle>style</architecturalStyle>
+	<architecturalStyle>style2</architecturalStyle>
+	<description>desc1</description>
+	<description>desc2</description>
+	<location>location</location>
+	<postalCodeStart>1</postalCodeStart>
+	<postalCodeEnd>2</postalCodeEnd>
+	<postOfficeBoxNumber>43</postOfficeBoxNumber>
+	<addressRegion>graz</addressRegion>
+	<postalLocality>graz</postalLocality>
+	<architect>architect1</architect>
+	<architect>architect2</architect>
+	<contributor>cont1</contributor>
+	<contributor>cont2</contributor>
+	<startDate>Wed Jul 15 2015 17:29:42 GMT+0200 (CEST)</startDate>
+	<completionDate>Wed Jul 15 2015 17:29:42 GMT+0200 (CEST)</completionDate>
+	<constructionTime>Wed Jul 15 2015 17:29:42 GMT+0200 (CEST)</constructionTime>
+	<rebuildingDate>Wed Jul 15 2015 17:29:42 GMT+0200 (CEST)</rebuildingDate>
+	<rebuildingDate>Wed Jul 15 2015 17:29:42 GMT+0200 (CEST)</rebuildingDate>
+	<modificationDetails>mod1</modificationDetails>
+	<modificationDetails>mod2</modificationDetails>
+	<cost>1</cost>
+	<cost>2</cost>
+	<rightsDetails>detail1</rightsDetails>
+	<rightsDetails>detail2</rightsDetails>
+</physicalAsset>
+<digitalObject>
+	<actorCount>0</actorCount>
+	<authoringTool>20120221_2030(x64)</authoringTool>
+	<authoringTool>Autodesk Revit 2013</authoringTool>
+	<creator>morten jensen</creator>
+	<creator>mh</creator>
+	<dateCreated>2013-03-01T11:21:05</dateCreated>
+	<dimensionCount>3</dimensionCount>
+	<entityCount>67</entityCount>
+	<fileSchema>IFC2X3</fileSchema>
+	<geometricPrecision>1e-06</geometricPrecision>
+	<hasType>Annotation</hasType>
+	<hasType>Model</hasType>
+	<instanceCount>4061</instanceCount>
+	<name>Barcelona_Pavillon.ifc</name>
+	<name>asdf</name>
+	<optionalAttributesSet>0.461189044756179</optionalAttributesSet>
+	<relationshipCount>617</relationshipCount>
+	<unit>MILLICUBIC_METRE</unit>
+	<unit>MILLISQUARE_METRE</unit>
+	<Identifier>test</Identifier>
+	<isPartOf>identifier1</isPartOf>
+	<isPartOf>identifier2</isPartOf>
+	<hasPart>identifier1</hasPart>
+	<hasPart>identifier2</hasPart>
+	<format>format1</format>
+	<hasFormatDetails>details</hasFormatDetails>
+	<description>desct1</description>
+	<description>desc2</description>
+	<provenance>prov1</provenance>
+	<provenance>prov2</provenance>
+	<license>lic1</license>
+	<unitCode>MEM</unitCode>
+	<levelOfDetail>asdf:3</levelOfDetail>
+	<event>event1</event>
+	<event>event2</event>
+</digitalObject>
+</buildm>
