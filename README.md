@@ -46,11 +46,19 @@ This library is running on [NodeJS](https://nodejs.org/).
 
 ## API
 
-http://juliet.cgv.tugraz.at/api/v0.7/sessions/
+We are hosting a public API endpoint at
 
-## Demo-Server
+* http://juliet.cgv.tugraz.at/api/v0.7/sessions/
 
-A showcasing demo incorporating the service is running on our [development system](http://juliet.cgv.tugraz.at). It is a development system, not a production one. You will always have the newest version running there, but it is also possible to experience bugs. A production demo will be available soon beginning of august 2015 at http://workbench.duraark.eu. Currently we have the first prototype version (v0.5.0) running there.
+which links to the API documentation.
+
+## Demo
+
+A public demo of the [WorkbenchUI](http://github.com/duraark/workbench-ui) is available [here](http://workbench.duraark.eu). It uses the API of our [Service Platform](https://github.com/duraark/duraark-system) to power the GUI. The current version is v0.5.0.
+
+The bleeding edge version of the [WorkbenchUI](http://github.com/duraark/workbench-ui) is also available on our [development server](http://juliet.cgv.tugraz.at). It is a development system. You've been warned...
+
+That said, you will always have the newest version running there (its coupled with our continuous deployment platform), ready to be explored for in-development features. It can be buggy, though. The development is targeting v0.7.0 currently.
 
 ## Testing
 
