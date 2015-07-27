@@ -1,8 +1,8 @@
-# microservice-metadata-extraction
+# duraark-metadata
 
 [![Circle CI](https://circleci.com/gh/DURAARK/microservice-metadata-extraction.svg?style=svg)](https://circleci.com/gh/DURAARK/microservice-ifcmetadata)
 
-This library is part of the [DURAARK](http://github.com/duraark/duraark-system) system and contains the extraction functionality required in DURAARK to retrieve metadata on files in the system.
+This library is part of the [DURAARK](http://github.com/duraark/duraark-system) system and contains the metadata extraction components of the DURAARK project.
 
 ## Format support
 
@@ -38,11 +38,11 @@ The service depends on two components which are used by the core extraction plug
 
 This service is used by the
 
-* [duraark-system](https://github.com/duraark/duraark-system)
+* [Service Platform](https://github.com/duraark/duraark-system)
 
 ## Platform Support
 
-This library is intended to be used inside **NodeJS**.
+This library is running on [NodeJS](https://nodejs.org/).
 
 ## API
 
@@ -52,8 +52,12 @@ http://juliet.cgv.tugraz.at/api/v0.7/sessions/
 
 A showcasing demo incorporating the service is running on our [development system](http://juliet.cgv.tugraz.at). It is a development system, not a production one. You will always have the newest version running there, but it is also possible to experience bugs. A production demo will be available soon beginning of august 2015 at http://workbench.duraark.eu. Currently we have the first prototype version (v0.5.0) running there.
 
-## Deploying the code
+## Testing
+
+Run **npm test** in the **src** folder.
+
+## Development & Deployment
 
 The repository comes with a set of deployment scripts for docker. They are available in the _devops folder.
 
-The recommended way to get the best development experience is to use the [duraark-system](http://github.com/duraark/duraark-system) repository as predefined environment. It provides you with an [nscale]() setup for developing and deploying the fully-featured DURAARK system, which comes with a graphical user interface ([DURAARK WorkbenchUI](http://github.com/duraark/workbench-ui)) and the micro-services based [DURAARK Service Platform](http://github.com/duraark/duraark-system) hosting DURAARK's Web-API.
+The recommended way to get the best development experience is to use the [duraark-system](http://github.com/duraark/duraark-system) repository as predefined environment. It provides you with an [nscale]() setup for developing and deploying the fully-featured DURAARK system, which comes with a graphical user interface ([DURAARK WorkbenchUI](http://github.com/duraark/workbench-ui)) and the micro-services based [DURAARK Service Platform](http://github.com/duraark/duraark-system) hosting the DURAARK API.
