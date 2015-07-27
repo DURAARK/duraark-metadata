@@ -50,7 +50,7 @@ E57Extract.prototype.asJSONLD = function(e57) {
         return reject('[E57Extract::asJSONLD] FILE EXCEPTION: ' + err);
       }
 
-      var xml = extractor.json2xml(jsonld);
+      var xml = extractor.json2xml(md);
 
       return resolve(xml);
     } else {
