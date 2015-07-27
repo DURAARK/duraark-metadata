@@ -38,7 +38,7 @@ E57Extract.prototype.asJSONLD = function(e57) {
 
     if (_failsave) {
       var metadata = [],
-        fixtureData = path.join(process.cwd(), '..', 'testdata', 'nygade-e57-metadata.json');
+        fixtureData = path.join('/duraark-storage', 'testdata', 'nygade-e57-metadata.json');
 
       // console.log('fixtureData: ' + fixtureData);
 
@@ -51,7 +51,7 @@ E57Extract.prototype.asJSONLD = function(e57) {
       }
 
       var xml = extractor.json2xml(jsonld);
-      
+
       return resolve(xml);
     } else {
       try {
@@ -101,7 +101,7 @@ E57Extract.prototype.json2xml = function(json) {
 
   input.e57_metadata.version = json.e57_metadata.version_major + "." + json.e57_metadata.version_minor;
 
-  for (i = 0; i < input.e57_metadata.scans.length; i++) { 
+  for (i = 0; i < input.e57_metadata.scans.length; i++) {
     //parse dates for each scan
     var scan = input.e57_metadata.scans[i]
 
@@ -189,7 +189,7 @@ E57Extract.prototype.json2xml = function(json) {
   }
 
   //parse dates for each image
-  for (i = 0; i < input.e57_metadata.images.length; i++) { 
+  for (i = 0; i < input.e57_metadata.images.length; i++) {
       var acquisition_datetime = input.e57_metadata.images[i].acquisition_datetime;
       input.e57_metadata.scans[i].acquisition_datetime = new Date(acquisition_datetime.year, acquisition_datetime.month, acquisition_datetime.day, acquisition_datetime.hour, acquisition_datetime.minute, acquisition_datetime.seconds, (acquisition_datetime.seconds % 1) * 1000).toISOString();
   }
