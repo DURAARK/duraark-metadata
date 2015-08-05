@@ -1,44 +1,71 @@
-# microservice-metadata-extraction
+# duraark-metadata
 
 [![Circle CI](https://circleci.com/gh/DURAARK/microservice-metadata-extraction.svg?style=svg)](https://circleci.com/gh/DURAARK/microservice-ifcmetadata)
 
-This library is part of the [DURAARK](http://github.com/duraark/duraark-system) system and contains the extraction functionality required in DURAARK to retrieve metadata on files in the system. The following file types are supported for extraction of data:
+This library is part of the [DURAARK](http://github.com/duraark/duraark-system) system and contains the metadata extraction components.
+
+## Format support
+
+The following file types are supported for the extraction of data:
 
 * IFC-SPF
 * E57
 * HDF5 (in development)
 
-Dependent on the file type and metadata level the output has the following output:
+After the metadata extraction the information can be exported into the following formats (depending on the input file type):
 
-* [IFC-SPF] buildm -> JSON-LD, N3
-* [IFC-SPF] ifcm   -> XML
-* [E57]     e57m   -> JSON, XML
+* Input: IFC-SPF -> Output-Schema: buildm -> Serialization: JSON-LD, N3
+* Input: IFC-SPF -> Output-Schema: ifcm   -> Serialization: XML
+* Input: E57     -> Output-Schema: e57m   -> Serialization: JSON-LD, XML
 
-For the metadata extraction plugin system provides an 'extractor' for a certain file type, where an extractor is also responsible for serializing the result data to the client. Currently two extractors are registered, one for 'IFC-SPF' and one for the 'E57' file type. In future a plugin for handling the 'HDF5' file type will be provided, targeted for the end of this year (2015).
+## Plugins
+
+The extraction service comes with a plugin system to extend support for other file formats. Currently two core extractors are implemented:
+
+* IFC-SPF
+* E57
+
+Currently a plugin for the HDF5 file format is in development and will be available end of 2015.
 
 ## Dependencies
 
-The service depends on two components which are used by the file type plugins to do the actual metadata extraction:
+The service depends on two components which are used by the core extraction plugins to do the actual metadata extraction:
 
 * [e57Extract](http://github.com/duraark/e57extract)
 * [pyIfcExtract](http://github.com/duraark/pyIfcExtract)
 
 ## Used By
 
-* [duraark-system](https://github.com/duraark/duraark-system)
+This service is used by the
+
+* [Service Platform](https://github.com/duraark/duraark-system)
 
 ## Platform Support
 
-This library is intended to be used inside **NodeJS**.
+This library is running on [NodeJS](https://nodejs.org/).
 
 ## API
 
-TODO
+We are hosting a public API endpoint at
 
-## Demo-Server
+* http://juliet.cgv.tugraz.at/api/v0.7/sessions/
 
-A showcasing demo incorporating the service is running on our [development system](http://juliet.cgv.tugraz.at). It is a development system, not a production one. You will always have the newest version running there, but it is also possible to experience bugs. A production demo will be available soon at http://workbench.duraark.eu. Currently we have the first prototype version running there.
+which links to the API documentation.
 
-## Deploying the code
+## Demo
 
-The deployment setup is based on the repository [microservice-base](https://github.com/DURAARK/microservice-base). It provides development scripts and docker deployment. Have a look at the link to get more detailed information.
+A public demo of the [WorkbenchUI](http://github.com/duraark/workbench-ui) is available [here](http://workbench.duraark.eu). It uses the API of our [Service Platform](https://github.com/duraark/duraark-system) to power the GUI. The current version is v0.5.0.
+
+The bleeding edge version of the [WorkbenchUI](http://github.com/duraark/workbench-ui) is also available on our [development server](http://juliet.cgv.tugraz.at). It is a development system. You've been warned...
+
+That said, you will always have the newest version running there (its coupled with our continuous deployment platform), ready to be explored for in-development features. It can be buggy, though. The development is targeting v0.7.0 currently.
+
+## Testing
+
+Run **npm test** in the **src** folder.
+
+## Development & Deployment
+
+The repository comes with a set of deployment scripts for docker. They are available in the _devops folder.
+
+The recommended way to get the best development experience is to use the [duraark-system](http://github.com/duraark/duraark-system) repository as predefined environment. It provides you with an [nscale]() setup for developing and deploying the fully-featured DURAARK system, which comes with a graphical user interface ([DURAARK WorkbenchUI](http://github.com/duraark/workbench-ui)) and the micro-services based [DURAARK Service Platform](http://github.com/duraark/duraark-system) hosting the DURAARK API.
