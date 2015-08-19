@@ -71,7 +71,7 @@ IfcmExtractor.prototype.extractFromFile = function(file) {
             console.log('[DURAARK::IfcmExtractor] successfully extracted metadata as XML');
 
             file.metadata = metadata;
-            file.serialization = 'xml';
+            file.format = 'application/xml';
 
             // FIXXME: how to determine the schema information dynamically?
             file.schemaName = 'ifcm';

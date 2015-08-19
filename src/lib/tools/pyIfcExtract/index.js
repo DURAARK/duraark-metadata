@@ -31,6 +31,8 @@ PyIfcExtract.prototype.extractIfcm = function(ifc) {
     }
 
     try {
+      console.log('[PyIfcExtract::extractIfcm] about to start "python2.7 /duraark-storage/tools/pyIfcExtract/ifcm_extractor.py" ...');
+
       var executable = spawn('python2.7', ['/duraark-storage/tools/pyIfcExtract/ifcm_extractor.py', ifc.path]),
         xmlString = '';
 
@@ -77,6 +79,8 @@ PyIfcExtract.prototype.extractBuildm = function(ifc, schema) {
     }
 
     try {
+      console.log('[PyIfcExtract::extractIfcm] about to start "python2.7 /duraark-storage/tools/pyIfcExtract/ifcm_extractor.py" ...');
+
       var executable = spawn('python3.3', ['/duraark-storage/tools/pyIfcExtract/buildm_extractor.py', ifc.path, schema]),
         rdfString = '';
 

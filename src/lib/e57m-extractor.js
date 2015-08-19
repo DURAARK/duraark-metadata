@@ -71,7 +71,7 @@ E57mExtractor.prototype.extractFromFile = function(file) {
             console.log('[DURAARK::E57mExtractor] successfully extracted metadata as XML');
 
             file.metadata = metadata;
-            file.serialization = 'xml';
+            file.format = 'application/xml';
 
             // FIXXME: how to determine the schema information dynamically?
             file.schemaName = 'e57m';

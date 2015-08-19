@@ -91,18 +91,6 @@ module.exports = {
     if (e57mExtractor.validateInput(req, res)) {
       handleExtraction(e57mExtractor, req, res);
     }
-  },
-
-  testJS2XML: function(req, res, next) {
-
-    var json = req.body;
-    //console.log(JSON.stringify(json,null,4));
-
-    var MetadataExtractorE57 = require('../../lib/tools/E57Extract/app');
-    var myTest = new MetadataExtractorE57();
-    var output = myTest.json2xml(req.body);
-
-    res.send(output);
   }
 }
 

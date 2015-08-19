@@ -11,7 +11,7 @@ module.exports = {
       required: true
     },
 
-    serialization: {
+    format: {
       type: 'string',
       required: false
     },

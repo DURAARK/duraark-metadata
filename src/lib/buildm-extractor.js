@@ -74,7 +74,7 @@ BuildmExtractor.prototype.extractFromFile = function(file, schema) {
               digitalObject: {}
             };
 
-            file.serialization = 'json-ld';
+            file.format = 'application/ld+json';
 
             // FIXXME: how to determine the schema information dynamically?
             file.schemaName = 'buildm';
