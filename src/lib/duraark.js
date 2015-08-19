@@ -1,13 +1,17 @@
 /**
  * duraark.js
  *
- * @description :: DURAARK namespace holding high-level libraries for working
- *                 with the DURAARK Service Platform.
+ * @description :: DURAARK namespace holding high-level libraries for extracting
+ *                 metadata from files.
  */
 
 
-var MetadataExtraction = require('./metadata-extraction');
+var BuildmExtractor = require('./buildm-extractor'),
+  IfcmExtractor = require('./ifcm-extractor'),
+  E57mExtractor = require('./e57m-extractor');
 
 module.exports = {
-  MetadataExtraction: MetadataExtraction
+  BuildmExtractor: BuildmExtractor,
+  IfcmExtractor: IfcmExtractor,
+  E57mExtractor: E57mExtractor
 }

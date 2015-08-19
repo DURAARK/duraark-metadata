@@ -15,12 +15,57 @@ var PyIfcExtract = module.exports = function(schema) {
   this.schema = schema;
 }
 
-PyIfcExtract.prototype.asJSONLD = function(ifc, res) {
+PyIfcExtract.prototype.extractIfcm = function(ifc) {
+  var extractor = this;
+
+  return new Promise(function(resolve, reject) {
+    console.log('[PyIfcExtract::extractIfcm] file: ' + ifc.path);
+
+    try {
+      stats = fs.lstatSync(ifc.path);
+      if (!stats.isFile()) {
+        return reject('[PyIfcExtract::extractIfcm] ERROR: file "' + ifc.path + '" does not exist');
+      }
+    } catch (err) {
+      return reject('[PyIfcExtract::extractIfcm] FILE EXCEPTION: ' + err);
+    }
+
+    try {
+      var executable = spawn('python2.7', ['/duraark-storage/tools/pyIfcExtract/ifcm_extractor.py', ifc.path]),
+        xmlString = '';
+
+      executable.stdout.on('data', function(data) {
+        // console.log('stdout: ' + data);
+        xmlString += data;
+      });
+
+      executable.stderr.on('data', function(err) {
+        console.log('[PyIfcExtract::extractIfcm] ERROR during program execution:\n\n' + err + '\n');
+        return reject('[PyIfcExtract::extractIfcm] ERROR during program execution:\n\n' + err);
+      });
+
+      executable.on('close', function(code) {
+        if (code !== 0) {
+          console.log('[PyIfcExtract::extractIfcm] ERROR: exited with code:' + code);
+          return reject('[PyIfcExtract::extractIfcm] ERROR: exited with code: \n\n' + code + '\n');
+        }
+        console.log('[PyIfcExtract::extractIfcm] RDF extraction finished, converting to JSON-LD ...');
+
+        return resolve(xmlString);
+      });
+    } catch (err) {
+      console.log('[PyIfcExtract::extractIfcm] ERROR on program start:\n\n' + err + '\n');
+      return reject('[PyIfcExtract::extractIfcm] ERROR on program start:\n\n' + err);
+    }
+  });
+};
+
+PyIfcExtract.prototype.extractBuildm = function(ifc, schema) {
   var extractor = this;
 
   return new Promise(function(resolve, reject) {
     console.log('[PyIfcExtract::asJSONLD] file: ' + ifc.path);
-    console.log('                         schema: ' + extractor.schema);
+    console.log('                         schema: ' + schema);
 
     try {
       stats = fs.lstatSync(ifc.path);
@@ -32,7 +77,7 @@ PyIfcExtract.prototype.asJSONLD = function(ifc, res) {
     }
 
     try {
-      var executable = spawn('python3.3', ['/duraark-storage/tools/pyIfcExtract/buildm_extractor.py', ifc.path, extractor.schema]),
+      var executable = spawn('python3.3', ['/duraark-storage/tools/pyIfcExtract/buildm_extractor.py', ifc.path, schema]),
         rdfString = '';
 
       executable.stdout.on('data', function(data) {

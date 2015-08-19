@@ -1,5 +1,5 @@
 /**
- * MetadataExtractionController
+ * E57mController
  *
  * @description :: Server-side logic for extracting technical and descriptive
  *                 metadata for IFC-SPF, E57 and (in future) HDF5 files
@@ -20,41 +20,41 @@ var duraark = require('../../lib/duraark');
 
 module.exports = {
   /**
- * @api {get} /file/:id Request cached metadata
- * @apiVersion 0.7.0
- * @apiName GetMetadata
- * @apiGroup Metadata
- * @apiPermission none
- *
- * @apiDescription Requests cached metadata from the server.
- *
- * @apiParam {Number} id File's unique ID.
- *
- * @apiExample {curl} Example usage:
- * curl -i http://data.duraark.eu/services/api/metadata/file/1
- *
- * @apiUse MetadataSuccess
- *
- * @apiSuccessExample Success-Response:
- *     HTTP/1.1 200 OK
- *     {
- *        "path": "/duraark-storage/files/Nygade_Scan1001.e57",
- *        "type": "e57",
- *        "createdAt": "2015-08-05T15:20:24.963Z",
- *        "updatedAt": "2015-08-05T15:20:25.005Z",
- *        "id": 1,
- *        "metadata": {
- *          "physicalAsset": { ... JSON-LD data ... },
- *          "digitalObject": { ... JSON-LD data ... }
- *      }
- *
- * @apiError NotFound The metadata information was not found.
- *
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 404 Not Found
- *     Not Found
- *
- */
+   * @api {get} /file/:id Request cached metadata
+   * @apiVersion 0.7.0
+   * @apiName GetMetadata
+   * @apiGroup Metadata
+   * @apiPermission none
+   *
+   * @apiDescription Requests cached metadata from the server.
+   *
+   * @apiParam {Number} id File's unique ID.
+   *
+   * @apiExample {curl} Example usage:
+   * curl -i http://data.duraark.eu/services/api/metadata/file/1
+   *
+   * @apiUse MetadataSuccess
+   *
+   * @apiSuccessExample Success-Response:
+   *     HTTP/1.1 200 OK
+   *     {
+   *        "path": "/duraark-storage/files/Nygade_Scan1001.e57",
+   *        "type": "e57",
+   *        "createdAt": "2015-08-05T15:20:24.963Z",
+   *        "updatedAt": "2015-08-05T15:20:25.005Z",
+   *        "id": 1,
+   *        "metadata": {
+   *          "physicalAsset": { ... JSON-LD data ... },
+   *          "digitalObject": { ... JSON-LD data ... }
+   *      }
+   *
+   * @apiError NotFound The metadata information was not found.
+   *
+   * @apiErrorExample Error-Response:
+   *     HTTP/1.1 404 Not Found
+   *     Not Found
+   *
+   */
 
   /**
    * @api {post} /metadata Extract metadata
@@ -83,16 +83,17 @@ module.exports = {
    *
    */
   create: function(req, res, next) {
-    var metadataExtraction = new duraark.MetadataExtraction();
+    var e57mExtractor = new duraark.E57mExtractor();
 
-    console.log('\n[DURAARK::MetadataExtraction] incoming request');
-    console.log('[DURAARK::MetadataExtraction]');
+    console.log('\n[DURAARK::E57mController] incoming request');
+    console.log('[DURAARK::E57mController]');
 
-    if (metadataExtraction.validateInput(req, res)) {
-      handleExtraction(metadataExtraction, req, res);
+    if (e57mExtractor.validateInput(req, res)) {
+      handleExtraction(e57mExtractor, req, res);
     }
   },
-  testJS2XML: function (req, res, next) {
+
+  testJS2XML: function(req, res, next) {
 
     var json = req.body;
     //console.log(JSON.stringify(json,null,4));
@@ -108,21 +109,21 @@ module.exports = {
 function handleExtraction(extractor, req, res) {
   var file = req.params.all();
 
-  console.log('[DURAARK::MetadataExtraction] searching in cache ...');
+  console.log('[DURAARK::E57mController] searching in cache ...');
 
   extractor.askCache(file).then(function(cachedFile) {
     if (cachedFile) {
-      console.log('[DURAARK::MetadataExtraction] request completed!');
+      console.log('[DURAARK::E57mController] request completed!');
       return res.send(200, cachedFile);
     }
 
     return extractor.extractFromFile(file)
       .then(function(file) {
-        console.log('[DURAARK::MetadataExtraction] request completed!');
+        console.log('[DURAARK::E57mController] request completed!');
         return res.send(201, file);
       })
       .catch(function(err) {
-        console.log('[DURAARK::MetadataExtraction] ERROR extracting from file:\n\n' + err + '\n');
+        console.log('[DURAARK::E57mController] ERROR extracting from file:\n\n' + err + '\n');
         file.extractionErrors = [{
           type: 'extraction',
           msg: err
