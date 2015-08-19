@@ -32,7 +32,7 @@ E57mExtractor.prototype.validateInput = function(req, res) {
 }
 
 E57mExtractor.prototype.askCache = function(file) {
-  return E57m.find()
+  return E57ms.find()
     .where({
       path: {
         'like': file.path
@@ -53,7 +53,7 @@ E57mExtractor.prototype.askCache = function(file) {
 
 E57mExtractor.prototype.extractFromFile = function(file) {
   return new Promise(function(resolve, reject) {
-    return E57m.create(file, function(err, file) {
+    return E57ms.create(file, function(err, file) {
       if (err) {
         console.log('[DURAARK::E57mExtractor] ERROR creating record:\n\n' + err + '\n');
         return reject('[DURAARK::E57mExtractor] ERROR creating record:\n\n' + err);

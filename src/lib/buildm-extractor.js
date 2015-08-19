@@ -31,7 +31,7 @@ BuildmExtractor.prototype.validateInput = function(req, res) {
 }
 
 BuildmExtractor.prototype.askCache = function(file) {
-  return Buildm.find()
+  return Buildms.find()
     .where({
       path: {
         'like': file.path
@@ -52,7 +52,7 @@ BuildmExtractor.prototype.askCache = function(file) {
 
 BuildmExtractor.prototype.extractFromFile = function(file, schema) {
   return new Promise(function(resolve, reject) {
-    return Buildm.create(file, function(err, file) {
+    return Buildms.create(file, function(err, file) {
       if (err) {
         console.log('[DURAARK::BuildmExtractor] ERROR creating record:\n\n' + err + '\n');
         return reject('[DURAARK::BuildmExtractor] ERROR creating record:\n\n' + err);

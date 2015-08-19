@@ -32,7 +32,7 @@ IfcmExtractor.prototype.validateInput = function(req, res) {
 }
 
 IfcmExtractor.prototype.askCache = function(file) {
-  return Ifcm.find()
+  return Ifcms.find()
     .where({
       path: {
         'like': file.path
@@ -53,7 +53,7 @@ IfcmExtractor.prototype.askCache = function(file) {
 
 IfcmExtractor.prototype.extractFromFile = function(file) {
   return new Promise(function(resolve, reject) {
-    return Ifcm.create(file, function(err, file) {
+    return Ifcms.create(file, function(err, file) {
       if (err) {
         console.log('[DURAARK::IfcmExtractor] ERROR creating record:\n\n' + err + '\n');
         return reject('[DURAARK::IfcmExtractor] ERROR creating record:\n\n' + err);
