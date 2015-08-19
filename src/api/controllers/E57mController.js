@@ -1,51 +1,52 @@
 /**
  * E57mController
  *
- * @description :: Server-side logic for extracting technical and descriptive
- *                 metadata for IFC-SPF, E57 and (in future) HDF5 files
- * @help        :: See http://links.sailsjs.org/docs/controllers
+ * @description :: Server-side logic for extracting technical metadata for
+ *                 IFC-SPF files.
  */
 
 var duraark = require('../../lib/duraark');
 
 /**
- * @apiDefine MetadataSuccess
- * @apiSuccess (File) {String} path Location of the File.
- * @apiSuccess (File) {String} type Type of the File ('e57' or 'ifc-spf').
- * @apiSuccess (File) {Date} createdAt Creation time of the database instance.
- * @apiSuccess (File) {Date} updatedAt Last modification time of the database instance.
- * @apiSuccess (File) {Number} id Database instance's unique ID.
- * @apiSuccess (File) {Object} metadata The extracted metadata is returned as [JSON-LD](http://json-ld.org/). The data is logically separated into a 'physicalAsset' and a 'digitalObject' section and follows the [buildM+](https://github.com/DURAARK/Schemas/blob/master/rdf/buildm%2Bv3.1.rdf) schema description.
+ * @apiDefine E57mSuccess
+ * @apiSuccess (E57m) {String} path Location of the file.
+ * @apiSuccess (E57m) {Date} createdAt Creation time of the database instance.
+ * @apiSuccess (E57m) {Date} updatedAt Last modification time of the database instance.
+ * @apiSuccess (E57m) {Number} id Database instance's unique ID.
+ * @apiSuccess (E57m) {string} format Format of the metadata serialization (i.e. "application/xml")
+ * @apiSuccess (E57m) {string} schemaName Schema name (i.e. "e57m")
+ * @apiSuccess (E57m) {Number} schemaVersion Schema version (e.g. "1.1")
+ * @apiSuccess (E57m) {String} metadata The extracted metadata is returned in the serialization format above
  */
 
 module.exports = {
   /**
-   * @api {get} /file/:id Request cached metadata
-   * @apiVersion 0.7.0
-   * @apiName GetMetadata
-   * @apiGroup Metadata
+   * @api {get} /e57m/:id Request cached e57M metadata
+   * @apiVersion 0.8.0
+   * @apiName GetE57m
+   * @apiGroup E57M
    * @apiPermission none
    *
-   * @apiDescription Requests cached metadata from the server.
+   * @apiDescription Requests cached technical metadata as e57M/XML serialization.
    *
    * @apiParam {Number} id File's unique ID.
    *
    * @apiExample {curl} Example usage:
-   * curl -i http://data.duraark.eu/services/api/metadata/file/1
+   * curl -i http://data.duraark.eu/services/api/metadata/e57m/1
    *
-   * @apiUse MetadataSuccess
+   * @apiUse E57mSuccess
    *
    * @apiSuccessExample Success-Response:
    *     HTTP/1.1 200 OK
    *     {
-   *        "path": "/duraark-storage/files/Nygade_Scan1001.e57",
-   *        "type": "e57",
+   *        "path": "/duraark-storage/files/Plan3D_Haus30_PREVIEW.ifc",
    *        "createdAt": "2015-08-05T15:20:24.963Z",
    *        "updatedAt": "2015-08-05T15:20:25.005Z",
    *        "id": 1,
-   *        "metadata": {
-   *          "physicalAsset": { ... JSON-LD data ... },
-   *          "digitalObject": { ... JSON-LD data ... }
+   *        "metadata": " ... XML schema instance ...",
+   *        "format": "application/ld+json",
+   *        "schemaName": "e57m",
+   *        "schemaVersion": "1.1"
    *      }
    *
    * @apiError NotFound The metadata information was not found.
@@ -57,28 +58,27 @@ module.exports = {
    */
 
   /**
-   * @api {post} /metadata Extract metadata
-   * @apiVersion 0.7.0
-   * @apiName PostMetadata
-   * @apiGroup Metadata
+   * @api {post} /e57m Extract technical metadata as e57M/XML serialization from an E57 file.
+   * @apiVersion 0.8.0
+   * @apiName PostE57m
+   * @apiGroup E57M
    * @apiPermission none
    *
-   * @apiDescription Extracts metadata from the given File.
+   * @apiDescription Extracts technical metadata from the given E57 file.
    *
-   * @apiParam (File) {String} path Location of the File as provided by the [DURAARK Sessions API](http://data.duraark.eu/services/api/sessions/).
-   * @apiParam (File) {String} type Type of the File ('e57' or 'ifc-spf').
+   * @apiParam (File) {String} path Location of the file as provided by the [DURAARK Sessions API](http://data.duraark.eu/services/api/sessions/).
    *
    * @apiSuccessExample Success-Response:
    *     HTTP/1.1 200 OK
    *     {
-   *        "path": "/duraark-storage/files/Nygade_Scan1001.e57",
-   *        "type": "e57",
+   *        "path": "/duraark-storage/files/Plan3D_Haus30_PREVIEW.ifc",
    *        "createdAt": "2015-08-05T15:20:24.963Z",
    *        "updatedAt": "2015-08-05T15:20:25.005Z",
    *        "id": 1,
-   *        "metadata": {
-   *          "physicalAsset": { ... JSON-LD data ... },
-   *          "digitalObject": { ... JSON-LD data ... }
+   *        "metadata": " ... XML schema instance ...",
+   *        "format": "application/ld+json",
+   *        "schemaName": "e57m",
+   *        "schemaVersion": "1.1"
    *      }
    *
    */

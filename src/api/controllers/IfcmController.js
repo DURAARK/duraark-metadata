@@ -2,51 +2,51 @@
  * IfcmController
  *
  * @description :: Server-side logic for extracting technical metadata for
- *                 IFC-SPF files
- * @help        :: See http://links.sailsjs.org/docs/controllers
+ *                 IFC-SPF files.
  */
 
 var duraark = require('../../lib/duraark');
 
 /**
- * @apiDefine IfcmSucess
- * @apiSuccess (Ifcm) {String} path Location of the File.
+ * @apiDefine IfcmSuccess
+ * @apiSuccess (Ifcm) {String} path Location of the file.
  * @apiSuccess (Ifcm) {Date} createdAt Creation time of the database instance.
  * @apiSuccess (Ifcm) {Date} updatedAt Last modification time of the database instance.
  * @apiSuccess (Ifcm) {Number} id Database instance's unique ID.
- * @apiSuccess (Ifcm) {string} Schema name (i.e. 'ifcm')
- * @apiSuccess (Ifcm) {Number} Schema version (e.g. '1.1')
- * @apiSuccess (Ifcm) {Object} metadata The extracted metadata is returned as XML serialization
+ * @apiSuccess (Ifcm) {string} format Format of the metadata serialization (i.e. "application/xml")
+ * @apiSuccess (Ifcm) {string} schemaName Schema name (i.e. "ifcm")
+ * @apiSuccess (Ifcm) {Number} schemaVersion Schema version (e.g. "1.0")
+ * @apiSuccess (Ifcm) {String} metadata The extracted metadata is returned in the serialization format above
  */
 
 module.exports = {
   /**
-   * @api {get} /ifcm/:id Request cached metadata
-   * @apiVersion 0.7.1
+   * @api {get} /ifcm/:id Request cached ifcM metadata
+   * @apiVersion 0.8.0
    * @apiName GetIfcm
-   * @apiGroup Ifcm
+   * @apiGroup IfcM
    * @apiPermission none
    *
-   * @apiDescription Requests (cached) metadata from the server.
+   * @apiDescription Requests cached technical metadata as ifcM/XML serialization from an IFC-SPF file.
    *
    * @apiParam {Number} id File's unique ID.
    *
    * @apiExample {curl} Example usage:
-   * curl -i http://data.duraark.eu/services/api/metadata/file/1
+   * curl -i http://data.duraark.eu/services/api/metadata/ifcm/1
    *
-   * @apiUse IfcmSucess
+   * @apiUse IfcmSuccess
    *
    * @apiSuccessExample Success-Response:
    *     HTTP/1.1 200 OK
    *     {
-   *        "path": "/duraark-storage/files/Nygade_Scan1001.e57",
-   *        "type": "e57",
+   *        "path": "/duraark-storage/files/Plan3D_Haus30_PREVIEW.ifc",
    *        "createdAt": "2015-08-05T15:20:24.963Z",
    *        "updatedAt": "2015-08-05T15:20:25.005Z",
    *        "id": 1,
-   *        "metadata": {
-   *          "physicalAsset": { ... JSON-LD data ... },
-   *          "digitalObject": { ... JSON-LD data ... }
+   *        "metadata": " ... XML schema instance ...",
+   *        "format": "application/ld+json",
+   *        "schemaName": "ifcm",
+   *        "schemaVersion": "1.0"
    *      }
    *
    * @apiError NotFound The metadata information was not found.
@@ -58,28 +58,27 @@ module.exports = {
    */
 
   /**
-   * @api {post} /metadata Extract metadata
-   * @apiVersion 0.7.0
+   * @api {post} /ifcm Extract technical metadata as ifcM/XML serialization
+   * @apiVersion 0.8.0
    * @apiName PostIfcm
-   * @apiGroup Ifcm
+   * @apiGroup IfcM
    * @apiPermission none
    *
-   * @apiDescription Extracts metadata from the given File.
+   * @apiDescription Extracts technical metadata from the given IFC-SPF file.
    *
-   * @apiParam (File) {String} path Location of the File as provided by the [DURAARK Sessions API](http://data.duraark.eu/services/api/sessions/).
-   * @apiParam (File) {String} type Type of the File ('e57' or 'ifc-spf').
+   * @apiParam (File) {String} path Location of the file as provided by the [DURAARK Sessions API](http://data.duraark.eu/services/api/sessions/).
    *
    * @apiSuccessExample Success-Response:
    *     HTTP/1.1 200 OK
    *     {
-   *        "path": "/duraark-storage/files/Nygade_Scan1001.e57",
-   *        "type": "e57",
+   *        "path": "/duraark-storage/files/Plan3D_Haus30_PREVIEW.ifc",
    *        "createdAt": "2015-08-05T15:20:24.963Z",
    *        "updatedAt": "2015-08-05T15:20:25.005Z",
    *        "id": 1,
-   *        "metadata": {
-   *          "physicalAsset": { ... JSON-LD data ... },
-   *          "digitalObject": { ... JSON-LD data ... }
+   *        "metadata": " ... XML schema instance ...",
+   *        "format": "application/ld+json",
+   *        "schemaName": "ifcm",
+   *        "schemaVersion": "1.0"
    *      }
    *
    */

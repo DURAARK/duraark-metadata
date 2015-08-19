@@ -1,52 +1,56 @@
 /**
- * MetadataExtractionController
+ * BuildmController
  *
- * @description :: Server-side logic for extracting technical and descriptive
- *                 metadata for IFC-SPF, E57 and (in future) HDF5 files
- * @help        :: See http://links.sailsjs.org/docs/controllers
+ * @description :: Server-side logic for extracting descriptive metadata for
+  *                IFC-SPF files.
  */
 
 var duraark = require('../../lib/duraark'),
   SCHEMA_PATH = '/duraark-storage/tools/pyIfcExtract/buildm_v3.0.rdf';
 
-/**
- * @apiDefine MetadataSuccess
- * @apiSuccess (File) {String} path Location of the File.
- * @apiSuccess (File) {String} type Type of the File ('e57' or 'ifc-spf').
- * @apiSuccess (File) {Date} createdAt Creation time of the database instance.
- * @apiSuccess (File) {Date} updatedAt Last modification time of the database instance.
- * @apiSuccess (File) {Number} id Database instance's unique ID.
- * @apiSuccess (File) {Object} metadata The extracted metadata is returned as [JSON-LD](http://json-ld.org/). The data is logically separated into a 'physicalAsset' and a 'digitalObject' section and follows the [buildM+](https://github.com/DURAARK/Schemas/blob/master/rdf/buildm%2Bv3.1.rdf) schema description.
- */
+  /**
+   * @apiDefine BuildmSuccess
+   * @apiSuccess (Ifcm) {String} path Location of the file.
+   * @apiSuccess (Ifcm) {Date} createdAt Creation time of the database instance.
+   * @apiSuccess (Ifcm) {Date} updatedAt Last modification time of the database instance.
+   * @apiSuccess (Ifcm) {Number} id Database instance's unique ID.
+   * @apiSuccess (Ifcm) {string} format Format of the metadata serialization (i.e. "application/ld+json")
+   * @apiSuccess (Ifcm) {string} schemaName Schema name (i.e. "buildm")
+   * @apiSuccess (Ifcm) {Number} schemaVersion Schema version (e.g. "2.2")
+   * @apiSuccess (Ifcm) {Object} metadata The extracted metadata is returned in the serialization format above
+   */
 
 module.exports = {
   /**
-   * @api {get} /file/:id Request cached metadata
-   * @apiVersion 0.7.0
-   * @apiName GetMetadata
-   * @apiGroup Metadata
+   * @api {get} /buildm/:id Request cached buildM metadata
+   * @apiVersion 0.8.0
+   * @apiName GetBuildm
+   * @apiGroup BuildM
    * @apiPermission none
    *
-   * @apiDescription Requests cached metadata from the server.
+   * @apiDescription Requests cached descriptive metadata as buildM/JSON-LD serialization.
    *
    * @apiParam {Number} id File's unique ID.
    *
    * @apiExample {curl} Example usage:
-   * curl -i http://data.duraark.eu/services/api/metadata/file/1
+   * curl -i http://data.duraark.eu/services/api/metadata/buildm/1
    *
-   * @apiUse MetadataSuccess
+   * @apiUse BuildmSuccess
    *
    * @apiSuccessExample Success-Response:
    *     HTTP/1.1 200 OK
    *     {
-   *        "path": "/duraark-storage/files/Nygade_Scan1001.e57",
-   *        "type": "e57",
+   *        "path": "/duraark-storage/files/Plan3D_Haus30_PREVIEW.ifc",
    *        "createdAt": "2015-08-05T15:20:24.963Z",
    *        "updatedAt": "2015-08-05T15:20:25.005Z",
    *        "id": 1,
    *        "metadata": {
    *          "physicalAsset": { ... JSON-LD data ... },
    *          "digitalObject": { ... JSON-LD data ... }
+   *        },
+   *        "format": "application/ld+json",
+   *        "schemaName": "buildm",
+   *        "schemaVersion": "2.2"
    *      }
    *
    * @apiError NotFound The metadata information was not found.
@@ -58,28 +62,30 @@ module.exports = {
    */
 
   /**
-   * @api {post} /metadata Extract metadata
-   * @apiVersion 0.7.0
-   * @apiName PostMetadata
-   * @apiGroup Metadata
+   * @api {post} /buildm Extract descriptive metadata as buildM/JSON-LD serialization from an IFC-SPF file.
+   * @apiVersion 0.8.0
+   * @apiName PostBuildm
+   * @apiGroup BuildM
    * @apiPermission none
    *
-   * @apiDescription Extracts metadata from the given File.
+   * @apiDescription Extracts descriptive metadata from the given IFC-SPF file.
    *
-   * @apiParam (File) {String} path Location of the File as provided by the [DURAARK Sessions API](http://data.duraark.eu/services/api/sessions/).
-   * @apiParam (File) {String} type Type of the File ('e57' or 'ifc-spf').
+   * @apiParam (File) {String} path Location of the file as provided by the [DURAARK Sessions API](http://data.duraark.eu/services/api/sessions/).
    *
    * @apiSuccessExample Success-Response:
    *     HTTP/1.1 200 OK
    *     {
-   *        "path": "/duraark-storage/files/Nygade_Scan1001.e57",
-   *        "type": "e57",
+   *        "path": "/duraark-storage/files/Plan3D_Haus30_PREVIEW.ifc",
    *        "createdAt": "2015-08-05T15:20:24.963Z",
    *        "updatedAt": "2015-08-05T15:20:25.005Z",
    *        "id": 1,
    *        "metadata": {
    *          "physicalAsset": { ... JSON-LD data ... },
    *          "digitalObject": { ... JSON-LD data ... }
+   *        },
+   *        "format": "application/ld+json",
+   *        "schemaName": "buildm",
+   *        "schemaVersion": "2.2"
    *      }
    *
    */
@@ -92,18 +98,6 @@ module.exports = {
     if (buildmExtractor.validateInput(req, res)) {
       handleExtraction(buildmExtractor, req, res);
     }
-  },
-
-  testJS2XML: function(req, res, next) {
-
-    var json = req.body;
-    //console.log(JSON.stringify(json,null,4));
-
-    var MetadataExtractorE57 = require('../../lib/tools/E57Extract/app');
-    var myTest = new MetadataExtractorE57();
-    var output = myTest.json2xml(req.body);
-
-    res.send(output);
   }
 }
 
