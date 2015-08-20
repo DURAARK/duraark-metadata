@@ -1,5 +1,5 @@
 /**
- * E57Extract/index.js
+ * e57_metadata/index.js
  *
  * @description :: Javascript-binding for the 'e57_metadata@UBO' C++ tool
  */
@@ -12,50 +12,48 @@ var Promise = require("bluebird"),
   fs = require('fs'),
   js2xmlparser = require("js2xmlparser");
 
-var _failsave = false;
+var _bypassExecutable = false;
 
-var E57Extract = module.exports = function() {}
+var e57_metadata = module.exports = function() {}
 
-E57Extract.prototype.extractE57m = function(e57) {
+e57_metadata.prototype.extractE57m = function(e57) {
   var extractor = this;
 
   return new Promise(function(resolve, reject) {
-    // console.log('[E57Extract::extractE57m] file: ' + e57.path); // TODO: use buyan's logger library!
+    // console.log('[e57_metadata::extractE57m] file: ' + e57.path); // TODO: use buyan's logger library!
 
     try {
       stats = fs.lstatSync(e57.path);
       if (!stats.isFile()) {
-        console.log('[E57Extract::extractE57m] ERROR: file "' + e57.path + '" does not exist');
-        return reject('[E57Extract::extractE57m] ERROR: file "' + e57.path + '" does not exist');
+        console.log('[e57_metadata::extractE57m] ERROR: file "' + e57.path + '" does not exist');
+        return reject('[e57_metadata::extractE57m] ERROR: file "' + e57.path + '" does not exist');
       }
     } catch (err) {
-      console.log('[E57Extract::extractE57m] ERROR checking file: "' + e57.path + '" does not exist');
-      return reject('[E57Extract::extractE57m] ERROR checking file: "' + e57.path + '" does not exist');
+      console.log('[e57_metadata::extractE57m] ERROR checking file: "' + e57.path + '" does not exist');
+      return reject('[e57_metadata::extractE57m] ERROR checking file: "' + e57.path + '" does not exist');
     }
 
     var outputFile = path.join('/tmp', uuid.v4() + '.json');
     // console.log('outputFile: ' + outputFile);
 
-    if (_failsave) {
-      var metadata = [],
-        fixtureData = path.join('/duraark-storage', 'testdata', 'nygade-e57-metadata.json');
+    if (_bypassExecutable) {
+      var jsonString = null,
+        fixtureJSONData = path.join('/duraark-storage', 'testdata', 'nygade-e57-metadata.json');
 
-      // console.log('fixtureData: ' + fixtureData);
+      // console.log('fixtureJSONData: ' + fixtureJSONData);
 
       try {
-        var md = JSON.parse(fs.readFileSync(fixtureData));
-        metadata.push(md.e57_metadata);
+        jsonString = JSON.parse(fs.readFileSync(fixtureJSONData));
       } catch (err) {
-        console.log('[E57Extract::extractE57m] ERROR during file loading: ' + err);
-        return reject('[E57Extract::extractE57m] FILE EXCEPTION: ' + err);
+        console.log('[e57_metadata::extractE57m] ERROR during file loading: ' + err);
+        return reject('[e57_metadata::extractE57m] FILE EXCEPTION: ' + err);
       }
 
-      var xml = extractor.json2xml(md);
-
-      return resolve(xml);
+      var xmlString = extractor.json2xml(jsonString);
+      return resolve(xmlString);
     } else {
       try {
-        console.log('[E57Extract::extractE57m] about to run: "e57metadata ' + e57.path + ' ' + outputFile + '"');
+        console.log('[e57_metadata::extractE57m] about to run: "e57metadata ' + e57.path + ' ' + outputFile + '"');
 
         var executable = spawn('e57_metadata', [e57.path, outputFile]);
 
@@ -64,37 +62,44 @@ E57Extract.prototype.extractE57m = function(e57) {
         });
 
         executable.stderr.on('data', function(err) {
-          console.log('[E57Extract::extractE57m] ERROR during program execution:\n\n' + err + '\n');
-          return reject('[E57Extract::extractE57m] ERROR during program execution:\n\n' + err);
+          console.log('[e57_metadata::extractE57m] ERROR during program execution:\n\n' + err + '\n');
+          return reject('[e57_metadata::extractE57m] ERROR during program execution:\n\n' + err);
         });
 
         executable.on('close', function(code) {
           if (code !== 1) { // 'e57metadata' return '1' on success
-            console.log('[E57Extract::extractE57m] ERROR: exited with code:' + code);
-            return reject('[E57Extract::extractE57m] ERROR: exited with code: \n\n' + code + '\n');
+            console.log('[e57_metadata::extractE57m] ERROR: exited with code:' + code);
+            return reject('[e57_metadata::extractE57m] ERROR: exited with code: \n\n' + code + '\n');
           }
 
-          console.log('[E57Extract::extractE57m] RDF extraction finished, converting to JSON-LD ...');
+          console.log('[e57_metadata::extractE57m] RDF extraction finished, converting to JSON-LD ...');
 
-          var xmlString = JSON.parse(fs.readFileSync(outputFile, 'utf8'));
+          var jsonString = JSON.parse(fs.readFileSync(outputFile, 'utf8'));
+
+          if (!jsonString) {
+            console.log('[e57_metadata::extractE57m] Cannot read JSON output file: ' + outputFile);
+            reject('[e57_metadata::extractE57m] Cannot read JSON output file: ' + outputFile);
+          }
+
+          var xmlString = extractor.json2xml(jsonString);
 
           if (!xmlString) {
-            console.log('[E57Extract::extractE57m] Cannot read metadata output file: ' + outputFile);
-            reject('[E57Extract::extractE57m] Cannot read metadata output file: ' + outputFile);
+            console.log('[e57_metadata::extractE57m] Cannot convert to XML output file: ' + outputFile);
+            reject('[e57_metadata::extractE57m] Cannot convert to XML output file: ' + outputFile);
           }
 
-          console.log('[E57Extract::extractE57m]     ... finished');
+          console.log('[e57_metadata::extractE57m]     ... finished');
           resolve(xmlString);
         });
       } catch (err) {
-        console.log('[E57Extract::extractE57m] ERROR on program start:\n\n' + err + '\n');
-        return reject('[E57Extract::extractE57m] ERROR on program start:\n\n' + err);
+        console.log('[e57_metadata::extractE57m] ERROR on program start:\n\n' + err + '\n');
+        return reject('[e57_metadata::extractE57m] ERROR on program start:\n\n' + err);
       }
     }
   });
 };
 
-E57Extract.prototype.json2xml = function(json) {
+e57_metadata.prototype.json2xml = function(json) {
   var input = json;
 
   //parse date in root
