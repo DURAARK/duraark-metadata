@@ -11,11 +11,6 @@ module.exports = {
       required: true
     },
 
-    format: {
-      type: 'string',
-      required: false
-    },
-
     schemaName: {
       type: 'string',
       required: false
@@ -27,7 +22,7 @@ module.exports = {
     },
 
     metadata: {
-      type: 'string',
+      type: 'object',
       required: false
     }
   }

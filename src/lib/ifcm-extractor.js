@@ -6,7 +6,8 @@
  */
 
 
-var PyIfcExtract = require('./tools/pyIfcExtract');
+var PyIfcExtract = require('./tools/pyIfcExtract'),
+  XMLParser = require('xml2json');
 
 var IfcmExtractor = module.exports = function() {}
 
@@ -69,9 +70,23 @@ IfcmExtractor.prototype.extractFromFile = function(file) {
 
         extractor.extractIfcm(file).then(function(metadata) {
             console.log('[DURAARK::IfcmExtractor] successfully extracted metadata as XML');
+            console.log('[DURAARK::IfcmExtractor] converting XML to JSON');
 
-            file.metadata = metadata;
-            file.format = 'application/xml';
+            var jsonString = null;
+
+            try {
+              jsonString = XMLParser.toJson(xmlString);
+              console.log('jsonString: ' + JSON.stringify(jsonString, null, 4));
+            } catch (err) {
+              jsonString = null;
+              console.log('[DURAARK::IfcmExtractor] Error converting XML to JSON. Only XML output will be available in response.');
+              console.log('[DURAARK::IfcmExtractor] Error:\n' + err);
+            }
+
+            file.metadata = {
+              'application/xml': xmlString,
+              'application/json': jsonString
+            };
 
             // FIXXME: how to determine the schema information dynamically?
             file.schemaName = 'ifcm';

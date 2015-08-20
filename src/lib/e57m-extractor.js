@@ -6,7 +6,8 @@
  */
 
 
-var e57_metadata = require('./tools/e57_metadata');
+var e57_metadata = require('./tools/e57_metadata'),
+  XMLParser = require('xml2json');
 
 var E57mExtractor = module.exports = function() {}
 
@@ -67,11 +68,25 @@ E57mExtractor.prototype.extractFromFile = function(file) {
           return reject('[DURAARK::E57mExtractor] ERROR saving record 1:\n\n' + err);
         }
 
-        extractor.extractE57m(file).then(function(e57mString) {
+        extractor.extractE57m(file).then(function(xmlString) {
             console.log('[DURAARK::E57mExtractor] successfully extracted metadata as XML');
+            console.log('[DURAARK::E57mExtractor] converting XML to JSON');
 
-            file.metadata = e57mString;
-            file.format = 'application/xml';
+            var jsonString = null;
+
+            try {
+              jsonString = XMLParser.toJson(xmlString);
+              console.log('jsonString: ' + JSON.stringify(jsonString, null, 4));
+            } catch (err) {
+              jsonString = null;
+              console.log('[DURAARK::E57mExtractor] Error converting XML to JSON. Only XML output will be available in response.');
+              console.log('[DURAARK::E57mExtractor] Error:\n' + err);
+            }
+
+            file.metadata = {
+              'application/xml': xmlString,
+              'application/json': jsonString
+            };
 
             // FIXXME: how to determine the schema information dynamically?
             file.schemaName = 'e57m';
