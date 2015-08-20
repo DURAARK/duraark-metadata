@@ -43,7 +43,7 @@ IfcmExtractor.prototype.askCache = function(file) {
       if (files.length) {
         var file = files[0];
         // FIXXME: show public URL in output!
-        console.log('[DURAARK::IfcmExtractor] found entry: http://localhost:5012/ifcm/' + file.id);
+        console.log('[DURAARK::IfcmExtractor] found entry: http://localhost:5012/ifcms/' + file.id);
         return file;
       } else {
         console.log('[DURAARK::IfcmExtractor] no entry found');
@@ -68,7 +68,7 @@ IfcmExtractor.prototype.extractFromFile = function(file) {
           return reject('[DURAARK::IfcmExtractor] ERROR saving record 1:\n\n' + err);
         }
 
-        extractor.extractIfcm(file).then(function(metadata) {
+        extractor.extractIfcm(file).then(function(xmlString) {
             console.log('[DURAARK::IfcmExtractor] successfully extracted metadata as XML');
             console.log('[DURAARK::IfcmExtractor] converting XML to JSON');
 
@@ -99,7 +99,7 @@ IfcmExtractor.prototype.extractFromFile = function(file) {
               }
 
               // TODO: return URL with correct host!
-              console.log('[DURAARK::IfcmExtractor] cached data at: http://localhost:5012/ifcm/' + file.id);
+              console.log('[DURAARK::IfcmExtractor] cached data at: http://localhost:5012/ifcms/' + file.id);
               return resolve(file);
             });
           })

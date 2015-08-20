@@ -41,7 +41,7 @@ BuildmExtractor.prototype.askCache = function(file) {
       if (files.length) {
         var file = files[0];
         // FIXXME: show public URL in output!
-        console.log('[DURAARK::BuildmExtractor] found entry: http://localhost:5012/buildm/' + file.id);
+        console.log('[DURAARK::BuildmExtractor] found entry: http://localhost:5012/buildms/' + file.id);
         return file;
       } else {
         console.log('[DURAARK::BuildmExtractor] no entry found');
@@ -100,7 +100,7 @@ BuildmExtractor.prototype.extractFromFile = function(file, schema) {
               }
 
               // TODO: return URL with correct host!
-              console.log('[DURAARK::BuildmExtractor] cached data at: http://localhost:5012/buildm/' + file.id);
+              console.log('[DURAARK::BuildmExtractor] cached data at: http://localhost:5012/buildms/' + file.id);
               return resolve(file);
             });
           })

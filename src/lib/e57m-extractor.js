@@ -43,7 +43,7 @@ E57mExtractor.prototype.askCache = function(file) {
       if (files.length) {
         var file = files[0];
         // FIXXME: show public URL in output!
-        console.log('[DURAARK::E57mExtractor] found entry: http://localhost:5012/e57m/' + file.id);
+        console.log('[DURAARK::E57mExtractor] found entry: http://localhost:5012/e57ms/' + file.id);
         return file;
       } else {
         console.log('[DURAARK::E57mExtractor] no entry found');
@@ -99,7 +99,7 @@ E57mExtractor.prototype.extractFromFile = function(file) {
               }
 
               // TODO: return URL with correct host!
-              console.log('[DURAARK::E57mExtractor] cached data at: http://localhost:5012/e57m/' + file.id);
+              console.log('[DURAARK::E57mExtractor] cached data at: http://localhost:5012/e57ms/' + file.id);
               return resolve(file);
             });
           })
