@@ -55,9 +55,9 @@ E57Extract.prototype.extractE57m = function(e57) {
       return resolve(xml);
     } else {
       try {
-        console.log('[E57Extract::extractE57m] about to start "e57metadata" executable ...');
+        console.log('[E57Extract::extractE57m] about to run: "e57metadata ' + e57.path + ' ' + outputFile);
 
-        var executable = spawn('e57metadata', [e57.file, outputFile]);
+        var executable = spawn('e57metadata', [e57.path, outputFile]);
 
         executable.stdout.on('data', function(data) {
           console.log('stdout: ' + data);
