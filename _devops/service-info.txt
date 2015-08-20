@@ -1,5 +1,5 @@
 local
-microservice-ifcmetadata
+duraark-metadata
 ../
 
 ../src
