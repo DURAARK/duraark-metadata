@@ -1,5 +1,5 @@
 /**
- * PyIfcExtract/app.js
+ * PyIfcExtract/index.js
  *
  * @description :: Javascript-binding for the 'pyIfcExtract@TUE' python tool
  */

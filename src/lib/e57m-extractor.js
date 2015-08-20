@@ -6,7 +6,7 @@
  */
 
 
-var E57Extract = require('./tools/E57Extract');
+var e57_metadata = require('./tools/e57_metadata');
 
 var E57mExtractor = module.exports = function() {}
 
@@ -59,7 +59,7 @@ E57mExtractor.prototype.extractFromFile = function(file) {
         return reject('[DURAARK::E57mExtractor] ERROR creating record:\n\n' + err);
       }
 
-      var extractor = new E57Extract();
+      var extractor = new e57_metadata();
 
       file.save(function(err, file) {
         if (err) {
@@ -67,10 +67,10 @@ E57mExtractor.prototype.extractFromFile = function(file) {
           return reject('[DURAARK::E57mExtractor] ERROR saving record 1:\n\n' + err);
         }
 
-        extractor.extractE57m(file).then(function(metadata) {
+        extractor.extractE57m(file).then(function(e57mString) {
             console.log('[DURAARK::E57mExtractor] successfully extracted metadata as XML');
 
-            file.metadata = metadata;
+            file.metadata = e57mString;
             file.format = 'application/xml';
 
             // FIXXME: how to determine the schema information dynamically?

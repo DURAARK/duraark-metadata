@@ -1,7 +1,7 @@
 /**
- * E57Extract/app.js
+ * E57Extract/index.js
  *
- * @description :: Javascript-binding for the 'E57Extract@UBO' python tool
+ * @description :: Javascript-binding for the 'e57_metadata@UBO' C++ tool
  */
 
 
@@ -57,7 +57,7 @@ E57Extract.prototype.extractE57m = function(e57) {
       try {
         console.log('[E57Extract::extractE57m] about to run: "e57metadata ' + e57.path + ' ' + outputFile + '"');
 
-        var executable = spawn('e57metadata', [e57.path, outputFile]);
+        var executable = spawn('e57_metadata', [e57.path, outputFile]);
 
         executable.stdout.on('data', function(data) {
           console.log('stdout: ' + data);
@@ -76,15 +76,15 @@ E57Extract.prototype.extractE57m = function(e57) {
 
           console.log('[E57Extract::extractE57m] RDF extraction finished, converting to JSON-LD ...');
 
-          var jsonld = JSON.parse(fs.readFileSync(outputFile, 'utf8'));
+          var xmlString = JSON.parse(fs.readFileSync(outputFile, 'utf8'));
 
-          if (!jsonld) {
+          if (!xmlString) {
             console.log('[E57Extract::extractE57m] Cannot read metadata output file: ' + outputFile);
             reject('[E57Extract::extractE57m] Cannot read metadata output file: ' + outputFile);
           }
 
           console.log('[E57Extract::extractE57m]     ... finished');
-          resolve([jsonld]);
+          resolve(xmlString);
         });
       } catch (err) {
         console.log('[E57Extract::extractE57m] ERROR on program start:\n\n' + err + '\n');
