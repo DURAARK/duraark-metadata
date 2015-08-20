@@ -55,7 +55,7 @@ E57Extract.prototype.extractE57m = function(e57) {
       return resolve(xml);
     } else {
       try {
-        console.log('[E57Extract::extractE57m] about to run: "e57metadata ' + e57.path + ' ' + outputFile);
+        console.log('[E57Extract::extractE57m] about to run: "e57metadata ' + e57.path + ' ' + outputFile + '"');
 
         var executable = spawn('e57metadata', [e57.path, outputFile]);
 
@@ -69,7 +69,7 @@ E57Extract.prototype.extractE57m = function(e57) {
         });
 
         executable.on('close', function(code) {
-          if (code !== 0) {
+          if (code !== 1) { // 'e57metadata' return '1' on success
             console.log('[E57Extract::extractE57m] ERROR: exited with code:' + code);
             return reject('[E57Extract::extractE57m] ERROR: exited with code: \n\n' + code + '\n');
           }
