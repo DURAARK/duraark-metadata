@@ -17,7 +17,7 @@ COPY ./pyIfcExtract/buildm_v3.0.rdf /duraark/schemas/
 
 WORKDIR /duraark/microservice
 
-RUN npm install
+RUN npm install sails nodemon -g && npm install
 
 EXPOSE 5012
 
