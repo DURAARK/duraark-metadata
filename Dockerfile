@@ -74,4 +74,4 @@ RUN ldconfig
 
 WORKDIR /duraark/microservice
 
-ENTRYPOINT ["sails", "lift", "--prod"]
+CMD ["sails", "lift", "--prod"]

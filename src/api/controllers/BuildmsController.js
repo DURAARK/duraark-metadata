@@ -5,8 +5,7 @@
   *                IFC-SPF files.
  */
 
-var duraark = require('../../lib/duraark'),
-  SCHEMA_PATH = '/duraark-storage/tools/pyIfcExtract/buildm_v3.0.rdf';
+var duraark = require('../../lib/duraark');
 
   /**
    * @apiDefine BuildmSuccess
@@ -102,7 +101,8 @@ module.exports = {
 }
 
 function handleExtraction(extractor, req, res) {
-  var file = req.params.all();
+  var file = req.params.all(),
+  schema_path = process.cwd() + '/../pyIfcExtract/buildm_v3.0.rdf';
 
   console.log('[DURAARK::BuildmController] searching in cache ...');
 
@@ -112,7 +112,7 @@ function handleExtraction(extractor, req, res) {
       return res.send(200, cachedFile);
     }
 
-    return extractor.extractFromFile(file, SCHEMA_PATH)
+    return extractor.extractFromFile(file, schema_path)
       .then(function(file) {
         console.log('[DURAARK::BuildmController] request completed!');
         return res.send(201, file);

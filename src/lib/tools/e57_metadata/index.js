@@ -12,7 +12,7 @@ var Promise = require("bluebird"),
   fs = require('fs'),
   js2xmlparser = require("js2xmlparser");
 
-var _bypassExecutable = false;
+var _bypassExecutable = true;
 
 var e57_metadata = module.exports = function() {}
 
@@ -38,7 +38,8 @@ e57_metadata.prototype.extractE57m = function(e57) {
 
     if (_bypassExecutable) {
       var jsonString = null,
-        fixtureJSONData = path.join('/duraark-storage', 'testdata', 'nygade-e57-metadata.json');
+        testdataPath = process.cwd() + '/../testdata';
+        fixtureJSONData = path.join(testdataPath, 'nygade-e57-metadata.json');
 
       // console.log('fixtureJSONData: ' + fixtureJSONData);
 

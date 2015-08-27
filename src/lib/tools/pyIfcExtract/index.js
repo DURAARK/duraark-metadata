@@ -31,9 +31,10 @@ PyIfcExtract.prototype.extractIfcm = function(ifc) {
     }
 
     try {
-      console.log('[PyIfcExtract::extractIfcm] about to start "python2.7 /duraark-storage/tools/pyIfcExtract/ifcm_extractor.py" ...');
+      var pyIfcExtractRoot = process.cwd() + '/../pyIfcExtract';
+      console.log('[PyIfcExtract::extractIfcm] about to start "python2.7 ' + pyIfcExtractRoot + '/ifcm_extractor.py" ...');
 
-      var executable = spawn('python2.7', ['/duraark-storage/tools/pyIfcExtract/ifcm_extractor.py', ifc.path]),
+      var executable = spawn('python2.7', [pyIfcExtractRoot + '/ifcm_extractor.py', ifc.path]),
         xmlString = '';
 
       executable.stdout.on('data', function(data) {
@@ -79,9 +80,10 @@ PyIfcExtract.prototype.extractBuildm = function(ifc, schema) {
     }
 
     try {
-      console.log('[PyIfcExtract::extractIfcm] about to start "python2.7 /duraark-storage/tools/pyIfcExtract/ifcm_extractor.py" ...');
+      var pyIfcExtractRoot = process.cwd() + '/../pyIfcExtract';
+      console.log('[PyIfcExtract::extractIfcm] about to start "python2.7 ' + pyIfcExtractRoot + '/buildm_extractor.py" ...');
 
-      var executable = spawn('python3.3', ['/duraark-storage/tools/pyIfcExtract/buildm_extractor.py', ifc.path, schema]),
+      var executable = spawn('python2.7', [pyIfcExtractRoot + '/buildm_extractor.py', ifc.path, schema]),
         rdfString = '';
 
       executable.stdout.on('data', function(data) {
