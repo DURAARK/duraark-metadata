@@ -11,13 +11,10 @@ RUN apt-get install python3.3 python3-httplib2 -y
 
 RUN mkdir -p /duraark/microservice /duraark/tools /duraark/schemas
 
-COPY ./src /duraark/microservice
-COPY ./pyIfcExtract /duraark/tools/pyIfcExtract
-COPY ./pyIfcExtract/buildm_v3.0.rdf /duraark/schemas/
-
+COPY ./ /duraark/microservice
 WORKDIR /duraark/microservice
 
-RUN npm install sails nodemon -g && npm install
+RUN (cd src && npm install sails nodemon -g && npm install)
 
 EXPOSE 5012
 
@@ -72,6 +69,6 @@ RUN cp /usr/local/bin/test_cpplib /usr/bin/e57_metadata
 RUN echo $(pwd) > /etc/ld.so.conf.d/e57_metadata.conf
 RUN ldconfig
 
-WORKDIR /duraark/microservice
+WORKDIR /duraark/microservice/src
 
 CMD ["sails", "lift", "--prod"]
