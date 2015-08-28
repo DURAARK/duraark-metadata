@@ -1,0 +1,14 @@
+duraark-metadata:
+  # image: duraark/duraark-metadata:0.7.0
+  build: .
+  command: nodemon --watch /duraark/microservice/src/api -w /duraark/microservice/src/config app.js
+  ports:
+    - "5012:5012"
+#  If you are also using the 'duraark-sessions' service use 'volumes_from'
+#  instead of /duraark-storage entry in the 'volumes' section below to link
+#  to the file storage.
+#  volumes-from:
+#    - duraark-sessions
+  volumes:
+    - ./duraark-metadata:/duraark/microservice
+    - /tmp/files:/duraark-storage # remove this line if you use the 'duraark-sessions' service
