@@ -1,6 +1,6 @@
 # duraark-metadata
 
-[![Circle CI](https://circleci.com/gh/DURAARK/microservice-metadata-extraction.svg?style=svg)](https://circleci.com/gh/DURAARK/microservice-ifcmetadata)
+[![Circle CI](https://circleci.com/gh/DURAARK/duraark-metadata.svg?style=svg)](https://circleci.com/gh/DURAARK/microservice-ifcmetadata)
 
 This library is part of the [DURAARK](http://github.com/duraark/duraark-system) system and contains the metadata extraction components.
 
