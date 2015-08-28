@@ -120,7 +120,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "api/controllers/BuildmController.js",
+    "filename": "api/controllers/BuildmsController.js",
     "groupTitle": "BuildM",
     "sampleRequest": [
       {
@@ -163,7 +163,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "api/controllers/BuildmController.js",
+    "filename": "api/controllers/BuildmsController.js",
     "groupTitle": "BuildM",
     "sampleRequest": [
       {
@@ -292,7 +292,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "api/controllers/E57mController.js",
+    "filename": "api/controllers/E57msController.js",
     "groupTitle": "E57M",
     "sampleRequest": [
       {
@@ -335,7 +335,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "api/controllers/E57mController.js",
+    "filename": "api/controllers/E57msController.js",
     "groupTitle": "E57M",
     "sampleRequest": [
       {
@@ -464,7 +464,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "api/controllers/IfcmController.js",
+    "filename": "api/controllers/IfcmsController.js",
     "groupTitle": "IfcM",
     "sampleRequest": [
       {
@@ -507,7 +507,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "api/controllers/IfcmController.js",
+    "filename": "api/controllers/IfcmsController.js",
     "groupTitle": "IfcM",
     "sampleRequest": [
       {

@@ -10,5 +10,5 @@ duraark-metadata:
 #  volumes-from:
 #    - duraark-sessions
   volumes:
-    - ./duraark-metadata:/duraark/microservice
+    - .:/duraark/microservice
     - /tmp/files:/duraark-storage # remove this line if you use the 'duraark-sessions' service
