@@ -1,6 +1,6 @@
 # duraark-metadata
 
-[![Circle CI](https://circleci.com/gh/DURAARK/duraark-metadata.svg?style=svg)](https://circleci.com/gh/DURAARK/microservice-ifcmetadata)
+[![Circle CI](https://circleci.com/gh/DURAARK/duraark-metadata.svg?style=svg)](https://circleci.com/gh/DURAARK/duraark-metadata)
 
 ## Overview
 
