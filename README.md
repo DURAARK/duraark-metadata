@@ -6,6 +6,8 @@
 
 This library is part of the [DURAARK](http://github.com/duraark/duraark-system) system and contains the metadata extraction components.
 
+Additionally to this page a description on the provided functionality can be found in the report [D2.5 Software prototype v2, Section 4.2](http://duraark.eu/wp-content/uploads/2015/08/DURAARK_D2_5_final.pdf).
+
 ### Format support
 
 The following file types are supported for the extraction of data:
