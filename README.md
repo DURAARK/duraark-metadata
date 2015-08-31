@@ -56,7 +56,7 @@ Our recommended stack is to install DURAARK on a Docker-compatible Linux system 
 
 ### Installation Steps
 
-On the host you want to deploy the service execute the following simple steps (assuming that Docker and Docker Compose are installed and working):
+On the host you want to deploy the service execute the following steps (assuming that Docker and Docker Compose are installed and working):
 
 ```js
 > git clone https://github.com/DURAARK/duraark-metadata.git
@@ -66,21 +66,21 @@ On the host you want to deploy the service execute the following simple steps (a
 
 This will deploy the system in the current stable version (v0.7.0) which exposes its API at **http://HOST_IP:5012/** (http://localhost:5012/ if you did the setup on your local host).
 
-The files you want to use have to be put into the folder /tmp/duraark/files. You may want to also install the [duraark-sessions](https://github.com/DURAARK/duraark-sessions), which acts as the data volume container for files in the [DURAARK System](https://github.com/DURAARK/duraark-system).
+The files you want to use have to be put into the folder **/tmp/duraark/files**. You may want to also install the [duraark-sessions](https://github.com/DURAARK/duraark-sessions), which acts as the data volume container for files in the [DURAARK System](https://github.com/DURAARK/duraark-system).
 
 ## Development Environment
 
 To setup the environment follow these steps:
 
 ```js
-> git clone https://github.com/DURAARK/duraark-system.git
+> git clone https://github.com/DURAARK/duraark-metadata.git
 > cd duraark-metadata
 > npm install
 > docker-compose -f devenv-compose.yml build
 > docker-compose -f devenv-compose.yml up -d
 ```
 
-This will build the dockerized development environment. After building the docker container is started and you can access the service at **http://localhost:5012**. Changing the source code in a sub-module will live reload the container.
+This will build the dockerized development environment. After building the docker container is started and you can access the service at **http://localhost:5012**. Changing the source code will live reload the container.
 
 The files you want to use have to be put into the folder **/tmp/duraark/files**. You may want to also install the [duraark-sessions](https://github.com/DURAARK/duraark-sessions), which acts as the data volume container for files in the [DURAARK System](https://github.com/DURAARK/duraark-system).
 
