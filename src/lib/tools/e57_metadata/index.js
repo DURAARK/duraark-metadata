@@ -12,7 +12,7 @@ var Promise = require("bluebird"),
   fs = require('fs'),
   js2xmlparser = require("js2xmlparser");
 
-var _bypassExecutable = true;
+var _bypassExecutable = false;
 
 var e57_metadata = module.exports = function() {}
 

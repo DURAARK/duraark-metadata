@@ -75,7 +75,7 @@ E57mExtractor.prototype.extractFromFile = function(file) {
             var jsonString = null;
 
             try {
-              jsonString = XMLParser.toJson(xmlString);
+              jsonString = JSON.parse(XMLParser.toJson(xmlString));
               console.log('jsonString: ' + JSON.stringify(jsonString, null, 4));
             } catch (err) {
               jsonString = null;
