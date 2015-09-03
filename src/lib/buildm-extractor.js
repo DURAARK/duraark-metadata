@@ -84,12 +84,13 @@ BuildmExtractor.prototype.extractFromFile = function(file, schema) {
               console.log('element: ' + JSON.stringify(element, null, 4));
 
               var type = element['@type'][0];
-              if (type === 'http://data.duraark.eu/vocab/PhysicalAsset') {
+              if (type === 'http://data.duraark.eu/vocab/buildm/PhysicalAsset') {
                 file.metadata.physicalAsset = element;
-              } else if (type === 'http://data.duraark.eu/vocab/IFCSPFFile') {
+              } else if (type === 'http://data.duraark.eu/vocab/buildm/IFCSPFFile') {
                 file.metadata.digitalObject = element;
               } else {
-                throw new Error('[DURAARK::BuildmExtractor] element type "' + type + '" not supported. Aborting...');
+                console.log('[DURAARK::BuildmExtractor] element type "' + type + '" not supported. Aborting...');
+                return reject('[DURAARK::BuildmExtractor] element type "' + type + '" not supported. Aborting...');
               }
             });
 
