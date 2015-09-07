@@ -102,6 +102,10 @@ PyIfcExtract.prototype.extractBuildm = function(ifc, schema) {
           return reject('[PyIfcExtract::asJSONLD] ERROR: exited with code: \n\n' + code + '\n');
         }
         console.log('[PyIfcExtract::asJSONLD] RDF extraction finished, converting to JSON-LD ...');
+        
+        // FIXXME: quick fix for wrong pyIfcExtract output.
+        // REMOVE when pyIfcExtract is updated!
+        rdfString = rdfString.replace('http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing', '<http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing>');
 
         rdf.parseTurtle(rdfString, function(graph, err) {
           if (err) {
