@@ -35,7 +35,7 @@
     "sails": "~0.10.5",
     "sails-disk": "~0.10.0",
     "underscore": "^1.8.2",
-    "xml2json": "^0.8.2"
+    "xml2json": "^0.9.0"
   },
   "scripts": {
     "start": "node app.js",
