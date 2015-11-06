@@ -33,7 +33,8 @@ e57_metadata.prototype.extractE57m = function(e57) {
       return reject('[e57_metadata::extractE57m] ERROR checking file: "' + e57.path + '" does not exist');
     }
 
-    var outputFile = path.join('/tmp', uuid.v4() + '.json');
+    //  FIXXME: get location of duraark storage from environment variable!
+    var outputFile = path.join('/duraark-storage/tmp', uuid.v4() + '.json');
     // console.log('outputFile: ' + outputFile);
 
     if (_bypassExecutable) {
