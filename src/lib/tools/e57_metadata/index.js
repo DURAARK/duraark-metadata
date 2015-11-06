@@ -56,7 +56,7 @@ e57_metadata.prototype.extractE57m = function(e57) {
       try {
         console.log('[e57_metadata::extractE57m] about to run: "e57metadata ' + e57.path + ' ' + outputFile + '"');
 
-        var executable = spawn('docker', ['run', '--rm', '-v /duraark-storage:/duraark-storage', 'paulhilbert/e57-metadata', 'e57_metadata_extractor', '--input', e57.path, '--output', outputFile]);
+        var executable = spawn('docker', ['run', '--rm', '-v', '/duraark-storage:/duraark-storage', 'paulhilbert/e57-metadata', 'e57_metadata_extractor', '--input', e57.path, '--output', outputFile]);
 
         executable.stdout.on('data', function(data) {
           console.log('stdout: ' + data);
