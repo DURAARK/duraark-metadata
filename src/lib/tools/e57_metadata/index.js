@@ -14,24 +14,16 @@ var Promise = require("bluebird"),
 
 var _bypassExecutable = false;
 
-var e57_metadata = module.exports = function() {}
+var e57_metadata = module.exports = function(storagePath) {
+  this.storagePath = storagePath;
+  console.log('[e57_metadata] mounting ' + this.storagePath + ' as "/duraark-storage"');
+}
 
 e57_metadata.prototype.extractE57m = function(e57) {
   var extractor = this;
 
   return new Promise(function(resolve, reject) {
     // console.log('[e57_metadata::extractE57m] file: ' + e57.path); // TODO: use buyan's logger library!
-
-    try {
-      stats = fs.lstatSync(e57.path);
-      if (!stats.isFile()) {
-        console.log('[e57_metadata::extractE57m] ERROR: file "' + e57.path + '" does not exist');
-        return reject('[e57_metadata::extractE57m] ERROR: file "' + e57.path + '" does not exist');
-      }
-    } catch (err) {
-      console.log('[e57_metadata::extractE57m] ERROR checking file: "' + e57.path + '" does not exist');
-      return reject('[e57_metadata::extractE57m] ERROR checking file: "' + e57.path + '" does not exist');
-    }
 
     //  FIXXME: get location of duraark storage from environment variable!
     var outputFile = path.join('/duraark-storage/tmp', uuid.v4() + '.json');
@@ -55,10 +47,12 @@ e57_metadata.prototype.extractE57m = function(e57) {
       return resolve(xmlString);
     } else {
       try {
-        console.log('[e57_metadata::extractE57m] about to run: "e57metadata ' + e57.path + ' ' + outputFile + '"');
+        var args = ['run', '--rm', '-v', extractor.storagePath + ':/duraark-storage', 'paulhilbert/e57-metadata', 'e57_metadata_extractor', '--input', e57.path, '--output', outputFile];
+        console.log('[e57_metadata::extractE57m] about to run: docker ' + args.join(' '));
 
-        var executable = spawn('docker', ['run', '--rm', '-v', '/duraark-storage:/duraark-storage', 'paulhilbert/e57-metadata', 'e57_metadata_extractor', '--input', e57.path, '--output', outputFile]);
+        var executable = spawn('docker', args);
 
+        console.log('')
         executable.stdout.on('data', function(data) {
           console.log('stdout: ' + data);
         });

@@ -83,7 +83,9 @@ module.exports = {
    *
    */
   create: function(req, res, next) {
-    var e57mExtractor = new duraark.E57mExtractor();
+    var DURAARK_STORAGE_PATH = process.env.DURAARK_STORAGE_PATH || '/duraark-storage';
+    console.log('DURAARK_STORAGE_PATH: ' + DURAARK_STORAGE_PATH);
+    var e57mExtractor = new duraark.E57mExtractor(DURAARK_STORAGE_PATH);
 
     console.log('\n[DURAARK::E57mController] incoming request');
     console.log('[DURAARK::E57mController]');

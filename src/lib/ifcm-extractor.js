@@ -6,7 +6,7 @@
  */
 
 
-var PyIfcExtract = require('./tools/pyIfcExtract'),
+var PyIfcExtract = require('./tools/pyIfcExtract');
   XMLParser = require('xml2json');
 
 var IfcmExtractor = module.exports = function() {}

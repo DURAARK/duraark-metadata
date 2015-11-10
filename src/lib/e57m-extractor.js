@@ -6,10 +6,12 @@
  */
 
 
-var e57_metadata = require('./tools/e57_metadata'),
+var e57_metadata = require('./tools/e57_metadata');
   XMLParser = require('xml2json');
 
-var E57mExtractor = module.exports = function() {}
+var E57mExtractor = module.exports = function(storagePath) {
+  this.storagePath = storagePath;
+}
 
 E57mExtractor.prototype.validateInput = function(req, res) {
   var file = req.params.all();
@@ -53,14 +55,14 @@ E57mExtractor.prototype.askCache = function(file) {
 }
 
 E57mExtractor.prototype.extractFromFile = function(file) {
+  var that = this;
   return new Promise(function(resolve, reject) {
     return E57ms.create(file, function(err, file) {
       if (err) {
         console.log('[DURAARK::E57mExtractor] ERROR creating record:\n\n' + err + '\n');
         return reject('[DURAARK::E57mExtractor] ERROR creating record:\n\n' + err);
       }
-
-      var extractor = new e57_metadata();
+      var extractor = new e57_metadata(that.storagePath);
 
       file.save(function(err, file) {
         if (err) {
