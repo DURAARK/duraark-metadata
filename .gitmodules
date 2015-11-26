@@ -1,6 +1,3 @@
 [submodule "pyIfcExtract"]
 	path = pyIfcExtract
 	url = https://github.com/DURAARK/pyIfcExtract.git
-[submodule "e57Extract"]
-	path = e57Extract
-	url = git@github.com:DURAARK/e57Extract.git
