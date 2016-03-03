@@ -3,7 +3,7 @@ define({ "api": [
     "type": "get",
     "url": "/buildm/:id",
     "title": "Request cached buildM metadata",
-    "version": "0.8.0",
+    "version": "1.0.0",
     "name": "GetBuildm",
     "group": "BuildM",
     "permission": [
@@ -11,16 +11,16 @@ define({ "api": [
         "name": "none"
       }
     ],
-    "description": "<p>Requests cached descriptive metadata as buildM/JSON-LD serialization.</p> ",
+    "description": "<p>Requests cached descriptive metadata as buildM/JSON-LD serialization.</p>",
     "parameter": {
       "fields": {
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "<p>Number</p> ",
+            "type": "Number",
             "optional": false,
             "field": "id",
-            "description": "<p>File's unique ID.</p> "
+            "description": "<p>File's unique ID.</p>"
           }
         ]
       }
@@ -44,59 +44,59 @@ define({ "api": [
         "Ifcm": [
           {
             "group": "Ifcm",
-            "type": "<p>String</p> ",
+            "type": "String",
             "optional": false,
             "field": "path",
-            "description": "<p>Location of the file.</p> "
+            "description": "<p>Location of the file.</p>"
           },
           {
             "group": "Ifcm",
-            "type": "<p>Date</p> ",
+            "type": "Date",
             "optional": false,
             "field": "createdAt",
-            "description": "<p>Creation time of the database instance.</p> "
+            "description": "<p>Creation time of the database instance.</p>"
           },
           {
             "group": "Ifcm",
-            "type": "<p>Date</p> ",
+            "type": "Date",
             "optional": false,
             "field": "updatedAt",
-            "description": "<p>Last modification time of the database instance.</p> "
+            "description": "<p>Last modification time of the database instance.</p>"
           },
           {
             "group": "Ifcm",
-            "type": "<p>Number</p> ",
+            "type": "Number",
             "optional": false,
             "field": "id",
-            "description": "<p>Database instance's unique ID.</p> "
+            "description": "<p>Database instance's unique ID.</p>"
           },
           {
             "group": "Ifcm",
-            "type": "<p>string</p> ",
+            "type": "string",
             "optional": false,
             "field": "format",
-            "description": "<p>Format of the metadata serialization (i.e. &quot;application/ld+json&quot;)</p> "
+            "description": "<p>Format of the metadata serialization (i.e. &quot;application/ld+json&quot;)</p>"
           },
           {
             "group": "Ifcm",
-            "type": "<p>string</p> ",
+            "type": "string",
             "optional": false,
             "field": "schemaName",
-            "description": "<p>Schema name (i.e. &quot;buildm&quot;)</p> "
+            "description": "<p>Schema name (i.e. &quot;buildm&quot;)</p>"
           },
           {
             "group": "Ifcm",
-            "type": "<p>Number</p> ",
+            "type": "Number",
             "optional": false,
             "field": "schemaVersion",
-            "description": "<p>Schema version (e.g. &quot;2.2&quot;)</p> "
+            "description": "<p>Schema version (e.g. &quot;2.2&quot;)</p>"
           },
           {
             "group": "Ifcm",
-            "type": "<p>Object</p> ",
+            "type": "Object",
             "optional": false,
             "field": "metadata",
-            "description": "<p>The extracted metadata is returned in the serialization format above</p> "
+            "description": "<p>The extracted metadata is returned in the serialization format above</p>"
           }
         ]
       }
@@ -108,7 +108,7 @@ define({ "api": [
             "group": "Error 4xx",
             "optional": false,
             "field": "NotFound",
-            "description": "<p>The metadata information was not found.</p> "
+            "description": "<p>The metadata information was not found.</p>"
           }
         ]
       },
@@ -132,7 +132,7 @@ define({ "api": [
     "type": "post",
     "url": "/buildm",
     "title": "Extract descriptive metadata as buildM/JSON-LD serialization from an IFC-SPF file.",
-    "version": "0.8.0",
+    "version": "1.0.0",
     "name": "PostBuildm",
     "group": "BuildM",
     "permission": [
@@ -140,16 +140,16 @@ define({ "api": [
         "name": "none"
       }
     ],
-    "description": "<p>Extracts descriptive metadata from the given IFC-SPF file.</p> ",
+    "description": "<p>Extracts descriptive metadata from the given IFC-SPF file.</p>",
     "parameter": {
       "fields": {
         "File": [
           {
             "group": "File",
-            "type": "<p>String</p> ",
+            "type": "String",
             "optional": false,
             "field": "path",
-            "description": "<p>Location of the file as provided by the <a href=\"http://data.duraark.eu/services/api/sessions/\">DURAARK Sessions API</a>.</p> "
+            "description": "<p>Location of the file as provided by the <a href=\"http://data.duraark.eu/services/api/sessions/\">DURAARK Sessions API</a>.</p>"
           }
         ]
       }
@@ -183,16 +183,16 @@ define({ "api": [
         "name": "none"
       }
     ],
-    "description": "<p>Requests cached technical metadata as e57M/XML serialization.</p> ",
+    "description": "<p>Requests cached technical metadata as e57M/XML serialization.</p>",
     "parameter": {
       "fields": {
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "<p>Number</p> ",
+            "type": "Number",
             "optional": false,
             "field": "id",
-            "description": "<p>File's unique ID.</p> "
+            "description": "<p>File's unique ID.</p>"
           }
         ]
       }
@@ -216,59 +216,59 @@ define({ "api": [
         "E57m": [
           {
             "group": "E57m",
-            "type": "<p>String</p> ",
+            "type": "String",
             "optional": false,
             "field": "path",
-            "description": "<p>Location of the file.</p> "
+            "description": "<p>Location of the file.</p>"
           },
           {
             "group": "E57m",
-            "type": "<p>Date</p> ",
+            "type": "Date",
             "optional": false,
             "field": "createdAt",
-            "description": "<p>Creation time of the database instance.</p> "
+            "description": "<p>Creation time of the database instance.</p>"
           },
           {
             "group": "E57m",
-            "type": "<p>Date</p> ",
+            "type": "Date",
             "optional": false,
             "field": "updatedAt",
-            "description": "<p>Last modification time of the database instance.</p> "
+            "description": "<p>Last modification time of the database instance.</p>"
           },
           {
             "group": "E57m",
-            "type": "<p>Number</p> ",
+            "type": "Number",
             "optional": false,
             "field": "id",
-            "description": "<p>Database instance's unique ID.</p> "
+            "description": "<p>Database instance's unique ID.</p>"
           },
           {
             "group": "E57m",
-            "type": "<p>string</p> ",
+            "type": "string",
             "optional": false,
             "field": "format",
-            "description": "<p>Format of the metadata serialization (i.e. &quot;application/xml&quot;)</p> "
+            "description": "<p>Format of the metadata serialization (i.e. &quot;application/xml&quot;)</p>"
           },
           {
             "group": "E57m",
-            "type": "<p>string</p> ",
+            "type": "string",
             "optional": false,
             "field": "schemaName",
-            "description": "<p>Schema name (i.e. &quot;e57m&quot;)</p> "
+            "description": "<p>Schema name (i.e. &quot;e57m&quot;)</p>"
           },
           {
             "group": "E57m",
-            "type": "<p>Number</p> ",
+            "type": "Number",
             "optional": false,
             "field": "schemaVersion",
-            "description": "<p>Schema version (e.g. &quot;1.1&quot;)</p> "
+            "description": "<p>Schema version (e.g. &quot;1.1&quot;)</p>"
           },
           {
             "group": "E57m",
-            "type": "<p>String</p> ",
+            "type": "String",
             "optional": false,
             "field": "metadata",
-            "description": "<p>The extracted metadata is returned in the serialization format above</p> "
+            "description": "<p>The extracted metadata is returned in the serialization format above</p>"
           }
         ]
       }
@@ -280,7 +280,7 @@ define({ "api": [
             "group": "Error 4xx",
             "optional": false,
             "field": "NotFound",
-            "description": "<p>The metadata information was not found.</p> "
+            "description": "<p>The metadata information was not found.</p>"
           }
         ]
       },
@@ -312,16 +312,16 @@ define({ "api": [
         "name": "none"
       }
     ],
-    "description": "<p>Extracts technical metadata from the given E57 file.</p> ",
+    "description": "<p>Extracts technical metadata from the given E57 file.</p>",
     "parameter": {
       "fields": {
         "File": [
           {
             "group": "File",
-            "type": "<p>String</p> ",
+            "type": "String",
             "optional": false,
             "field": "path",
-            "description": "<p>Location of the file as provided by the <a href=\"http://data.duraark.eu/services/api/sessions/\">DURAARK Sessions API</a>.</p> "
+            "description": "<p>Location of the file as provided by the <a href=\"http://data.duraark.eu/services/api/sessions/\">DURAARK Sessions API</a>.</p>"
           }
         ]
       }
@@ -355,16 +355,16 @@ define({ "api": [
         "name": "none"
       }
     ],
-    "description": "<p>Requests cached technical metadata as ifcM/XML serialization from an IFC-SPF file.</p> ",
+    "description": "<p>Requests cached technical metadata as ifcM/XML serialization from an IFC-SPF file.</p>",
     "parameter": {
       "fields": {
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "<p>Number</p> ",
+            "type": "Number",
             "optional": false,
             "field": "id",
-            "description": "<p>File's unique ID.</p> "
+            "description": "<p>File's unique ID.</p>"
           }
         ]
       }
@@ -388,59 +388,59 @@ define({ "api": [
         "Ifcm": [
           {
             "group": "Ifcm",
-            "type": "<p>String</p> ",
+            "type": "String",
             "optional": false,
             "field": "path",
-            "description": "<p>Location of the file.</p> "
+            "description": "<p>Location of the file.</p>"
           },
           {
             "group": "Ifcm",
-            "type": "<p>Date</p> ",
+            "type": "Date",
             "optional": false,
             "field": "createdAt",
-            "description": "<p>Creation time of the database instance.</p> "
+            "description": "<p>Creation time of the database instance.</p>"
           },
           {
             "group": "Ifcm",
-            "type": "<p>Date</p> ",
+            "type": "Date",
             "optional": false,
             "field": "updatedAt",
-            "description": "<p>Last modification time of the database instance.</p> "
+            "description": "<p>Last modification time of the database instance.</p>"
           },
           {
             "group": "Ifcm",
-            "type": "<p>Number</p> ",
+            "type": "Number",
             "optional": false,
             "field": "id",
-            "description": "<p>Database instance's unique ID.</p> "
+            "description": "<p>Database instance's unique ID.</p>"
           },
           {
             "group": "Ifcm",
-            "type": "<p>string</p> ",
+            "type": "string",
             "optional": false,
             "field": "format",
-            "description": "<p>Format of the metadata serialization (i.e. &quot;application/xml&quot;)</p> "
+            "description": "<p>Format of the metadata serialization (i.e. &quot;application/xml&quot;)</p>"
           },
           {
             "group": "Ifcm",
-            "type": "<p>string</p> ",
+            "type": "string",
             "optional": false,
             "field": "schemaName",
-            "description": "<p>Schema name (i.e. &quot;ifcm&quot;)</p> "
+            "description": "<p>Schema name (i.e. &quot;ifcm&quot;)</p>"
           },
           {
             "group": "Ifcm",
-            "type": "<p>Number</p> ",
+            "type": "Number",
             "optional": false,
             "field": "schemaVersion",
-            "description": "<p>Schema version (e.g. &quot;1.0&quot;)</p> "
+            "description": "<p>Schema version (e.g. &quot;1.0&quot;)</p>"
           },
           {
             "group": "Ifcm",
-            "type": "<p>String</p> ",
+            "type": "String",
             "optional": false,
             "field": "metadata",
-            "description": "<p>The extracted metadata is returned in the serialization format above</p> "
+            "description": "<p>The extracted metadata is returned in the serialization format above</p>"
           }
         ]
       }
@@ -452,7 +452,7 @@ define({ "api": [
             "group": "Error 4xx",
             "optional": false,
             "field": "NotFound",
-            "description": "<p>The metadata information was not found.</p> "
+            "description": "<p>The metadata information was not found.</p>"
           }
         ]
       },
@@ -484,16 +484,16 @@ define({ "api": [
         "name": "none"
       }
     ],
-    "description": "<p>Extracts technical metadata from the given IFC-SPF file.</p> ",
+    "description": "<p>Extracts technical metadata from the given IFC-SPF file.</p>",
     "parameter": {
       "fields": {
         "File": [
           {
             "group": "File",
-            "type": "<p>String</p> ",
+            "type": "String",
             "optional": false,
             "field": "path",
-            "description": "<p>Location of the file as provided by the <a href=\"http://data.duraark.eu/services/api/sessions/\">DURAARK Sessions API</a>.</p> "
+            "description": "<p>Location of the file as provided by the <a href=\"http://data.duraark.eu/services/api/sessions/\">DURAARK Sessions API</a>.</p>"
           }
         ]
       }

@@ -1,6 +1,6 @@
 {
   "name": "duraark-metadata",
-  "version": "0.7.0",
+  "version": "1.0.0",
   "title": "DURAARK Metadata Service",
   "url": "http://data.duraark.eu/services/api/metadata",
   "sampleUrl": "http://data.duraark.eu/services/api/metadata",
@@ -8,8 +8,8 @@
   "apidoc": "0.2.0",
   "generator": {
     "name": "apidoc",
-    "time": "2015-08-28T12:19:46.455Z",
+    "time": "2016-03-03T20:49:23.910Z",
     "url": "http://apidocjs.com",
-    "version": "0.13.1"
+    "version": "0.15.1"
   }
 }

@@ -22,7 +22,7 @@ var duraark = require('../../lib/duraark');
 module.exports = {
   /**
    * @api {get} /buildm/:id Request cached buildM metadata
-   * @apiVersion 0.8.0
+   * @apiVersion 1.0.0
    * @apiName GetBuildm
    * @apiGroup BuildM
    * @apiPermission none
@@ -62,7 +62,7 @@ module.exports = {
 
   /**
    * @api {post} /buildm Extract descriptive metadata as buildM/JSON-LD serialization from an IFC-SPF file.
-   * @apiVersion 0.8.0
+   * @apiVersion 1.0.0
    * @apiName PostBuildm
    * @apiGroup BuildM
    * @apiPermission none
